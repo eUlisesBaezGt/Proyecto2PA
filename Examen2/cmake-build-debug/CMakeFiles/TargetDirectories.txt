@@ -1,0 +1,3 @@
+/home/eubgt/Desktop/PA/P2/Examen2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/eubgt/Desktop/PA/P2/Examen2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/eubgt/Desktop/PA/P2/Examen2/cmake-build-debug/CMakeFiles/Examen2.dir
