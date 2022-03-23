@@ -1,7 +1,9 @@
 #ifndef EXAMEN2_ADMIN_H
 #define EXAMEN2_ADMIN_H
 
+class Admin {
 
+};
 
 #endif //EXAMEN2_ADMIN_H
 
