@@ -10,4 +10,3 @@ int main() {
 }
 
 
-//    2. Dar de alta, almacenar, deshabilitar y habilitar Directivos en el sistema
