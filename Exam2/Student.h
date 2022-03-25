@@ -8,8 +8,9 @@ public:
     string lastName2;
     int age;
     char gender;
+    bool status;
 
-    void add_client() {
+    void add_student() {
         int id, age;
         string name, lastName1, lastName2;
         cout << " -Register Client- " << endl;
@@ -31,23 +32,27 @@ public:
         cin >> gender;
         cin.ignore()
 
-        getClient(id, name, lastName1, lastName2, age, gender);
         system("clear");
     }
-    
+
+
+    void store(){
+
+    }
+
+    void enable(){
+
+    }
+
+    void disable(){
+
+    }
+
+
 private:
     int id;
 };
 
-void getClient(int _id, string _name, string _lastName1, string _lastName2, int _age, string _gender) {
-        this -> id = _id;
-        this -> name = _name;
-        this -> lastName1 = _lastName1;
-        this -> lastName2 = _lastName2;
-        this -> age = _age;
-        this -> gender = _gender;
-    };
-
 #endif //EXAMEN2_STUDENT_H
 
-// 1. almacenar, deshabilitar y habilitar Estudiantes en el sistema
+
