@@ -2,6 +2,10 @@
 #define EXAMEN2_ADMIN_H
 
 class Admin {
+
+private:
+    int id;
+
 public:
     string name;
     string lastName1;
@@ -32,7 +36,13 @@ public:
         cin >> gender;
         cin.ignore();
 
+        getAdmin(id);
+
         system("clear");
+    }
+
+    void getAdmin(int _id){
+        this -> id = _id;
     }
 
 
@@ -79,10 +89,7 @@ public:
             cout << "Admin ID not found" << endl;
         }
     }    
-}
 
-private:
-    int id;
 };
 
 #endif //EXAMEN2_ADMIN_H
