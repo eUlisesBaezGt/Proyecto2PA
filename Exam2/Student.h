@@ -40,8 +40,24 @@ public:
 
     }
 
-    void enable(){
+    void enable(vector<Student> list){
+        cout << "ID of Student to enable: ";
+        int id;
+        cin >> id;
+        cin.ignore();
+        bool found;
+        bool found = false;
 
+        for(int i=0; i < list.size() ;i++){
+            if(id == list[i].id){
+                found = true;
+                list[i].status = true;
+                cout << "Student status succesfully updated" << endl;
+            }
+        }
+        if(found == false){
+            cout << "Student ID not found" << endl;
+        }
     }
 
     void disable(){

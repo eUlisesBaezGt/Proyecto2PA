@@ -41,7 +41,7 @@ public:
     }
 
     void enable(vector<Admin> list){
-        cout << "ID of Admin to enable" << endl;
+        cout << "ID of Admin to enable: ";
         int id;
         cin >> id;
         cin.ignore();
