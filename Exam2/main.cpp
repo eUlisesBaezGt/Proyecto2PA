@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <vector>
 #include <string>
+
 #include "Student.h"
 #include "Admin.h"
 
@@ -18,8 +19,7 @@ int ID_GEN() {
     return ID;
 }
 
-bool checkID(int ID, vector<Student> list) {
-    // Checks if the ID is already in use
+bool checkID(int ID, vector<Student> list) { // Checks if the ID is already in use
     for (auto &i: list) {
         if (i.getID() == ID) {
             return true;
@@ -29,8 +29,7 @@ bool checkID(int ID, vector<Student> list) {
     }
 }
 
-bool checkID(int ID, vector<Admin> list) {
-    // Checks if the ID is already in use
+bool checkID(int ID, vector<Admin> list) { // Checks if the ID is already in use
     for (auto &i: list) {
         if (i.getID() == ID) {
             return true;
@@ -55,8 +54,7 @@ void showMenuAdmin() {
     cout << "4. Enable Admin" << endl;
 }
 
-void showMainMenu() {
-    // login as admin or student
+void showMainMenu() { // login as admin or student
     char choice;
     cout << "A) Login as Admin" << endl;
     cout << "S) Login as Student" << endl;
@@ -77,8 +75,7 @@ void showMainMenu() {
 
 }
 
-void checkLoginStudent(vector<Student> list) {
-    // login as student
+void checkLoginStudent(vector<Student> list) { // login as admin
     int ID;
     string password;
     cout << "Enter your ID: ";
@@ -97,8 +94,7 @@ void checkLoginStudent(vector<Student> list) {
     checkLoginStudent(list);
 }
 
-void checkLoginAdmin(vector<Admin> list) {
-    // login as admin
+void checkLoginAdmin(vector<Admin> list) { // login as admin
     int ID;
     string password;
     cout << "Enter your ID: ";
