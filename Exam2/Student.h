@@ -34,6 +34,7 @@ public:
         getClient(id, name, lastName1, lastName2, age, gender);
         system("clear");
     }
+    
 private:
     int id;
 };
