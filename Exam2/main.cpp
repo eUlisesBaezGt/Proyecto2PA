@@ -13,10 +13,10 @@
 using namespace std;
 
 enum StudentsMenu{
-    Add_Student=1;
-    Store_Student_in_file;
-    Disable_Student;
-    Enable_Student;
+    Add_Student=1,
+    Store_Student_in_file,
+    Disable_Student,
+    Enable_Student,
     printClients,
     RegisterBreakfast,
     RegisterMeal,
@@ -24,10 +24,10 @@ enum StudentsMenu{
 };
 
 enum AdminMenu{
-    Add_Admin=1;
-    Store_Admin_in_file;
-    Disable_Admin;
-    Enable_Admin;
+    Add_Admin=1,
+    Store_Admin_in_file,
+    Disable_Admin,
+    Enable_Admin,
     EditStudentscapacity,
     Capacityforeachmeal,
     ModifyHowManyPlatesperBlock,
@@ -136,44 +136,33 @@ void checkLoginAdmin(vector<Admin> list) { // login as admin
     checkLoginAdmin(list);
 }
 
-class Admin  {
-    private: int id;
-    
+// class Admin  {
+//     private: int id;
 
+//     public: void administrador() {
+//         system("cls");
+//         int id, age;
+//         string name, last_name1, last_name2, gender;
+//         cout << " ------Administration------ " << endl;
+//         cout << "ID: ";
+//         cin >> id;
+//         cout << " Pleae enter your name: ";
+//         cin >> name;
+//         cout << " Pleae enter yor fisrt lastname: ";
+//         cin >> last_name1;
+//         cout << " Pleae enter your second lastname: ";
+//         cin >> last_name2;
+//         cout << " Enter your age: ";
+//         cin >> age;
+//         cout << "Enter your gender: ";
+//         cin >> gender;
 
-    public: void administrador() {
-        system("cls");
-        int id, age;
-        string name, last_name1, last_name2, gender;
-        cout << " ------Administration------ " << endl;
-        cout << "ID: ";
-        cin >> id;
-        cout << " Pleae enter your name: ";
-        cin >> name;
-        cout << " Pleae enter yor fisrt lastname: ";
-        cin >> last_name1;
-        cout << " Pleae enter your second lastname: ";
-        cin >> last_name2;
-        cout << " Enter your age: ";
-        cin >> age;
-        cout << "Enter your gender: ";
-        cin >> gender;
+//         getAdmin(id,);
+//         system("cls");
 
-        getAdmin(id, age, name, gender, last_name1, last_name2);
-        system("cls");
+//     }
+// };
 
-    }
-};
-void getClient(int _id, int _age, string _name, string _last_name1, string _lastname2, string _gender){
-    
-    this -> id = _id;
-    this -> age = _age;
-    this -> name = _name;
-    this-> last_name1 = _last_name1;
-    this-> lastname2 = _last_name2;
-    this -> gender = _gender;
-    
-};
 
 int main() {
     showMainMenu();
