@@ -8,6 +8,7 @@ public:
     string lastName2;
     int age;
     char gender;
+    bool status;
 
     void add_admin() {
         int id, age;
@@ -39,8 +40,24 @@ public:
 
     }
 
-    void enable(){
+    void enable(vector<Admin> list){
+        cout << "ID of Admin to enable" << endl;
+        int id;
+        cin >> id;
+        cin.ignore();
+        bool found;
+        bool found = false;
 
+        for(int i=0; i < list.size() ;i++){
+            if(id == list[i].id){
+                found = true;
+                list[i].status = true;
+                cout << "Admin status succesfully updated" << endl;
+            }
+        }
+        if(found == false){
+            cout << "Admin ID not found" << endl;
+        }
     }
 
     void disable(){
