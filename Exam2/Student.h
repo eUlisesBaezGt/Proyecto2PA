@@ -2,6 +2,10 @@
 #define EXAMEN2_STUDENT_H
 
 class Student {
+
+private:
+    int id;
+
 public:
     string name;
     string lastName1;
@@ -14,31 +18,37 @@ public:
         int id, age;
         string name, lastName1, lastName2;
         cout << " -Register Client- " << endl;
-        id = ID_GEN()
+        id = ID_GEN();
         cout << "ID: " << id << endl;
         cout << "Name: ";
         cin >> name;
-        cin.ignore()
+        cin.ignore();
         cout << "Middle Name: ";
         cin >> lastName1;
-        cin.ignore()
+        cin.ignore();
         cout << "Last Name: ";
         cin >> lastName2;
-        cin.ignore()
+        cin.ignore();
         cout << "Age: ";
         cin >> age;
-        cin.ignore()
+        cin.ignore();
         cout << "Gender (M-F): ";
         cin >> gender;
-        cin.ignore()
-
+        cin.ignore();
         system("clear");
+    }
+
+    string set_client() 
+    {
+        return "ID: " + to_string(id) + "\nName: " + name + "\nMiddle Name: " + lastName1 + "\nLast Name: " + lastName2  +"\nAge: "  +
+                to_string(age) + "\nGender: " + gender + "\n";
     }
 
 
     void store(){
 
     }
+
 
     void enable(vector<Student> list){
         cout << "ID of Student to enable: ";
@@ -60,28 +70,23 @@ public:
         }
     }
 
-    void disable(vector <Student> list){
-        cout << "ID of Student to disable: ";
-        int id;
-        cin >> id;
-        cin.ignore();
-        bool found;
-        bool found = false;
 
-        for(int i=0; i < list.size() ;i++){
-            if(id == list[i].id){
-                found = true;
-                list[i].status = false;
-                cout << "Student status succesfully updated" << endl;
-            }
-        }
-        if(found == false){
-            cout << "Student ID not found" << endl;
-        }
+    void disable(){
+
     }
 
-private:
-    int id;
+    
 };
 
 #endif //EXAMEN2_STUDENT_H
+
+
+#ifndef EXAMEN2_STUDENT_H
+#define EXAMEN2_STUDENT_H
+
+
+
+#endif //EXAMEN2_STUDENT_H
+
+// 1. Dar de alta, almacenar, deshabilitar y habilitar Estudiantes en el sistema
+// Dar de alta ✅
