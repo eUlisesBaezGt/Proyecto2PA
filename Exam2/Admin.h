@@ -60,10 +60,26 @@ public:
         }
     }
 
-    void disable(){
+    void disable(vector<Admin> list){
+        cout << "ID of Admin to enable: ";
+        int id;
+        cin >> id;
+        cin.ignore();
+        bool found;
+        bool found = false;
 
-    }
-
+        for(int i=0; i < list.size() ;i++){
+            if(id == list[i].id){
+                found = true;
+                list[i].status = false;
+                cout << "Admin status succesfully updated" << endl;
+            }
+        }
+        if(found == false){
+            cout << "Admin ID not found" << endl;
+        }
+    }    
+}
 
 private:
     int id;

@@ -60,15 +60,28 @@ public:
         }
     }
 
-    void disable(){
+    void disable(vector <Student> list){
+        cout << "ID of Student to disable: ";
+        int id;
+        cin >> id;
+        cin.ignore();
+        bool found;
+        bool found = false;
 
+        for(int i=0; i < list.size() ;i++){
+            if(id == list[i].id){
+                found = true;
+                list[i].status = false;
+                cout << "Student status succesfully updated" << endl;
+            }
+        }
+        if(found == false){
+            cout << "Student ID not found" << endl;
+        }
     }
-
 
 private:
     int id;
 };
 
 #endif //EXAMEN2_STUDENT_H
-
-

@@ -11,20 +11,27 @@
 
 
 using namespace std;
+
 enum StudentsMenu{
-    printClients=1,
+    Add_Student=1;
+    Store_Student_in_file;
+    Disable_Student;
+    Enable_Student;
+    printClients,
     RegisterBreakfast,
     RegisterMeal,
     RegisterDinner,
-    
 };
 
 enum AdminMenu{
-    EditStudentscapacity=1,
+    Add_Admin=1;
+    Store_Admin_in_file;
+    Disable_Admin;
+    Enable_Admin;
+    EditStudentscapacity,
     Capacityforeachmeal,
     ModifyHowManyPlatesperBlock,
     Seethestudentsineachblock,
-    
 };
 
 
