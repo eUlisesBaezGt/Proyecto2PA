@@ -34,6 +34,20 @@ public:
         system("clear");
     }
 
+
+    void store(){
+
+    }
+
+    void enable(){
+
+    }
+
+    void disable(){
+
+    }
+
+
 private:
     int id;
 };
