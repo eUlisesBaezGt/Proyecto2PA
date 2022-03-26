@@ -1,6 +1,7 @@
 #ifndef EXAMEN2_STUDENT_H
 #define EXAMEN2_STUDENT_H
 
+#include "enums_menus.h"
 using namespace std;
 
 class Student {
@@ -17,36 +18,32 @@ public:
     char gender{};
     bool status{};
 
-    string getId(vector <Student> list) {
-        id = rand() % 100;
-        for (int i = 0; i < list.size(); i++) {
-            checkID()
-            }
-        }
-        return id;}
+    string myID() {
+        return id;
+    }
 
-    string myID(vector <Student> list){
-        id = getID();
-        bool flag = checkID(id, list);
-        if flag == false{
-            return id;
-        }
-        else{
-            myID(list);
+    string myPassword() {
+        return password;
+    }
+
+    static string getId(const vector<Student> &list) {
+        int n = rand() % 100;
+        string id = to_string(n);
+        for (int i = 0; i < list.size(); ++i) {
+            if (!checkID(id, list)) return id;
+            else getId(list);
         }
     }
 
-    bool checkID(string id, vector<Student> list) {
+
+    static bool checkID(string id, vector<Student> list) {
         for (auto &i: list) {
-            if (i.myID() == id) {
-                return true;
-            } else {
-                return false;
-            }
+            if (i.myID() == id) return true;
+            else return false;
         }
     }
 
-    void add(vector<Student> &list) const {
+    void add(vector<Student> &list){
         Student temp;
         temp.id = myID();
         cout << " -Register Client- " << endl;
@@ -70,47 +67,65 @@ public:
         system("clear");
     }
 
-    static void enable(vector<Student> list){
+    static void enable(vector<Student> list) {
         bool found = false;
         cout << "ID of Student to enable: ";
         string IS;
         cin >> IS;
         cin.ignore();
 
-        for(auto & i : list){
-            if(IS == i.id){
+        for (auto &i: list) {
+            if (IS == i.id) {
                 found = true;
                 i.status = true;
                 cout << "Student status successfully updated" << endl;
             }
         }
-        if(!found){
+        if (!found) {
             cout << "Student ID not found" << endl;
         }
     }
 
 
-    static void disable(vector<Student> list){
+    static void disable(vector<Student> list) {
         bool found = false;
         cout << "ID of Admin to disable: ";
         string IS;
         cin >> IS;
         cin.ignore();
 
-        for(auto & i : list){
-            if(IS == i.id){
+        for (auto &i: list) {
+            if (IS == i.id) {
                 found = true;
                 i.status = false;
                 cout << "Admin status successfully updated" << endl;
             }
         }
-        if(!found){
+        if (!found) {
             cout << "Admin ID not found" << endl;
         }
     }
 
+    void checkLoginStudent(vector<Student> list) { // login as admin
+        string ID;
+        string Password;
+        cout << "Enter your ID: ";
+        cin >> ID;
+        cin.ignore();
+        cout << "Enter your password: ";
+        getline(cin, Password);
+        for (auto &i: list) {
+            if (i.myID() == ID && i.myPassword() == Password) {
+                cout << "Welcome " << i.myID() << endl;
+                showMenuStudent();
+                return;
+            }
+        }
+        cout << "Invalid ID or password" << endl;
+        checkLoginStudent(list);
+    }
 
-    
+
 };
 
 #endif //EXAMEN2_STUDENT_H

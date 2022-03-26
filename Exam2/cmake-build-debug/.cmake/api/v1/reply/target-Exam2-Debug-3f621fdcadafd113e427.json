@@ -118,7 +118,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "aux.h",
+			"path" : "enums_menus.h",
 			"sourceGroupIndex" : 1
 		}
 	],
