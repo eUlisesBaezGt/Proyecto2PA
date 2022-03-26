@@ -10,8 +10,6 @@
 #include "Admin.h"
 
 
-using namespace std;
-
 enum StudentsMenu{
     Add_Student=1,
     Store_Student_in_file,
@@ -35,32 +33,15 @@ enum AdminMenu{
 };
 
 
-// MISSING: lists
-int ID_GEN() {
-    // Generate a random ID and verifies if it is already in use
-    int ID;
-    return ID;
-}
-
-bool checkID(int ID, vector<Student> list) { // Checks if the ID is already in use
-    for (auto &i: list) {
-        if (i.getID() == ID) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
-
-bool checkID(int ID, vector<Admin> list) { // Checks if the ID is already in use
-    for (auto &i: list) {
-        if (i.getID() == ID) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
+//bool checkID(const string& ID, vector<Admin> list) { // Checks if the ID is already in use
+//    for (auto &i: list) {
+//        if (i.myID() == ID) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
+//}
 
 
 void showMenuStudent() {
@@ -99,7 +80,7 @@ void showMainMenu() { // login as admin or student
 }
 
 void checkLoginStudent(vector<Student> list) { // login as admin
-    int ID;
+    string ID;
     string password;
     cout << "Enter your ID: ";
     cin >> ID;
@@ -107,8 +88,8 @@ void checkLoginStudent(vector<Student> list) { // login as admin
     cout << "Enter your password: ";
     getline(cin, password);
     for (auto &i: list) {
-        if (i.getID() == ID && i.getPassword() == password) {
-            cout << "Welcome " << i.getName() << endl;
+        if (i.myID() == ID && i.myPassword() == password) {
+            cout << "Welcome " << i.name() << endl;
             showMenuStudent();
             return;
         }
@@ -117,51 +98,25 @@ void checkLoginStudent(vector<Student> list) { // login as admin
     checkLoginStudent(list);
 }
 
-void checkLoginAdmin(vector<Admin> list) { // login as admin
-    int ID;
-    string password;
-    cout << "Enter your ID: ";
-    cin >> ID;
-    cin.ignore();
-    cout << "Enter your password: ";
-    getline(cin, password);
-    for (auto &i: list) {
-        if (i.getID() == ID && i.getPassword() == password) {
-            cout << "Welcome " << i.getName() << endl;
-            showMenuAdmin();
-            return;
-        }
-    }
-    cout << "Invalid ID or password" << endl;
-    checkLoginAdmin(list);
-}
+//void checkLoginAdmin(vector<Admin> list) { // login as admin
+//    string ID;
+//    string password;
+//    cout << "Enter your ID: ";
+//    cin >> ID;
+//    cin.ignore();
+//    cout << "Enter your password: ";
+//    getline(cin, password);
+//    for (auto &i: list) {
+//        if (i.myID() == ID && i.myPassword() == password) {
+//            cout << "Welcome " << i.name() << endl;
+//            showMenuAdmin();
+//            return;
+//        }
+//    }
+//    cout << "Invalid ID or password" << endl;
+//    checkLoginAdmin(list);
+//}
 
-// class Admin  {
-//     private: int id;
-
-//     public: void administrador() {
-//         system("cls");
-//         int id, age;
-//         string name, last_name1, last_name2, gender;
-//         cout << " ------Administration------ " << endl;
-//         cout << "ID: ";
-//         cin >> id;
-//         cout << " Pleae enter your name: ";
-//         cin >> name;
-//         cout << " Pleae enter yor fisrt lastname: ";
-//         cin >> last_name1;
-//         cout << " Pleae enter your second lastname: ";
-//         cin >> last_name2;
-//         cout << " Enter your age: ";
-//         cin >> age;
-//         cout << "Enter your gender: ";
-//         cin >> gender;
-
-//         getAdmin(id,);
-//         system("cls");
-
-//     }
-// };
 
 
 int main() {

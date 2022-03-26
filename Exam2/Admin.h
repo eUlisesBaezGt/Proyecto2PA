@@ -1,94 +1,86 @@
 #ifndef EXAMEN2_ADMIN_H
 #define EXAMEN2_ADMIN_H
 
+#include "aux.h"
+
+using namespace std;
+
 class Admin {
 
 private:
-    int id;
+    string id{};
 
 public:
     string name;
-    string lastName1;
-    string lastName2;
-    int age;
-    char gender;
-    bool status;
+    string middleName;
+    string lastName;
+    int age{};
+    char gender{};
+    bool status{};
 
-    void add_admin() {
-        int id, age;
-        string name, lastName1, lastName2;
-        cout << " -Register Admin- " << endl;
-        id = ID_GEN();
+    string myID() {
+        id = getID();
+        return id;
+    }
+
+    void add(vector<Admin> &list) const {
+        Admin temp;
+        temp.id = temp.myID();
+        cout << " -Register Client- " << endl;
         cout << "ID: " << id << endl;
         cout << "Name: ";
-        cin >> name;
-        cin.ignore();
+        getline(cin, temp.name);
         cout << "Middle Name: ";
-        cin >> lastName1;
-        cin.ignore();
+        getline(cin, temp.middleName);
         cout << "Last Name: ";
-        cin >> lastName2;
-        cin.ignore();
+        getline(cin, temp.lastName);
         cout << "Age: ";
-        cin >> age;
+        cin >> temp.age;
         cin.ignore();
         cout << "Gender (M-F): ";
-        cin >> gender;
+        cin >> temp.age;
         cin.ignore();
-
-        getAdmin(id);
-
+        list.push_back(temp);
         system("clear");
     }
 
-    void getAdmin(int _id){
-        this -> id = _id;
-    }
-
-
-    void store(){
-
-    }
-
-    void enable(vector<Admin> list){
-        cout << "ID of Admin to enable: ";
-        int id;
-        cin >> id;
-        cin.ignore();
-        bool found;
+    static void enable(vector<Admin> list) {
         bool found = false;
+        cout << "ID of Admin to enable: ";
+        string IS;
+        cin >> IS;
+        cin.ignore();
 
-        for(int i=0; i < list.size() ;i++){
-            if(id == list[i].id){
+        for (auto &i: list) {
+            if (IS == i.id) {
                 found = true;
-                list[i].status = true;
-                cout << "Admin status succesfully updated" << endl;
+                i.status = true;
+                cout << "Admin status successfully updated" << endl;
             }
         }
-        if(found == false){
+        if (!found) {
             cout << "Admin ID not found" << endl;
         }
     }
 
-    void disable(vector<Admin> list){
-        cout << "ID of Admin to enable: ";
-        int id;
-        cin >> id;
-        cin.ignore();
-        bool found;
+    static void disable(vector<Admin> list) {
         bool found = false;
+        cout << "ID of Admin to enable: ";
+        string IS;
+        cin >> IS;
+        cin.ignore();
 
-        for(int i=0; i < list.size() ;i++){
-            if(id == list[i].id){
+        for (auto &i: list) {
+            if (IS == i.id) {
                 found = true;
-                list[i].status = false;
-                cout << "Admin status succesfully updated" << endl;
+                i.status = false;
+                cout << "Admin status successfully updated" << endl;
             }
         }
-        if(found == false){
+        if (!found) {
             cout << "Admin ID not found" << endl;
         }
-    }    
+    }
 
 };
 

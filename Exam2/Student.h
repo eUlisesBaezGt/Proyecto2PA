@@ -1,79 +1,114 @@
 #ifndef EXAMEN2_STUDENT_H
 #define EXAMEN2_STUDENT_H
 
+using namespace std;
+
 class Student {
 
 private:
-    int id;
+    string id{};
+    string password{};
 
 public:
     string name;
-    string lastName1;
-    string lastName2;
-    int age;
-    char gender;
-    bool status;
+    string middleName;
+    string lastName;
+    int age{};
+    char gender{};
+    bool status{};
 
-    void add_student() {
-        int id, age;
-        string name, lastName1, lastName2;
+    string getId(vector <Student> list) {
+        id = rand() % 100;
+        for (int i = 0; i < list.size(); i++) {
+            checkID()
+            }
+        }
+        return id;}
+
+    string myID(vector <Student> list){
+        id = getID();
+        bool flag = checkID(id, list);
+        if flag == false{
+            return id;
+        }
+        else{
+            myID(list);
+        }
+    }
+
+    bool checkID(string id, vector<Student> list) {
+        for (auto &i: list) {
+            if (i.myID() == id) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    void add(vector<Student> &list) const {
+        Student temp;
+        temp.id = myID();
         cout << " -Register Client- " << endl;
-        id = ID_GEN();
         cout << "ID: " << id << endl;
         cout << "Name: ";
-        cin >> name;
-        cin.ignore();
+        getline(cin, temp.name);
         cout << "Middle Name: ";
-        cin >> lastName1;
-        cin.ignore();
+        getline(cin, temp.middleName);
         cout << "Last Name: ";
-        cin >> lastName2;
-        cin.ignore();
+        getline(cin, temp.lastName);
         cout << "Age: ";
-        cin >> age;
+        cin >> temp.age;
         cin.ignore();
         cout << "Gender (M-F): ";
-        cin >> gender;
+        cin >> temp.age;
         cin.ignore();
+        cout << "PASSWORD: ";
+        getline(cin, temp.password);
+
+        list.push_back(temp);
         system("clear");
     }
 
-    string set_client() 
-    {
-        return "ID: " + to_string(id) + "\nName: " + name + "\nMiddle Name: " + lastName1 + "\nLast Name: " + lastName2  +"\nAge: "  +
-                to_string(age) + "\nGender: " + gender + "\n";
-    }
-
-
-    void store(){
-
-    }
-
-
-    void enable(vector<Student> list){
-        cout << "ID of Student to enable: ";
-        int id;
-        cin >> id;
-        cin.ignore();
-        bool found;
+    static void enable(vector<Student> list){
         bool found = false;
+        cout << "ID of Student to enable: ";
+        string IS;
+        cin >> IS;
+        cin.ignore();
 
-        for(int i=0; i < list.size() ;i++){
-            if(id == list[i].id){
+        for(auto & i : list){
+            if(IS == i.id){
                 found = true;
-                list[i].status = true;
-                cout << "Student status succesfully updated" << endl;
+                i.status = true;
+                cout << "Student status successfully updated" << endl;
             }
         }
-        if(found == false){
+        if(!found){
             cout << "Student ID not found" << endl;
         }
     }
 
 
-    void disable(){
+    static void disable(vector<Student> list){
+        bool found = false;
+        cout << "ID of Admin to disable: ";
+        string IS;
+        cin >> IS;
+        cin.ignore();
 
+        for(auto & i : list){
+            if(IS == i.id){
+                found = true;
+                i.status = false;
+                cout << "Admin status successfully updated" << endl;
+            }
+        }
+        if(!found){
+            cout << "Admin ID not found" << endl;
+        }
     }
+
 
     
 };
@@ -81,12 +116,5 @@ public:
 #endif //EXAMEN2_STUDENT_H
 
 
-#ifndef EXAMEN2_STUDENT_H
-#define EXAMEN2_STUDENT_H
+//  almacenar
 
-
-
-#endif //EXAMEN2_STUDENT_H
-
-// 1. Dar de alta, almacenar, deshabilitar y habilitar Estudiantes en el sistema
-// Dar de alta ✅
