@@ -16,15 +16,13 @@ using namespace std;
 static int GetStudentId(vector<Student>& list) {
 	int n = rand() % 100;
 	for (int i = 0; i < list.size(); ++i) {
-		if (!CheckStudentID(n, list)) return n;
-		else GetStudentId(list);
+		if (!CheckStudentID(n, list)) return n; else GetStudentId(list);
 	}
 }
 
 static bool CheckStudentID(int id, vector<Student> list) {
 	for (auto& i : list) {
-		if (i.id == id) return true;
-		else return false;
+		if (i.id == id) return true; else return false;
 	}
 }
 

@@ -16,8 +16,7 @@ using namespace std;
 static int GetAdminId(const vector<Admin>& list) {
 	int n = rand() % 100;
 	for (int i = 0; i < list.size(); ++i) {
-		if (!CheckAdminID(n, list)) return n;
-		else GetAdminId(list);
+		if (!CheckAdminID(n, list)) return n; else GetAdminId(list);
 	}
 }
 
