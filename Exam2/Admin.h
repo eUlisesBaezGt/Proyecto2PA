@@ -13,7 +13,7 @@
 
 using namespace std;
 
-static string GetAdminId(const vector<Admin>& list) {
+static int GetAdminId(const vector<Admin>& list) {
 	int n = rand() % 100;
 	for (int i = 0; i < list.size(); ++i) {
 		if (!CheckAdminID(n, list)) return n;
@@ -23,7 +23,7 @@ static string GetAdminId(const vector<Admin>& list) {
 
 static bool CheckAdminID(int id, vector<Admin> list) {
 	for (auto& i : list) {
-		if (i.id() == id) return true;
+		if (i.id == id) return true;
 		else return false;
 	}
 }
