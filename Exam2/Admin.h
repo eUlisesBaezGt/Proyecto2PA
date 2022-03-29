@@ -93,9 +93,9 @@ void LoginAdm(vector<Admin> list) {
 
 void AddAdm(vector<Admin>& list) {
 	Admin temp;
-	temp.id = temp.MyAdminID();
+	temp.id = temp.GetAdminID(list);
 	cout << " ------ Register Client ------ " << endl;
-	cout << "ID: " << id << endl;
+	cout << "ID: " << temp.id << endl;
 	cout << "Name: ";
 	getline(cin, temp.name);
 	cout << "Middle Name: ";
@@ -113,24 +113,7 @@ void AddAdm(vector<Admin>& list) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class Admin {
-
 public:
 	int id{};
 	string password{};
@@ -141,20 +124,6 @@ public:
 	int age{};
 	char gender{};
 	bool status = true;
-
-
-
-
-
-
-
-
-
-
-
 };
-
-
-
 
 #endif //EXAMEN2_ADMIN_H

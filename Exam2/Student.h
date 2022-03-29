@@ -13,7 +13,7 @@
 
 using namespace std;
 
-static string GetStudentId(vector<Student>& list) {
+static int GetStudentId(vector<Student>& list) {
 	int n = rand() % 100;
 	for (int i = 0; i < list.size(); ++i) {
 		if (!CheckStudentID(n, list)) return n;
@@ -32,11 +32,11 @@ static bool CheckStudentID(int id, vector<Student> list) {
 static void EnableStudent(vector<Student> list) {
 	bool found = false;
 	cout << "ID of Student to enable: ";
-	string IS;
+	int IS;
 	cin >> IS;
 	cin.ignore();
 	for (auto& i : list) {
-		if (IS == i.id()) {
+		if (IS == i.id) {
 			found = true;
 			i.status = true;
 			cout << "Student status successfully updated" << endl;
@@ -68,7 +68,7 @@ static void DisableStudent(vector<Student> list) {
 static void PrintStudents(vector <Student> list) {
 	for (size_t i = 0; i < list.size(); i++) {
 		cout << "-----------------------" << endl;
-		cout << "ID: " << list[i].id() << "\tName: " << list[i].name << "\tMiddle Name: " << list[i].middleName << "\tLast Name: " << list[i].lastName << "\Status" << list[i].status;
+		cout << "ID: " << list[i].id << "\tName: " << list[i].name << "\tMiddle Name: " << list[i].middleName << "\tLast Name: " << list[i].lastName << "\Status" << list[i].status;
 	}
 }
 
@@ -93,9 +93,9 @@ void LoginStud(vector<Student> list) {
 
 void AddStud(vector<Student>& list) {
 	Student temp;
-	temp.id = GetStudentId();
+	temp.id = GetStudentId(list);
 	cout << " ------ Register Client ------ " << endl;
-	cout << "ID: " << id << endl;
+	cout << "ID: " << temp.id << endl;
 	cout << "Name: ";
 	getline(cin, temp.name);
 	cout << "Middle Name: ";
@@ -116,7 +116,6 @@ void AddStud(vector<Student>& list) {
 
 
 class Student {
-
 public:
 	int id{};
 	string password{};
@@ -128,6 +127,5 @@ public:
 	char gender{};
 	bool status = true;
 };
-
 
 #endif //EXAMEN2_STUDENT_H

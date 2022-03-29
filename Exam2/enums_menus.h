@@ -9,8 +9,9 @@
 #include <vector>
 #include <string>
 
-#include "Student.h"
 #include "Admin.h"
+#include "Student.h"
+
 
 enum StudentMenu {
 	LoginStudent = 1,
