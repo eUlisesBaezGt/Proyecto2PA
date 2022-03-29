@@ -13,6 +13,21 @@
 
 using namespace std;
 
+
+class Admin {
+public:
+	int id{};
+	string password{};
+
+	string name;
+	string middleName;
+	string lastName;
+	int age{};
+	char gender{};
+	bool status = true;
+};
+
+
 static int GetAdminId(const vector<Admin>& list) {
 	int n = rand() % 100;
 	for (int i = 0; i < list.size(); ++i) {
@@ -111,18 +126,5 @@ void AddAdm(vector<Admin>& list) {
 	system("clear");
 }
 
-
-class Admin {
-public:
-	int id{};
-	string password{};
-
-	string name;
-	string middleName;
-	string lastName;
-	int age{};
-	char gender{};
-	bool status = true;
-};
 
 #endif //EXAMEN2_ADMIN_H
