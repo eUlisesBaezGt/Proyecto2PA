@@ -13,6 +13,19 @@
 
 using namespace std;
 
+class Student {
+public:
+	int id{};
+	string password{};
+
+	string name;
+	string middleName;
+	string lastName;
+	int age{};
+	char gender{};
+	bool status = true;
+};
+
 static int GetStudentId(vector<Student>& list) {
 	int n = rand() % 100;
 	for (int i = 0; i < list.size(); ++i) {
@@ -25,7 +38,6 @@ static bool CheckStudentID(int id, vector<Student> list) {
 		if (i.id == id) return true; else return false;
 	}
 }
-
 
 static void EnableStudent(vector<Student> list) {
 	bool found = false;
@@ -88,7 +100,6 @@ void LoginStud(vector<Student> list) {
 	LoginStud(list);
 }
 
-
 void AddStud(vector<Student>& list) {
 	Student temp;
 	temp.id = GetStudentId(list);
@@ -111,19 +122,5 @@ void AddStud(vector<Student>& list) {
 	list.push_back(temp);
 	system("clear");
 }
-
-
-class Student {
-public:
-	int id{};
-	string password{};
-
-	string name;
-	string middleName;
-	string lastName;
-	int age{};
-	char gender{};
-	bool status = true;
-};
 
 #endif //EXAMEN2_STUDENT_H
