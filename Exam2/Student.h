@@ -23,7 +23,7 @@ static int GetStudentId(vector<Student>& list) {
 
 static bool CheckStudentID(int id, vector<Student> list) {
 	for (auto& i : list) {
-		if (i.id() == id) return true;
+		if (i.id == id) return true;
 		else return false;
 	}
 }
@@ -50,7 +50,7 @@ static void EnableStudent(vector<Student> list) {
 static void DisableStudent(vector<Student> list) {
 	bool found = false;
 	cout << "ID of Admin to disable: ";
-	string IS;
+	int IS;
 	cin >> IS;
 	cin.ignore();
 	for (auto& i : list) {
@@ -73,7 +73,7 @@ static void PrintStudents(vector <Student> list) {
 }
 
 void LoginStud(vector<Student> list) {
-	string ID;
+	int ID;
 	string Password;
 	cout << "Enter your ID: ";
 	cin >> ID;
@@ -81,7 +81,7 @@ void LoginStud(vector<Student> list) {
 	cout << "Enter your password: ";
 	getline(cin, Password);
 	for (auto& i : list) {
-		if (i.id() == ID && i.password == Password && i.status) {
+		if (i.id == ID && i.password == Password && i.status) {
 			cout << "Welcome " << i.name << endl;
 			// MENU
 		}

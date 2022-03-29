@@ -31,11 +31,11 @@ static bool CheckAdminID(int id, vector<Admin> list) {
 static void EnableAdmin(vector<Admin> list) {
 	bool found = false;
 	cout << "ID of Admin to enable: ";
-	string IS;
+	int IS;
 	cin >> IS;
 	cin.ignore();
 	for (auto& i : list) {
-		if (IS == i.MyAdminID()) {
+		if (IS == i.id) {
 			found = true;
 			i.status = true;
 			cout << "Admin status successfully updated" << endl;
@@ -49,7 +49,7 @@ static void EnableAdmin(vector<Admin> list) {
 static void DisableAdmin(vector<Admin> list) {
 	bool found = false;
 	cout << "ID of Admin to enable: ";
-	string IS;
+	int IS;
 	cin >> IS;
 	cin.ignore();
 	for (auto& i : list) {
@@ -68,13 +68,13 @@ void PrintAdmins(vector <Admin> list) {
 	for (size_t i = 0; i < list.size(); i++)
 	{
 		cout << "-----------------------" << endl;
-		cout << "ID: " << list[i].MyAdminID() << "\tName: " << list[i].name << "\tMiddle Name: " << list[i].middleName << "\tLast Name: " << list[i].lastName
+		cout << "ID: " << list[i].id << "\tName: " << list[i].name << "\tMiddle Name: " << list[i].middleName << "\tLast Name: " << list[i].lastName
 			<< "\tAge: " << list[i].age << "\tGender: " << list[i].gender << "\Status" << list[i].status;
 	}
 }
 
 void LoginAdm(vector<Admin> list) {
-	string ID;
+	int ID;
 	string Password;
 	cout << "Enter your ID: ";
 	cin >> ID;
@@ -82,7 +82,7 @@ void LoginAdm(vector<Admin> list) {
 	cout << "Enter your password: ";
 	getline(cin, Password);
 	for (auto& i : list) {
-		if (i.MyAdminPassword() == ID && i.MyAdminPassword() == Password && i.status == true) {
+		if (i.id == ID && i.password == Password && i.status == true) {
 			cout << "Welcome " << i.name << endl;
 			AdminMenu(list);
 		}
@@ -93,7 +93,7 @@ void LoginAdm(vector<Admin> list) {
 
 void AddAdm(vector<Admin>& list) {
 	Admin temp;
-	temp.id = temp.GetAdminID(list);
+	temp.id = GetAdminId(list);
 	cout << " ------ Register Client ------ " << endl;
 	cout << "ID: " << temp.id << endl;
 	cout << "Name: ";
