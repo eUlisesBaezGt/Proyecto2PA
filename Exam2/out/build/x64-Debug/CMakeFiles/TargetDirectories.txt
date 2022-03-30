@@ -1,3 +1,0 @@
-C:/Users/eubgo/Desktop/Exam2PA/Exam2/out/build/x64-Debug/CMakeFiles/Exam2.dir
-C:/Users/eubgo/Desktop/Exam2PA/Exam2/out/build/x64-Debug/CMakeFiles/edit_cache.dir
-C:/Users/eubgo/Desktop/Exam2PA/Exam2/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
