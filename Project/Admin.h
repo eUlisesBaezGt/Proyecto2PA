@@ -101,11 +101,11 @@ void LoginAdmin(const vector<Admin>& list) {
 	cout << "Invalid ID or password" << endl;
 }
 
-void AddAdm(vector<Admin>& list) {
+void AddAdmin(vector<Admin>& list) {
 	Admin temp;
     int n=0;
 	temp.id = GetAdminId(n, list);
-	cout << " ------ Register Client ------ " << endl;
+	cout << " ------ Add Admin ------ " << endl;
 	cout << "ID: " << temp.id << endl;
 	cout << "Name: ";
 	getline(cin, temp.name);
@@ -117,10 +117,10 @@ void AddAdm(vector<Admin>& list) {
 	cin >> temp.age;
 	cin.ignore();
 	cout << "Gender (M-F): ";
-	cin >> temp.age;
+	cin >> temp.gender;
 	cin.ignore();
 	cout << "PASSWORD: ";
 	getline(cin, temp.password);
 	list.push_back(temp);
-	system("clear");
+	system("cls");
 }

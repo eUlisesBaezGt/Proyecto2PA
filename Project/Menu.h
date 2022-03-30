@@ -14,133 +14,135 @@
 
 using namespace std;
 
-//
-//void LogStudent(vector <Student> students) {
-//	cout << "-------- LOGGED STUDENT MENU -------- ";
-//	cout << "1) Disable Student" << endl;
-//	cout << "2) Enable Student" << endl;
-//	cout << "3) Register Breakfast" << endl;
-//	cout << "4) Register Meal" << endl;
-//	cout << "5) Register Dinner" << endl;
-//	cout << "6) Exit" << endl;
-//	cout << "Select your option: ";
-//	int option;
-//	cin >> option;
-//	cin.ignore();
-//	switch (option)
-//	{
-//	case DisStudent:
-//		cout << "Disable Student" << endl;
-//		break;
-//	case EnaStudent:
-//		cout << "Enable Student" << endl;
-//		break;
-//	case RegBreakfast:
-//		cout << "Register Breakfast" << endl;
-//		break;
-//	case RegMeal:
-//		cout << "Register Meal" << endl;
-//		break;
-//	case RegDinner:
-//		cout << "Register Dinner" << endl;
-//		break;
-//	case ExitStudentLog:
-//		cout << "GOOBYE" << endl;
-//		break;
-//	default:
-//		cout << "Invalid option";
-//		StudentMenu(students);
-//		break;
-//	}
-//}
-//
-//void StudentMenu(vector <Student> list) {
-//	cout << "-------- STUDENT MENU -------- ";
-//	cout << "1) Login" << endl;
-//	cout << "2) Add Student" << endl;
-//	cout << "3) Print All" << endl;
-//	cout << "4) Exit" << endl;
-//	cout << "Select your option: ";
-//	int option;
-//	cin >> option;
-//	cin.ignore();
-//	switch (option)
-//	{
-//	case LoginStudent:
-//		LogStudent(list);
-//		break;
-//	case AddStudent:
-//		AddStud(list);
-//		break;
-//	case PrintAllAdmin:
-//		PrintStudents(list);
-//		break;
-//	case ExitStudent:
-//		cout << "GOOBYE" << endl;
-//		break;
-//	default:
-//		cout << "Invalid option";
-//		StudentMenu(list);
-//		break;
-//	}
-//}
-//
-//void AdminMenu(vector <Admin> list) {
-//	cout << "-------- ADMIN MENU -------- ";
-//	cout << "1) Login" << endl;
-//	cout << "2) Add Admin" << endl;
-//	cout << "3) Print All" << endl;
-//	cout << "4) Exit" << endl;
-//	cout << "Select your option: ";
-//	int option;
-//	cin >> option;
-//	cin.ignore();
-//	switch (option)
-//	{
-//	case LoginAdmin:
-//		LoginAdm(list);
-//		break;
-//	case AddAdmin:
-//		AddAdm(list);
-//		break;
-//	case PrintAllStudent:
-//		PrintAdmins(list);
-//		break;
-//	case ExitAdmin:
-//		cout << "GOOBYE" << endl;
-//		break;
-//	default:
-//		cout << "Invalid option";
-//		AdminMenu(list);
-//		break;
-//	}
-//}
 
-void MainMenu() {
-	vector <Student> students;
-	vector <Admin> admins;
-	char choice;
-	cout << "A) Use as Admin" << endl;
-	cout << "S) Use as Student" << endl;
-	cout << "Q) Quit" << endl;
-	cout << "Select your option: ";
-	cin >> choice;
-	cin.ignore();
-	switch (choice) {
-	case 'A':
-		/*StudentMenu(students);*/
-        cout << "Admin Menu" << endl;
-		break;
-	case 'S':
-		/*AdminMenu(admins);*/
-        cout << "Student Menu" << endl;
-		break;
-	case 'Q':
-		cout << "Goodbye!" << endl;
-		break;
-	default:
-		cout << "Invalid choice" << endl;
-		MainMenu();
-		break;
-	}
+void LogStudent(const vector<Student> &students) {
+    cout << "-------- LOGGED STUDENT MENU -------- ";
+    cout << "1) Disable Student" << endl;
+    cout << "2) Enable Student" << endl;
+    cout << "3) Register Breakfast" << endl;
+    cout << "4) Register Meal" << endl;
+    cout << "5) Register Dinner" << endl;
+    cout << "6) Exit" << endl;
+    cout << "Select your option: ";
+    int option;
+    cin >> option;
+    cin.ignore();
+    switch (option) {
+        case DisStudent:
+            cout << "Disable Student" << endl;
+            DisableStudent(students);
+            break;
+        case EnaStudent:
+            cout << "Enable Student" << endl;
+            EnableStudent(students);
+            break;
+        case RegBreakfast:
+            cout << "Register Breakfast" << endl;
+            break;
+        case RegMeal:
+            cout << "Register Meal" << endl;
+            break;
+        case RegDinner:
+            cout << "Register Dinner" << endl;
+            break;
+        case ExitStudentLog:
+            cout << "Goodbye" << endl;
+            break;
+        default:
+            cout << "Invalid option";
+            break;
+    }
+}
+
+void StudentMenu(const vector<Student> &list) {
+    cout << "-------- STUDENT MENU -------- " << endl;
+    cout << "1) Login" << endl;
+    cout << "2) Add Student" << endl;
+    cout << "3) Print All" << endl;
+    cout << "4) Exit" << endl;
+    cout << "Select your option: ";
+    int option;
+    cin >> option;
+    cin.ignore();
+    switch (option) {
+        case LogStud:
+            LogStudent(list);
+            break;
+        case AddStud:
+            // AddStud(list);
+            break;
+        case PrAStud:
+            PrintStudents(list);
+            break;
+        case ExitStudent:
+            cout << "Goodbye" << endl;
+            break;
+        default:
+            cout << "Invalid option";
+            StudentMenu(list);
+            break;
+    }
+}
+
+void AdminMenu(vector<Admin> list) {
+    cout << "-------- ADMIN MENU -------- " << endl;
+    cout << "1) Login" << endl;
+    cout << "2) Add Admin" << endl;
+    cout << "3) Print All" << endl;
+    cout << "4) Exit" << endl;
+    cout << "Select your option: ";
+    int option;
+    cin >> option;
+    cin.ignore();
+    switch (option) {
+        case LogAdm:
+            LoginAdmin(list);
+            break;
+        case AddAdm:
+            AddAdmin(list);
+            break;
+        case PrAAdm:
+            PrintAdmins(list);
+            break;
+        case ExitAdmin:
+            cout << "Goodbye" << endl;
+            break;
+        default:
+            cout << "Invalid option";
+            AdminMenu(list);
+            break;
+    }
+}
+
+[[noreturn]] void MainMenu() {
+    vector<Student> students;
+    vector<Admin> admins;
+    char choice;
+
+    while (true) {
+        cout << "A) Use as Admin" << endl;
+        cout << "S) Use as Student" << endl;
+        cout << "Q) Quit" << endl;
+        cout << "Select your option: ";
+        cin >> choice;
+        cin.ignore();
+        switch (choice) {
+            case 'A':
+                cout << "Admin Menu" << endl;
+                AdminMenu(admins);
+                break;
+            case 'S':
+                cout << "Student Menu" << endl;
+                StudentMenu(students);
+                break;
+            case 'Q':
+                cout << "Goodbye!" << endl;
+                break;
+            default:
+                cout << "Invalid choice" << endl;
+                // press enter to continue
+                break;
+        }
+        
+    }
 }
