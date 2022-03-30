@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Student
+class Admin
 {
 public:
 	int id{};
@@ -24,22 +24,26 @@ public:
 	bool status = true;
 };
 
-int GetStudentId(vector<Student>& list) {
-	int n = rand() % 100;
+bool CheckAdminID(int id, const vector<Admin>& list) {
+    for (auto& i : list) {
+        if (i.id == id) return true; else return false;
+    }
+    return false;
+}
+
+int GetAdminId(int n, vector<Admin>& list) {
+	n = rand() % 100;
 	for (int i = 0; i < list.size(); ++i) {
-		if (!CheckStudentID(n, list)) return n; else GetStudentId(list);
+		if (!CheckAdminID(n, list)) return n; else GetAdminId(n,list);
 	}
+    return n;
 }
 
-bool CheckStudentID(int id, vector<Student> list) {
-	for (auto& i : list) {
-		if (i.id == id) return true; else return false;
-	}
-}
 
-void EnableStudent(vector<Student> list) {
+
+void EnableAdmin(vector<Admin> list) {
 	bool found = false;
-	cout << "ID of Student to enable: ";
+	cout << "ID of Admin to enable: ";
 	int IS;
 	cin >> IS;
 	cin.ignore();
@@ -47,15 +51,15 @@ void EnableStudent(vector<Student> list) {
 		if (IS == i.id) {
 			found = true;
 			i.status = true;
-			cout << "Student status successfully updated" << endl;
+			cout << "Admin status successfully updated" << endl;
 		}
 	}
 	if (!found) {
-		cout << "Student ID not found" << endl;
+		cout << "Admin ID not found" << endl;
 	}
 }
 
-void DisableStudent(vector<Student> list) {
+void DisableAdmin(vector<Admin> list) {
 	bool found = false;
 	cout << "ID of Admin to disable: ";
 	int IS;
@@ -69,18 +73,18 @@ void DisableStudent(vector<Student> list) {
 		}
 	}
 	if (!found) {
-		cout << "Student ID not found" << endl;
+		cout << "Admin ID not found" << endl;
 	}
 }
 
-void PrintStudents(vector <Student> list) {
-	for (size_t i = 0; i < list.size(); i++) {
+void PrintAdmins(const vector <Admin>& list) {
+	for (auto & i : list) {
 		cout << "-----------------------" << endl;
-		cout << "ID: " << list[i].id << "\tName: " << list[i].name << "\tMiddle Name: " << list[i].middleName << "\tLast Name: " << list[i].lastName << "\tStatus" << list[i].status;
+		cout << "ID: " << i.id << "\tName: " << i.name << "\tMiddle Name: " << i.middleName << "\tLast Name: " << i.lastName << "\tStatus" << i.status;
 	}
 }
 
-void LoginStud(vector<Student> list) {
+void LoginAdmin(const vector<Admin>& list) {
 	int ID;
 	string Password;
 	cout << "Enter your ID: ";
@@ -95,12 +99,12 @@ void LoginStud(vector<Student> list) {
 		}
 	}
 	cout << "Invalid ID or password" << endl;
-	LoginStud(list);
 }
 
-void AddStud(vector<Student>& list) {
-	Student temp;
-	temp.id = GetStudentId(list);
+void AddAdm(vector<Admin>& list) {
+	Admin temp;
+    int n=0;
+	temp.id = GetAdminId(n, list);
 	cout << " ------ Register Client ------ " << endl;
 	cout << "ID: " << temp.id << endl;
 	cout << "Name: ";
