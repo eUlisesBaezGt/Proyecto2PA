@@ -118,8 +118,9 @@ void AdminMenu(vector<Admin> list) {
     vector<Student> students;
     vector<Admin> admins;
     char choice;
+    bool run = true;
 
-    while (true) {
+    while (run) {
         cout << "A) Use as Admin" << endl;
         cout << "S) Use as Student" << endl;
         cout << "Q) Quit" << endl;
@@ -137,10 +138,10 @@ void AdminMenu(vector<Admin> list) {
                 break;
             case 'Q':
                 cout << "Goodbye!" << endl;
+                run = false;
                 break;
             default:
                 cout << "Invalid choice" << endl;
-                // press enter to continue
                 break;
         }
         
