@@ -26,29 +26,30 @@ public:
 	bool status = true;
 };
 
-bool CheckStudentID(int id, const vector<Student>& lista) {
-    bool resp = false;
-    for (auto& i : lista) {
+
+bool CheckStudentID(int id, const vector<Student> list) {
+	bool resp = false;
+	for (auto& i : list) {
 		if (i.id == id) return true;
-        break;
+		break;
 	}
-    return resp;
+	return resp;
 }
 
-int GetStudentId(int n, const vector<Student>& lista) {
+int GetStudentId(int n, const vector<Student> list) {
 	n = rand() % 100;
-	for (int i = 0; i < lista.size(); ++i) {
-		if (!CheckStudentID(n, lista)) return n; break;
+	for (int i = 0; i < list.size(); ++i) {
+		if (!CheckStudentID(n, list)) return n; break;
 	}
 }
 
-void EnableStudent(vector<Student> lista) {
+void EnableStudent(vector<Student>& list) {
 	bool found = false;
 	cout << "ID of Student to enable: ";
 	int IS;
 	cin >> IS;
 	cin.ignore();
-	for (auto& i : lista) {
+	for (auto& i : list) {
 		if (IS == i.id) {
 			found = true;
 			i.status = true;
@@ -60,17 +61,17 @@ void EnableStudent(vector<Student> lista) {
 	}
 }
 
-void DisableStudent(vector<Student> lista) {
+void DisableStudent(vector<Student>& list) {
 	bool found = false;
-	cout << "ID of Admin to disable: ";
+	cout << "ID of Student to disable: ";
 	int IS;
 	cin >> IS;
 	cin.ignore();
-	for (auto& i : lista) {
+	for (auto& i : list) {
 		if (IS == i.id) {
 			found = true;
 			i.status = false;
-			cout << "Admin status successfully updated" << endl;
+			cout << "Student status successfully updated" << endl;
 		}
 	}
 	if (!found) {
@@ -78,15 +79,61 @@ void DisableStudent(vector<Student> lista) {
 	}
 }
 
-void PrintStudents(const vector<Student>& lista) {
-	for (auto& i : lista) {
+void PrintStudents(const vector<Student>& list) {
+	for (auto& i : list) {
 		cout << "-----------------------" << endl;
 		cout << "ID: " << i.id << "\tName: " << i.name << "\tMiddle Name: " << i.middleName
 			<< "\tLast Name: " << i.lastName << "\nStatus" << i.status;
 	}
 }
 
-void LoginStud(const vector<Student>& lista) {
+void Log_Stud(vector<Student>& students) {
+	bool run = true;
+	int option;
+
+	while (run)
+	{
+		cout << "-------- LOGGED STUDENT MENU -------- ";
+		cout << "1) Disable Student" << endl;
+		cout << "2) Enable Student" << endl;
+		cout << "3) Register Breakfast" << endl;
+		cout << "4) Register Meal" << endl;
+		cout << "5) Register Dinner" << endl;
+		cout << "6) Exit" << endl;
+		cout << "Select your option: ";
+
+		cin >> option;
+		cin.ignore();
+		switch (option) {
+		case DisStudent:
+			cout << "Disable Student" << endl;
+			DisableStudent(students);
+			break;
+		case EnaStudent:
+			cout << "Enable Student" << endl;
+			EnableStudent(students);
+			break;
+		case RegBreakfast:
+			cout << "Register Breakfast" << endl;
+			break;
+		case RegMeal:
+			cout << "Register Meal" << endl;
+			break;
+		case RegDinner:
+			cout << "Register Dinner" << endl;
+			break;
+		case ExitStudentLog:
+			cout << "Goodbye" << endl;
+			break;
+		default:
+			cout << "Invalid option";
+			break;
+		}
+	}
+}
+
+void LoginStud(vector<Student>& list) {
+	bool found = false;
 	int ID;
 	string Password;
 	cout << "Enter your ID: ";
@@ -94,19 +141,16 @@ void LoginStud(const vector<Student>& lista) {
 	cin.ignore();
 	cout << "Enter your password: ";
 	getline(cin, Password);
-	for (auto& i : lista) {
+	for (auto& i : list) {
 		if (i.id == ID && i.password == Password && i.status) {
-			cout << "Welcome " << i.name << endl;
-			// MENU
-		}
-	}
-	cout << "Invalid ID or password" << endl;
-}
+			found = true; break;}}
+	if (found){cout << "Welcome " << endl; Log_Stud(list);}
+	else if (!found){cout << "Invalid ID or password or user disabled" << endl;}}
 
-void AddStudent(vector<Student>& lista) {
+void AddStudent(vector<Student>& list){
 	Student temp;
 	int n = 0;
-	temp.id = GetStudentId(n, lista);
+	temp.id = GetStudentId(n, list);
 	cout << " ------ Add Student ------ " << endl;
 	cout << "ID: " << temp.id << endl;
 	cout << "Name: ";
@@ -123,7 +167,7 @@ void AddStudent(vector<Student>& lista) {
 	cin.ignore();
 	cout << "PASSWORD: ";
 	getline(cin, temp.password);
-	lista.push_back(temp);
+	list.push_back(temp);
 
 	system("clear");
 }

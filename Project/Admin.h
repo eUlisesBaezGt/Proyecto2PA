@@ -122,5 +122,6 @@ void AddAdmin(vector<Admin>& list) {
 	cout << "PASSWORD: ";
 	getline(cin, temp.password);
 	list.push_back(temp);
-	system("cls");
+
+	system("clear");
 }
