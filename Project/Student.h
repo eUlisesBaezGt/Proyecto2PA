@@ -26,14 +26,12 @@ public:
 	bool status = true;
 };
 
-
 bool CheckStudentID(int id, const vector<Student> list) {
-	bool resp = false;
+	bool b = false;
 	for (auto& i : list) {
-		if (i.id == id) return true;
-		break;
+		if (i.id == id) return true;break;
 	}
-	return resp;
+	return b;
 }
 
 int GetStudentId(int n, const vector<Student> list) {
@@ -43,111 +41,7 @@ int GetStudentId(int n, const vector<Student> list) {
 	}
 }
 
-void EnableStudent(vector<Student>& list) {
-	bool found = false;
-	cout << "ID of Student to enable: ";
-	int IS;
-	cin >> IS;
-	cin.ignore();
-	for (auto& i : list) {
-		if (IS == i.id) {
-			found = true;
-			i.status = true;
-			cout << "Student status successfully updated" << endl;
-		}
-	}
-	if (!found) {
-		cout << "Student ID not found" << endl;
-	}
-}
-
-void DisableStudent(vector<Student>& list) {
-	bool found = false;
-	cout << "ID of Student to disable: ";
-	int IS;
-	cin >> IS;
-	cin.ignore();
-	for (auto& i : list) {
-		if (IS == i.id) {
-			found = true;
-			i.status = false;
-			cout << "Student status successfully updated" << endl;
-		}
-	}
-	if (!found) {
-		cout << "Student ID not found" << endl;
-	}
-}
-
-void PrintStudents(const vector<Student>& list) {
-	for (auto& i : list) {
-		cout << "-----------------------" << endl;
-		cout << "ID: " << i.id << "\tName: " << i.name << "\tMiddle Name: " << i.middleName
-			<< "\tLast Name: " << i.lastName << "\nStatus" << i.status;
-	}
-}
-
-void Log_Stud(vector<Student>& students) {
-	bool run = true;
-	int option;
-
-	while (run)
-	{
-		cout << "-------- LOGGED STUDENT MENU -------- ";
-		cout << "1) Disable Student" << endl;
-		cout << "2) Enable Student" << endl;
-		cout << "3) Register Breakfast" << endl;
-		cout << "4) Register Meal" << endl;
-		cout << "5) Register Dinner" << endl;
-		cout << "6) Exit" << endl;
-		cout << "Select your option: ";
-
-		cin >> option;
-		cin.ignore();
-		switch (option) {
-		case DisStudent:
-			cout << "Disable Student" << endl;
-			DisableStudent(students);
-			break;
-		case EnaStudent:
-			cout << "Enable Student" << endl;
-			EnableStudent(students);
-			break;
-		case RegBreakfast:
-			cout << "Register Breakfast" << endl;
-			break;
-		case RegMeal:
-			cout << "Register Meal" << endl;
-			break;
-		case RegDinner:
-			cout << "Register Dinner" << endl;
-			break;
-		case ExitStudentLog:
-			cout << "Goodbye" << endl;
-			break;
-		default:
-			cout << "Invalid option";
-			break;
-		}
-	}
-}
-
-void LoginStud(vector<Student>& list) {
-	bool found = false;
-	int ID;
-	string Password;
-	cout << "Enter your ID: ";
-	cin >> ID;
-	cin.ignore();
-	cout << "Enter your password: ";
-	getline(cin, Password);
-	for (auto& i : list) {
-		if (i.id == ID && i.password == Password && i.status) {
-			found = true; break;}}
-	if (found){cout << "Welcome " << endl; Log_Stud(list);}
-	else if (!found){cout << "Invalid ID or password or user disabled" << endl;}}
-
-void AddStudent(vector<Student>& list){
+void AddStudent(vector<Student>& list) {
 	Student temp;
 	int n = 0;
 	temp.id = GetStudentId(n, list);
@@ -171,3 +65,13 @@ void AddStudent(vector<Student>& list){
 
 	system("clear");
 }
+
+void PrintStudents(const vector<Student> list) {
+	for (auto& i : list) {
+		cout << "-----------------------" << endl;
+		cout << "ID: " << i.id << "\tName: " << i.name << "\tMiddle Name: " << i.middleName
+			<< "\tLast Name: " << i.lastName << "\nStatus" << i.status;
+	}
+}
+
+

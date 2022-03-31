@@ -135,6 +135,12 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Student.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="AdminMethods.txt" />
+    <Text Include="EnumsM.txt" />
+    <Text Include="MenuM.txt" />
+    <Text Include="StudentMethods.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -33,4 +33,10 @@
       <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="StudentMethods.txt" />
+    <Text Include="AdminMethods.txt" />
+    <Text Include="MenuM.txt" />
+    <Text Include="EnumsM.txt" />
+  </ItemGroup>
 </Project>
