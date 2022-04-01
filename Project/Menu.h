@@ -14,14 +14,14 @@
 
 using namespace std;
 
-
 void MainMenu() {
     vector<Student> students;
-    // vector<Admin> admins;
+    vector<Admin> admins;
     char choice;
     bool run = true;
 
     while (run) {
+        cout << endl;
         cout << "A) Use as Admin" << endl;
         cout << "S) Use as Student" << endl;
         cout << "Q) Quit" << endl;
@@ -30,11 +30,13 @@ void MainMenu() {
         cin.ignore();
         switch (choice) {
         case 'A':
-            AdminMenu(admins);
+            cout << "admin "<<endl;
+            // AdminMenu(admins);
             break;
-         /*case 'S':
-                StudentMenu(students);
-                break;*/
+        case 'S':
+            cout << "student" << endl;
+            // StudentMenu(students);
+            break;
         case 'Q':
             cout << "Goodbye!" << endl;
             run = false;
@@ -43,6 +45,5 @@ void MainMenu() {
             cout << "Invalid choice" << endl;
             break;
         }
-
     }
 }
