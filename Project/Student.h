@@ -2,16 +2,23 @@
 
 #include <iostream>
 #include <cmath>
-#include <ctime>
-#include <cstdio>
-#include <algorithm>
 #include <vector>
 #include <string>
 
 #include "Enums.h"
 #include "Menu.h"
 
+class Student;
 using namespace std;
+
+struct Breakfast
+{
+	int TotalA;
+	int TotalB;
+
+	vector<Student> listA;
+	vector<Student> listB;
+};
 
 class Student {
 public:
