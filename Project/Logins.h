@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Admin.h"
-#include "Menu.h"
 
 
 void LoginAdmin(vector<Admin>& list) {
@@ -21,9 +20,6 @@ void LoginAdmin(vector<Admin>& list) {
 	if (found) { cout << "Welcome " << endl; Log_Admin(list); }
 	else if (!found) { cout << "Invalid ID or password or user disabled" << endl; }
 }
-
-
-
 
 void LoginStud(vector<Student>& list) {
 	bool found = false;

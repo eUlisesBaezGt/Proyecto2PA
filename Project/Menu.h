@@ -91,7 +91,7 @@ void StudentMenu(vector<Student>list)
 
 void MainMenu() {
 	vector<Student> students;
-	// vector<Admin> admins;
+	vector<Admin> admins;
 	char choice;
 	bool run = true;
 
@@ -106,7 +106,7 @@ void MainMenu() {
 		switch (choice) {
 		case 'A':
 			cout << "admin " << endl;
-			// AdminMenu(admins);
+			AdminMenu(admins);
 			break;
 		case 'S':
 			cout << "student" << endl;
