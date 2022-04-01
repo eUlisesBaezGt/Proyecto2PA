@@ -176,6 +176,7 @@ void Log_Stud(vector<Student>& students) {
 			break;
 		case ExitStudentLog:
 			cout << "Return to Main Menu" << endl;
+			run = false;
 			break;
 		default:
 			cout << "Invalid option";

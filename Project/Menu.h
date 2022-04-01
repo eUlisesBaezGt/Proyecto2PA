@@ -78,12 +78,11 @@ void StudentMenu(vector<Student>list)
 			PrintStudents(list);
 			break;
 		case ExitStudent:
-			cout << "Return to Main Menu" << endl;
 			run = false;
+			cout << "Return to Main Menu" << endl;
 			break;
 		default:
 			cout << "Invalid option";
-			StudentMenu(list);
 			break;
 		}
 	}

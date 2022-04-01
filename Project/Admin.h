@@ -128,6 +128,9 @@ void Log_Admin(vector<Admin>& students) {
 		cin >> option;
 		cin.ignore();
 		switch (option) {
+		case 6:
+			run = false;
+			break;
 		default:
 			cout << "Invalid option";
 			break;
