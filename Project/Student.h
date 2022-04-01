@@ -24,6 +24,7 @@ public:
 	int age{};
 	char gender{};
 	bool status = true;
+    
 };
 
 bool CheckStudentID(int id, const vector<Student> list) {
@@ -180,7 +181,7 @@ void LoginStud(vector<Student>& list) {
 
 void Breakfast(){
     bool run = true;
-    int option2;
+    int option2, price=0, acum_1=0, acum_2=0, acum_3=0, acum_4=0;
     string Scrambeled_eggs, Molletes, Chilaquiles, PapasHashbrown:"";
 
     while (run)
@@ -199,20 +200,172 @@ void Breakfast(){
         switch (option2) {
         case Scrambeled_eggs:
             cout << "Scrambeled eggs" << endl;
+                price = price + 50;
+                acum_1 ++;
             break;
         case Molletes:
             cout << "Molletes" << endl;
+                price =  price + 45;
+                acum_2 ++;
             break;
         case Molletes:
-            cout << "Molletes" << endl;
+            cout << "Chilaquiles" << endl;
+                price = price + 50;
+                acum_3 ++;
             break;
-        case Molletes:
-            cout << "Molletes" << endl;
-            break;
+        
         case PapasHashbrown:
             cout << "Papas Hashbrown" << endl;
+                price = price +25;
+                acum_4 ++;
             break;
+        case Exit:
+                if(acum_1!=0)
+                {
+                    cout << acum_1 "---------Scrambeled eggs bought ($50)" <<endl;
+                }
+                if(acum_2!=0)
+                {
+                    cout<< acum_2 "-----------Molletes bought ($45)" <<endl;
+                }
+                if(acum_3!=0)
+                {
+                    cout<< acum_3 "-----------Chilaquiles bought ($50)" <<endl;
+                }
+                if(acum_4!=0)
+                {
+                    cout<< acum_4 "-----------Papas Hshbrown bought ($25)" <<endl;
+                }
                 
+            break;
         
-        
+                
 }
+void Meal (){
+            bool run = true;
+            int option2, price=0, acum_1=0, acum_2=0, acum_3=0, acum_4=0;
+            string Hmaburger, Pizza, ChikenNuggets, FriedChiken:"";
+
+            while (run)
+            {
+                cout << "-------- CHOOSE STUDENT Meal -------- ";
+                cout << "1) Hamburger " << endl;
+                cout << "2) Pizza" << endl;
+                cout << "3) Chiken Nuggets" << endl;
+                cout<< " 4) Fried Chiken" << endl;
+                cout << "6) Exit" << endl;
+                cout << "Select your meal: ";
+                
+                
+                cin >> option2;
+                cin.ignore();
+                switch (option2) {
+                case Hamburger:
+                    cout << "Hamburger" << endl;
+                        price = price + 50;
+                        acum_1 ++;
+                    break;
+                case Pizza:
+                    cout << "Pizza" << endl;
+                        price =  price + 45;
+                        acum_2 ++;
+                    break;
+                case ChikenNuggets:
+                    cout << "Chiken Nuggets" << endl;
+                        price = price + 50;
+                        acum_3 ++;
+                    break;
+                
+                case FriedChiken:
+                    cout << "Fried Chiken" << endl;
+                        price = price +25;
+                        acum_4 ++;
+                    break;
+                case Exit:
+                        if(acum_1!=0)
+                        {
+                            cout << acum_1 "---------Hamburger ($50)" <<endl;
+                        }
+                        if(acum_2!=0)
+                        {
+                            cout<< acum_2 "-----------Pizza ($45)" <<endl;
+                        }
+                        if(acum_3!=0)
+                        {
+                            cout<< acum_3 "-----------Chiken Nuggets ($50)" <<endl;
+                        }
+                        if(acum_4!=0)
+                        {
+                            cout<< acum_4 "-----------Fried Chiken ($25)" <<endl;
+                        }
+                        
+                    break;
+                        
+                        
+                
+    }
+}
+void Dinner (){
+                bool run = true;
+                int option2, price=0, acum_1=0, acum_2=0, acum_3=0, acum_4=0;
+                string Quesadillas, Molletes, Cereal, Tacos:"";
+
+                while (run)
+                {
+                    cout << "-------- CHOOSE STUDENT Meal -------- ";
+                    cout << "1) Quesadillas " << endl;
+                    cout << "2) Molletes" << endl;
+                    cout << "3) Cereal" << endl;
+                    cout<< " 4) Tacos" << endl;
+                    cout << "6) Exit" << endl;
+                    cout << "Select your meal: ";
+                    
+                    
+                    cin >> option2;
+                    cin.ignore();
+                    switch (option2) {
+                    case Quesadillas:
+                        cout << "Quesadillas" << endl;
+                            price = price + 50;
+                            acum_1 ++;
+                        break;
+                    case Molletes:
+                        cout << "Molletes" << endl;
+                            price =  price + 45;
+                            acum_2 ++;
+                        break;
+                    case Cereal:
+                        cout << "Cereal" << endl;
+                            price = price + 50;
+                            acum_3 ++;
+                        break;
+                    
+                    case Tacos:
+                        cout << "Tacos" << endl;
+                            price = price +25;
+                            acum_4 ++;
+                        break;
+                    case Exit:
+                            if(acum_1!=0)
+                            {
+                                cout << acum_1 "---------Quesadillas ($50)" <<endl;
+                            }
+                            if(acum_2!=0)
+                            {
+                                cout<< acum_2 "-----------Molletes ($45)" <<endl;
+                            }
+                            if(acum_3!=0)
+                            {
+                                cout<< acum_3 "-----------Cereal ($50)" <<endl;
+                            }
+                            if(acum_4!=0)
+                            {
+                                cout<< acum_4 "-----------Tacos ($25)" <<endl;
+                            }
+                            cout<< "The amount of money is " + price;
+                        break;
+                            
+                            
+                    
+        }
+    }

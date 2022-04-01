@@ -41,7 +41,6 @@ int GetAdminId(int n, vector<Admin>& list) {
 }
 
 
-
 void EnableAdmin(vector<Admin> list) {
     bool found = false;
     cout << "ID of Admin to enable: ";
@@ -126,10 +125,29 @@ void AddAdmin(vector<Admin>& list) {
 
     system("clear");
 }
-void ChangeCapacity(vector<Admin>& list) {
+
+void ChangeCapacityBreakfast(vector<Admin>& list) {
     string maxcapacity, changecapacity;
     int number;
-    cin>> 
-    list.resize()
+    cout << "Add new student capacity: ";
+    cin >> numbre;
+    list.resize(number);
+}
+
+void ChangeCapacityMeal(vector<Admin>& list) {
+    string maxcapacity, changecapacity;
+    int number;
+    cout << "Add new student capacity: ";
+    cin >> numbre;
+    list.resize(number);
+}
+
+
+void ChangeCapacityDinnert(vector<Admin>& list) {
+    string maxcapacity, changecapacity;
+    int number;
+    cout << "Add new student capacity: ";
+    cin >> numbre;
+    list.resize(number);
 }
 
