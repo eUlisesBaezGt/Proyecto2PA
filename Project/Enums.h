@@ -1,13 +1,13 @@
 #pragma once
 
-enum StudentMenu {
+enum ENUMStudentMenu {
 	LogStud = 1,
 	AddStud,
 	PrAStud,
 	ExitStudent
 };
 
-enum LoggedStudentMenu {
+enum ENUMLoggedStudentMenu {
 	DisStudent = 1,
 	EnaStudent,
 	RegBreakfast,
@@ -16,14 +16,14 @@ enum LoggedStudentMenu {
 	ExitStudentLog
 };
 
-enum AdminMenu {
+enum ENUMAdminMenu {
 	LogAdm = 1,
 	AddAdm,
 	PrAAdm,
 	ExitAdmin
 };
 
-enum LoggedAdminMenu {
+enum ENUMLoggedAdminMenu {
 	DisAdmin = 1,
 	EnaAdmin,
 	EdStudCap,
