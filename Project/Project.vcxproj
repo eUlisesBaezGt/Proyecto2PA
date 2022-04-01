@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Enums.h" />
+    <ClInclude Include="Logins.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Student.h" />
   </ItemGroup>

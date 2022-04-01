@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 
+#include "Menu.h"
+
 using namespace std;
 
 class Admin
@@ -81,22 +83,6 @@ void PrintAdmins(const vector <Admin>& list) {
 	}
 }
 
-void LoginAdmin(const vector<Admin>& list) {
-	int ID;
-	string Password;
-	cout << "Enter your ID: ";
-	cin >> ID;
-	cin.ignore();
-	cout << "Enter your password: ";
-	getline(cin, Password);
-	for (auto& i : list) {
-		if (i.id == ID && i.password == Password && i.status) {
-			cout << "Welcome " << i.name << endl;
-			AdminMenu(list);
-		}
-	}
-	cout << "Invalid ID or password" << endl;
-}
 
 void AddAdmin(vector<Admin>& list) {
 	Admin temp;
@@ -122,29 +108,29 @@ void AddAdmin(vector<Admin>& list) {
 
 	system("clear");
 }
-//
-//void ChangeCapacityBreakfast(vector<Admin>& list) {
-//	string maxcapacity, changecapacity;
-//	int number;
-//	cout << "Add new student capacity: ";
-//	cin >> numbre;
-//	list.resize(number);
-//}
-//
-//void ChangeCapacityMeal(vector<Admin>& list) {
-//	string maxcapacity, changecapacity;
-//	int number;
-//	cout << "Add new student capacity: ";
-//	cin >> numbre;
-//	list.resize(number);
-//}
-//
-//
-//void ChangeCapacityDinnert(vector<Admin>& list) {
-//	string maxcapacity, changecapacity;
-//	int number;
-//	cout << "Add new student capacity: ";
-//	cin >> numbre;
-//	list.resize(number);
-//}
 
+
+void Log_Admin(vector<Admin>& students) {
+	bool run = true;
+	int option;
+
+	while (run)
+	{
+		cout << "-------- LOGGED Admin MENU -------- ";
+		/*cout << "1) Disable Student" << endl;
+		cout << "2) Enable Student" << endl;
+		cout << "3) Register Breakfast" << endl;
+		cout << "4) Register Meal" << endl;
+		cout << "5) Register Dinner" << endl;*/
+		cout << "6) Exit" << endl;
+		cout << "Select your option: ";
+
+		cin >> option;
+		cin.ignore();
+		switch (option) {
+		default:
+			cout << "Invalid option";
+			break;
+		}
+	}
+}
