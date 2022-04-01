@@ -329,7 +329,7 @@ void Breakfast(){
 
     while (run)
     {
-        cout << "-------- CHOOSE STUDENT MENU -------- ";
+        cout << "-------- CHOOSE STUDENT BREAKFAST -------- ";
         cout << "1) Scrambled eggs " << endl;
         cout << "2) Molletes" << endl;
         cout << "3) Chilaquiles" << endl;
@@ -380,6 +380,8 @@ void Breakfast(){
                     cout<< acum_4 "-----------Papas Hshbrown bought ($25)" <<endl;
                 }
                 
+                cout<< " The amount of money is: " + price;
+                
             break;
         
                 
@@ -391,7 +393,7 @@ void Meal (){
 
             while (run)
             {
-                cout << "-------- CHOOSE STUDENT Meal -------- ";
+                cout << "-------- CHOOSE STUDENT MEAL -------- ";
                 cout << "1) Hamburger " << endl;
                 cout << "2) Pizza" << endl;
                 cout << "3) Chiken Nuggets" << endl;
@@ -442,6 +444,8 @@ void Meal (){
                             cout<< acum_4 "-----------Fried Chiken ($25)" <<endl;
                         }
                         
+                        cout<< " The amount of money is: " + price
+                        
                     break;
                         
                         
@@ -455,7 +459,7 @@ void Dinner (){
 
                 while (run)
                 {
-                    cout << "-------- CHOOSE STUDENT Meal -------- ";
+                    cout << "-------- CHOOSE STUDENT DINNER -------- ";
                     cout << "1) Quesadillas " << endl;
                     cout << "2) Molletes" << endl;
                     cout << "3) Cereal" << endl;
@@ -505,7 +509,7 @@ void Dinner (){
                             {
                                 cout<< acum_4 "-----------Tacos ($25)" <<endl;
                             }
-                            cout<< "The amount of money is " + price;
+                            cout<< "The amount of money is: " + price;
                         break;
                             
                             
