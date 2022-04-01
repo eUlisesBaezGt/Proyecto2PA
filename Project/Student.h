@@ -13,6 +13,27 @@ using namespace std;
 
 struct Breakfast
 {
+	int Total;
+	int TotalA;
+	int TotalB;
+
+	vector<Student> listA;
+	vector<Student> listB;
+};
+
+struct Meal
+{
+	int Total;
+	int TotalA;
+	int TotalB;
+
+	vector<Student> listA;
+	vector<Student> listB;
+};
+
+struct Dinner
+{
+	int Total;
 	int TotalA;
 	int TotalB;
 
@@ -99,6 +120,7 @@ void EnableStudent(vector<Student>& list) {
 		cout << "Student ID not found" << endl;
 	}
 }
+
 void DisableStudent(vector<Student>& list) {
 	bool found = false;
 	cout << "ID of Student to disable: ";
@@ -116,7 +138,6 @@ void DisableStudent(vector<Student>& list) {
 		cout << "Student ID not found" << endl;
 	}
 }
-
 
 void Log_Stud(vector<Student>& students) {
 	bool run = true;
