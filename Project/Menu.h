@@ -1,18 +1,52 @@
 #pragma once
 
 #include <iostream>
-#include <cmath>
-#include <ctime>
-#include <cstdio>
-#include <algorithm>
 #include <vector>
-#include <string>
 
 #include "Admin.h"
 #include "Student.h"
 #include "Enums.h"
 
 using namespace std;
+
+
+void AdminMenu(vector<Admin>& list) {
+	int option;
+	bool run = true;
+
+	while (run)
+	{
+		cout << "-------- ADMIN MENU -------- " << endl;
+		cout << "1) Login" << endl;
+		cout << "2) Add Admin" << endl;
+		cout << "3) Print All" << endl;
+		cout << "4) Exit" << endl;
+		cout << "Select your option: ";
+
+		cin >> option;
+		cin.ignore();
+
+		switch (option) {
+		case LogAdm:
+			LoginAdmin(list);
+			break;
+		case AddAdm:
+			AddAdmin(list);
+			break;
+		case PrAAdm:
+			PrintAdmins(list);
+			break;
+		case ExitAdmin:
+			cout << "Return to Main Menu" << endl;
+			run = false;
+			break;
+		default:
+			cout << "Invalid option";
+			break;
+		}
+	}
+}
+
 
 void StudentMenu(vector<Student>list)
 {
