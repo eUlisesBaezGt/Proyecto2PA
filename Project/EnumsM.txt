@@ -1,11 +1,6 @@
-#pragma once
 
-enum StudentMenu {
-	LogStud = 1,
-	AddStud,
-	PrAStud,
-	ExitStudent
-};
+
+
 
 enum LoggedStudentMenu {
 	DisStudent = 1,
