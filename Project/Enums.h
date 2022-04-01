@@ -1,5 +1,14 @@
 #pragma once
 
+#include <iostream>
+#include <cmath>
+#include <vector>
+#include <string>
+
+#include "Student.h"
+
+using namespace std;
+
 enum ENUMStudentMenu {
 	LogStud = 1,
 	AddStud,
