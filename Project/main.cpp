@@ -3,6 +3,6 @@
 using namespace std;
 
 int main() {
-    MainMenu();
-    return 0;
+	main_menu();
+	return 0;
 }

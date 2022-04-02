@@ -5,8 +5,6 @@
 #include <vector>
 #include <string>
 
-#include "Menu.h"
-
 using namespace std;
 
 class Admin
@@ -24,67 +22,85 @@ public:
 };
 
 
-bool CheckAdminID(int id, const vector<Admin>& list) {
-	for (auto& i : list) {
-		if (i.id == id) return true; else return false;
+bool CheckAdminID(int id, const vector<Admin>& list)
+{
+	for (auto& i : list)
+	{
+		if (i.id == id) return true;
+		return false;
 	}
 	return false;
 }
 
-int GetAdminId(int n, vector<Admin>& list) {
+int GetAdminId(int n, vector<Admin>& list)
+{
 	n = rand() % 100;
-	for (int i = 0; i < list.size(); ++i) {
-		if (!CheckAdminID(n, list)) return n; else GetAdminId(n, list);
+	for (int i = 0; i < list.size(); ++i)
+	{
+		if (!CheckAdminID(n, list)) return n;
+		GetAdminId(n, list);
 	}
 	return n;
 }
 
 
-void EnableAdmin(vector<Admin> list) {
+void EnableAdmin(vector<Admin> list)
+{
 	bool found = false;
 	cout << "ID of Admin to enable: ";
 	int IS;
 	cin >> IS;
 	cin.ignore();
-	for (auto& i : list) {
-		if (IS == i.id) {
+	for (auto& i : list)
+	{
+		if (IS == i.id)
+		{
 			found = true;
 			i.status = true;
 			cout << "Admin status successfully updated" << endl;
 		}
 	}
-	if (!found) {
+	if (!found)
+	{
 		cout << "Admin ID not found" << endl;
 	}
 }
 
-void DisableAdmin(vector<Admin> list) {
+void DisableAdmin(vector<Admin> list)
+{
 	bool found = false;
 	cout << "ID of Admin to disable: ";
 	int IS;
 	cin >> IS;
 	cin.ignore();
-	for (auto& i : list) {
-		if (IS == i.id) {
+	for (auto& i : list)
+	{
+		if (IS == i.id)
+		{
 			found = true;
 			i.status = false;
 			cout << "Admin status successfully updated" << endl;
 		}
 	}
-	if (!found) {
+	if (!found)
+	{
 		cout << "Admin ID not found" << endl;
 	}
 }
 
-void PrintAdmins(const vector <Admin>& list) {
-	for (auto& i : list) {
+void PrintAdmins(const vector<Admin>& list)
+{
+	for (auto& i : list)
+	{
 		cout << "-----------------------" << endl;
-		cout << "ID: " << i.id << "\tName: " << i.name << "\tMiddle Name: " << i.middleName << "\tLast Name: " << i.lastName << "\tStatus" << i.status;
+		cout << "ID: " << i.id << "\tName: " << i.name << "\tMiddle Name: " << i.middleName << "\tLast Name: " << i.
+			lastName << "\tStatus" << i.status;
 	}
 }
 
 
-void AddAdmin(vector<Admin>& list) {
+void AddAdmin(vector<Admin>& list)
+{
 	Admin temp;
 	int n = 0;
 	temp.id = GetAdminId(n, list);
@@ -110,15 +126,16 @@ void AddAdmin(vector<Admin>& list) {
 }
 
 
-void Log_Admin(vector<Admin>& students) {
+void Log_Admin(vector<Admin>& students)
+{
 	bool run = true;
 	int option;
 
 	while (run)
 	{
 		cout << "-------- LOGGED Admin MENU -------- ";
-		/*cout << "1) Disable Student" << endl;
-		cout << "2) Enable Student" << endl;
+		/*cout << "1) Disable student" << endl;
+		cout << "2) Enable student" << endl;
 		cout << "3) Register Breakfast" << endl;
 		cout << "4) Register Meal" << endl;
 		cout << "5) Register Dinner" << endl;*/
@@ -127,7 +144,8 @@ void Log_Admin(vector<Admin>& students) {
 
 		cin >> option;
 		cin.ignore();
-		switch (option) {
+		switch (option)
+		{
 		case 6:
 			run = false;
 			break;

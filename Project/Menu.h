@@ -3,15 +3,13 @@
 #include <iostream>
 #include <vector>
 
-#include "Student.h"
+#include "student.h"
 #include "Enums.h"
 #include "Admin.h"
 #include "Logins.h"
 
-using namespace std;
-
-
-void AdminMenu(vector<Admin>& list) {
+inline void admin_menu(vector<Admin>& list)
+{
 	int option;
 	bool run = true;
 
@@ -27,9 +25,10 @@ void AdminMenu(vector<Admin>& list) {
 		cin >> option;
 		cin.ignore();
 
-		switch (option) {
+		switch (option)
+		{
 		case LogAdm:
-			LoginAdmin(list);
+			//login_admin(list);
 			break;
 		case AddAdm:
 			AddAdmin(list);
@@ -48,17 +47,16 @@ void AdminMenu(vector<Admin>& list) {
 	}
 }
 
-
-void StudentMenu(vector<Student>list)
+inline void student_menu(vector<student> list)
 {
 	int option;
 	bool run = true;
 
 	while (run)
 	{
-		cout << "-------- STUDENT MENU -------- " << endl;
+		cout << "-------- student MENU -------- " << endl;
 		cout << "1) Login" << endl;
-		cout << "2) Add Student" << endl;
+		cout << "2) Add student" << endl;
 		cout << "3) Print All" << endl;
 		cout << "4) Exit" << endl;
 
@@ -69,15 +67,15 @@ void StudentMenu(vector<Student>list)
 		switch (option)
 		{
 		case LogStud:
-			LoginStud(list);
+			login_stud(list);
 			break;
 		case AddStud:
-			AddStudent(list);
+			add_student(list);
 			break;
 		case PrAStud:
-			PrintStudents(list);
+			print_students(list);
 			break;
-		case ExitStudent:
+		case Exitstudent:
 			run = false;
 			cout << "Return to Main Menu" << endl;
 			break;
@@ -88,29 +86,31 @@ void StudentMenu(vector<Student>list)
 	}
 }
 
-
-void MainMenu() {
-	vector<Student> students;
+inline void main_menu()
+{
+	vector<student> students;
 	vector<Admin> admins;
 	char choice;
 	bool run = true;
 
-	while (run) {
+	while (run)
+	{
 		cout << endl;
 		cout << "A) Use as Admin" << endl;
-		cout << "S) Use as Student" << endl;
+		cout << "S) Use as student" << endl;
 		cout << "Q) Quit" << endl;
 		cout << "Select your option: ";
 		cin >> choice;
 		cin.ignore();
-		switch (choice) {
+		switch (choice)
+		{
 		case 'A':
 			cout << "admin " << endl;
-			AdminMenu(admins);
+			// admin_menu(admins);
 			break;
 		case 'S':
 			cout << "student" << endl;
-			StudentMenu(students);
+			student_menu(students);
 			break;
 		case 'Q':
 			cout << "Goodbye!" << endl;
