@@ -32,7 +32,7 @@ struct meal
 	vector<student> listB;
 };
 
-struct Dinner
+struct dinner
 {
 	int Total;
 	int TotalA;
@@ -57,7 +57,7 @@ public:
 };
 
 
-inline bool check_student_id(int id, const vector<student> list)
+inline bool check_student_id(const int id, const vector<student>& list)
 {
 	bool used = false;
 	for (auto& i : list)
@@ -68,19 +68,19 @@ inline bool check_student_id(int id, const vector<student> list)
 	return used;
 }
 
-inline int get_student_id(int n, const vector<student> list)
+inline int get_student_id(const vector<student>& list)
 {
-	n = rand() % 100;
-	bool used = check_student_id(n, list);
+	const int n = rand() % 100;
+	const bool used = check_student_id(n, list);
 	if (!used) return n;
-	return get_student_id(n, list);
+	return get_student_id(list);
 }
 
-inline void print_students(const vector<student> list)
+inline void print_students(const vector<student>& list)
 {
 	for (auto& i : list)
 	{
-		string status = "";
+		string status;
 		if (i.status == true) status = "Active";
 		else status = "Inactive";
 		cout << "-----------------------" << endl;
@@ -93,9 +93,8 @@ inline void print_students(const vector<student> list)
 inline void add_student(vector<student>& list)
 {
 	student temp;
-	int n = 0;
-	temp.id = get_student_id(n, list);
-	cout << " ------ Add student ------ " << endl;
+	temp.id = get_student_id(list);
+	cout << " ------ Add Student ------ " << endl;
 	cout << "ID: " << temp.id << endl;
 	cout << "Name: ";
 	getline(cin, temp.name);
@@ -119,44 +118,41 @@ inline void add_student(vector<student>& list)
 inline void enable_student(vector<student>& list)
 {
 	bool found = false;
-	cout << "ID of student to enable: ";
-	int IS;
-	cin >> IS;
+	cout << "ID of Student to enable: ";
+	int is;
+	cin >> is;
 	cin.ignore();
 	for (auto& i : list)
 	{
-		if (IS == i.id)
+		if (is == i.id)
 		{
 			found = true;
 			i.status = true;
-			cout << "student status successfully updated" << endl;
+			cout << "Student status successfully updated" << endl;
 		}
 	}
-	if (!found)
-	{
-		cout << "student ID not found" << endl;
-	}
+	if (!found) cout << "Student ID not found" << endl;
 }
 
 inline void disable_student(vector<student>& list)
 {
 	bool found = false;
-	cout << "ID of student to disable: ";
-	int IS;
-	cin >> IS;
+	cout << "ID of Student to disable: ";
+	int is;
+	cin >> is;
 	cin.ignore();
 	for (auto& i : list)
 	{
-		if (IS == i.id)
+		if (is == i.id)
 		{
 			found = true;
 			i.status = false;
-			cout << "student status successfully updated" << endl;
+			cout << "Student status successfully updated" << endl;
 		}
 	}
 	if (!found)
 	{
-		cout << "student ID not found" << endl;
+		cout << "Student ID not found" << endl;
 	}
 }
 
@@ -181,14 +177,14 @@ inline void logged_student(vector<student>& list)
 
 		switch (option)
 		{
-		case Disstudent:
+		case DisStudent:
 		{
 			cout << "Disabling student" << endl;
 			disable_student(list);
 			break;
 		}
 
-		case Enastudent:
+		case EnaStudent:
 		{
 			cout << "Enabling student" << endl;
 			enable_student(list);

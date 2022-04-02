@@ -3,38 +3,38 @@
 #include <iostream>
 #include <vector>
 
-#include "student.h"
+#include "Student.h"
 #include "Enums.h"
 #include "Admin.h"
 #include "Logins.h"
 
-inline void admin_menu(vector<Admin>& list)
+inline void admin_menu(vector<admin>& list)
 {
 	int option;
 	bool run = true;
 
 	while (run)
 	{
-		cout << "-------- ADMIN MENU -------- " << endl;
+		cout << "-------- ADMIN MENU --------" << endl;
 		cout << "1) Login" << endl;
 		cout << "2) Add Admin" << endl;
 		cout << "3) Print All" << endl;
 		cout << "4) Exit" << endl;
-		cout << "Select your option: ";
 
+		cout << "Select your option: ";
 		cin >> option;
 		cin.ignore();
 
 		switch (option)
 		{
 		case LogAdm:
-			//login_admin(list);
+			login_admin(list);
 			break;
 		case AddAdm:
-			AddAdmin(list);
+			add_admin(list);
 			break;
 		case PrAAdm:
-			PrintAdmins(list);
+			print_admins(list);
 			break;
 		case ExitAdmin:
 			cout << "Return to Main Menu" << endl;
@@ -54,9 +54,9 @@ inline void student_menu(vector<student> list)
 
 	while (run)
 	{
-		cout << "-------- student MENU -------- " << endl;
+		cout << "-------- STUDENT MENU -------- " << endl;
 		cout << "1) Login" << endl;
-		cout << "2) Add student" << endl;
+		cout << "2) Add Student" << endl;
 		cout << "3) Print All" << endl;
 		cout << "4) Exit" << endl;
 
@@ -89,7 +89,7 @@ inline void student_menu(vector<student> list)
 inline void main_menu()
 {
 	vector<student> students;
-	vector<Admin> admins;
+	vector<admin> admins;
 	char choice;
 	bool run = true;
 
@@ -97,7 +97,7 @@ inline void main_menu()
 	{
 		cout << endl;
 		cout << "A) Use as Admin" << endl;
-		cout << "S) Use as student" << endl;
+		cout << "S) Use as Student" << endl;
 		cout << "Q) Quit" << endl;
 		cout << "Select your option: ";
 		cin >> choice;
@@ -105,11 +105,11 @@ inline void main_menu()
 		switch (choice)
 		{
 		case 'A':
-			cout << "admin " << endl;
-			// admin_menu(admins);
+			cout << "Using as admin " << endl;
+			admin_menu(admins);
 			break;
 		case 'S':
-			cout << "student" << endl;
+			cout << "Using as student" << endl;
 			student_menu(students);
 			break;
 		case 'Q':

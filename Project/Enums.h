@@ -1,6 +1,6 @@
 #pragma once
 
-enum studentMenu
+enum StudentMenu
 {
 	LogStud = 1,
 	AddStud,
@@ -8,10 +8,10 @@ enum studentMenu
 	Exitstudent
 };
 
-enum LoggedstudentMenu
+enum LoggedStudentMenu
 {
-	Disstudent = 1,
-	Enastudent,
+	DisStudent = 1,
+	EnaStudent,
 	RegBreakfast,
 	RegMeal,
 	RegDinner,
@@ -30,10 +30,10 @@ enum LoggedAdminMenu
 {
 	DisAdmin = 1,
 	EnaAdmin,
-	EdStudCap,
-	Cap4Meal,
-	ModBlock,
-	SeestudentsBlock,
+	EdTotCap,
+	EdSpecMealBlockCap,
+	HowManyStudsBlock,
+	WhichStudsBlock,
 	ExitAdminLog
 };
 
