@@ -1,1 +1,3 @@
-﻿  Project.vcxproj -> C:\Users\eubgo\Desktop\Exam2PA\Project\x64\Debug\Project.exe
+﻿  main.cpp
+C:\Users\eubgo\Desktop\Exam2PA\Project\Admin.h(112,6): warning C4101: 'cap': unreferenced local variable
+  Project.vcxproj -> C:\Users\eubgo\Desktop\Exam2PA\Project\x64\Debug\Project.exe

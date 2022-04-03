@@ -14,12 +14,12 @@ public:
 	string middleName;
 	string lastName;
 	int age{};
-	char gender{};
-	bool status = true;
+	string gender{};
+	string status = "true";
 
-	char breakfast{};
-	char _meal{};
-	char dinner{};
+	string breakfast{};
+	string _meal{};
+	string dinner{};
 };
 
 class admin
@@ -32,8 +32,8 @@ public:
 	string middleName;
 	string lastName;
 	int age{};
-	char gender{};
-	bool status = true;
+	string gender{};
+	string status = "true";
 };
 
 struct meal

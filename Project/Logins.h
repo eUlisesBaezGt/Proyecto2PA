@@ -17,7 +17,7 @@ inline void login_admin(app& App)
 	getline(cin, password);
 	for (auto& i : App.admins)
 	{
-		if (i.id == id && i.password == password && i.status)
+		if (i.id == id && i.password == password && i.status == "true")
 		{
 			found = true;
 			cout << "Welcome " << endl;
@@ -29,7 +29,7 @@ inline void login_admin(app& App)
 }
 
 
-inline void login_stud(app &App)
+inline void login_stud(app& App)
 {
 	bool found = false;
 	int ID;
@@ -41,7 +41,7 @@ inline void login_stud(app &App)
 	getline(cin, Password);
 	for (auto& i : App.students)
 	{
-		if (i.id == ID && i.password == Password && i.status)
+		if (i.id == ID && i.password == Password && i.status == "true")
 		{
 			found = true;
 			cout << "Welcome " << endl;
@@ -49,5 +49,5 @@ inline void login_stud(app &App)
 			break;
 		}
 	}
-	if (!found) {cout << "Invalid ID or password or user disabled" << endl; }
+	if (!found) { cout << "Invalid ID or password or user disabled" << endl; }
 }

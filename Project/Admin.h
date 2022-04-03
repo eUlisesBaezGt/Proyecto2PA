@@ -30,7 +30,7 @@ inline void print_admins(const app App)
 	for (auto& i : App.admins)
 	{
 		string status;
-		if (i.status == true) status = "Active";
+		if (i.status == "true") status = "Active";
 		else status = "Inactive";
 		cout << "-----------------------" << endl;
 		cout
@@ -95,7 +95,7 @@ inline void disable_admin(app& App)
 		if (is == i.id)
 		{
 			found = true;
-			i.status = false;
+			i.status = "false";
 			cout << "Admin status successfully updated" << endl;
 		}
 	}
@@ -167,7 +167,7 @@ inline void edit_specific_meal_capacity(app& App)
 inline void edit_specific_meal_block_capacity(app& App)
 {
 	int hour;
-	char block;
+	string block;
 	cout << "-------- EDIT SPECIFIC MEAL BLOCK CAPACITY --------" << endl;
 	cout << "1) Breakfast" << endl;
 	cout << "2) Meal" << endl;
@@ -188,7 +188,7 @@ inline void edit_specific_meal_block_capacity(app& App)
 	{
 	case 1:
 	{
-		if (block == 'A')
+		if (block == "A")
 		{
 			cout << "Enter new block A capacity: ";
 			cin >> App.breakfast.total_a;
@@ -197,7 +197,7 @@ inline void edit_specific_meal_block_capacity(app& App)
 			cout << "Breakfast block capacity successfully updated" << endl;
 			break;
 		}
-		if (block == 'B')
+		if (block == "B")
 		{
 			cout << "Enter new block B capacity: ";
 			cin >> App.breakfast.total_b;
@@ -211,7 +211,7 @@ inline void edit_specific_meal_block_capacity(app& App)
 	}
 	case 2:
 	{
-		if (block == 'A')
+		if (block == "A")
 		{
 			cout << "Enter new block A capacity: ";
 			cin >> App._meal.total_a;
@@ -220,7 +220,7 @@ inline void edit_specific_meal_block_capacity(app& App)
 			cout << "Meal block capacity successfully updated" << endl;
 			break;
 		}
-		if (block == 'B')
+		if (block == "B")
 		{
 			cout << "Enter new block B capacity: ";
 			cin >> App._meal.total_b;
@@ -234,7 +234,7 @@ inline void edit_specific_meal_block_capacity(app& App)
 	}
 	case 3:
 	{
-		if (block == 'A')
+		if (block == "A")
 		{
 			cout << "Enter new block A capacity: ";
 			cin >> App.dinner.total_a;
@@ -243,7 +243,7 @@ inline void edit_specific_meal_block_capacity(app& App)
 			cout << "Dinner block capacity successfully updated" << endl;
 			break;
 		}
-		if (block == 'B')
+		if (block == "B")
 		{
 			cout << "Enter new block B capacity: ";
 			cin >> App.dinner.total_b;
@@ -266,7 +266,7 @@ inline void edit_specific_meal_block_capacity(app& App)
 inline void how_may_students_block(app& App)
 {
 	int hour;
-	char block;
+	string block;
 	int capacity = 0;
 	cout << "-------- HOW MANY STUDENTS IN BLOCK--------" << endl;
 	cout << "1) Breakfast" << endl;
@@ -288,12 +288,12 @@ inline void how_may_students_block(app& App)
 	{
 	case 1:
 	{
-		if (block == 'A')
+		if (block == "A")
 		{
 			capacity = App.breakfast.total_a;
 			cout << "Breakfast capacity successfully updated" << endl;
 		}
-		else if (block == 'B')
+		else if (block == "B")
 		{
 			capacity = App.breakfast.total_b;
 			cout << "Breakfast capacity successfully updated" << endl;
@@ -307,12 +307,12 @@ inline void how_may_students_block(app& App)
 	}
 	case 2:
 	{
-		if (block == 'A')
+		if (block == "A")
 		{
 			capacity = App._meal.total_a;
 			cout << "Meal capacity successfully updated" << endl;
 		}
-		else if (block == 'B')
+		else if (block == "B")
 		{
 			capacity = App._meal.total_b;
 			cout << "Meal capacity successfully updated" << endl;
@@ -326,12 +326,12 @@ inline void how_may_students_block(app& App)
 	}
 	case 3:
 	{
-		if (block == 'A')
+		if (block == "A")
 		{
 			capacity = App.dinner.total_a;
 			cout << "Dinner capacity successfully updated" << endl;
 		}
-		else if (block == 'B')
+		else if (block == "B")
 		{
 			capacity = App.dinner.total_b;
 			cout << "Dinner capacity successfully updated" << endl;
@@ -353,7 +353,7 @@ inline void how_may_students_block(app& App)
 inline void which_students_block(app& App)
 {
 	int hour;
-	char block;
+	string block;
 	vector<student> list;
 	cout << "-------- WHICH STUDENTS IN BLOCK--------" << endl;
 	cout << "1) Breakfast" << endl;
@@ -375,53 +375,53 @@ inline void which_students_block(app& App)
 	{
 	case 1:
 	{
-		if (block == 'A')
+		if (block == "A")
 		{
 			list = App.breakfast.list_a;
-			print_students(App);
+			print_students(list);
 			break;
 		}
-		if (block == 'B')
+		if (block == "B")
 		{
 			list = App.breakfast.list_b;
-			print_students(App);
+			print_students(list);
 			break;
 		}
-		if (block != 'A' && block != 'B') cout << "Invalid option" << endl;
+		if (block != "A" && block != "B") cout << "Invalid option" << endl;
 		break;
 	}
 	case 2:
 	{
-		if (block == 'A')
+		if (block == "A")
 		{
 			list = App._meal.list_a;
-			print_students(App);
+			print_students(list);
 			break;
 		}
-		if (block == 'B')
+		if (block == "B")
 		{
 			list = App._meal.list_b;
-			print_students(App);
+			print_students(list);
 			break;
 		}
-		if (block != 'A' && block != 'B') cout << "Invalid option" << endl;
+		if (block != "A" && block != "B") cout << "Invalid option" << endl;
 		break;
 	}
 	case 3:
 	{
-		if (block == 'A')
+		if (block == "A")
 		{
 			list = App.dinner.list_a;
-			print_students(App);
+			print_students(list);
 			break;
 		}
-		if (block == 'B')
+		if (block == "B")
 		{
 			list = App.dinner.list_b;
-			print_students(App);
+			print_students(list);
 			break;
 		}
-		if (block != 'A' && block != 'B') cout << "Invalid option" << endl;
+		if (block != "A" && block != "B") cout << "Invalid option" << endl;
 		break;
 	}
 	default:

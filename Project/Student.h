@@ -29,12 +29,25 @@ inline int get_student_id(const vector<student>& list)
 	return get_student_id(list);
 }
 
+inline void print_students(vector<student>& list)
+{
+	for (auto& i : list)
+	{
+		string status;
+		if (i.status == "true") status = "Active";
+		else status = "Inactive";
+		cout << "-----------------------" << endl;
+		cout
+			<< "ID: " << i.id << "\tName: " << i.name << "\tLast Name: " << i.lastName << endl;
+	}
+}
+
 inline void print_students(const app App)
 {
 	for (auto& i : App.students)
 	{
 		string status;
-		if (i.status == true) status = "Active";
+		if (i.status == "true") status = "Active";
 		else status = "Inactive";
 		cout << "-----------------------" << endl;
 		cout
@@ -81,7 +94,7 @@ inline void enable_student(app& App)
 		if (is == i.id)
 		{
 			found = true;
-			i.status = true;
+			i.status = "true";
 			cout << "Student status successfully updated" << endl;
 		}
 	}
@@ -100,7 +113,7 @@ inline void disable_student(app& App)
 		if (is == i.id)
 		{
 			found = true;
-			i.status = false;
+			i.status = "false";
 			cout << "Student status successfully updated" << endl;
 		}
 	}
@@ -113,7 +126,7 @@ inline void disable_student(app& App)
 inline void register_breakfast(app& App)
 {
 	bool found = false;
-	char block;
+	string block;
 
 	if (App.breakfast.total >= App.total_students)
 	{
@@ -132,10 +145,10 @@ inline void register_breakfast(app& App)
 			found = true;
 			cout << "Select block: ";
 			cin >> block;
-			if (block == 'A' || block == 'B')
+			if (block == "A" || block == "B")
 			{
 				student.breakfast = block;
-				if (student.breakfast == 'A')
+				if (student.breakfast == "A")
 				{
 					App.breakfast.total_a++;
 					App.breakfast.list_a.push_back(student);
@@ -155,7 +168,7 @@ inline void register_breakfast(app& App)
 inline void register_meal(app& App)
 {
 	bool found = false;
-	char block;
+	string block;
 
 	if (App._meal.total >= App.total_students)
 	{
@@ -174,10 +187,10 @@ inline void register_meal(app& App)
 			found = true;
 			cout << "Select block: ";
 			cin >> block;
-			if (block == 'A' || block == 'B')
+			if (block == "A" || block == "B")
 			{
 				student._meal = block;
-				if (student._meal == 'A')
+				if (student._meal == "A")
 				{
 					App._meal.total_a++;
 					App._meal.list_a.push_back(student);
@@ -197,7 +210,7 @@ inline void register_meal(app& App)
 inline void register_dinner(app& App)
 {
 	bool found = false;
-	char block;
+	string block;
 
 	if (App.dinner.total >= App.total_students)
 	{
@@ -216,10 +229,10 @@ inline void register_dinner(app& App)
 			found = true;
 			cout << "Select block: ";
 			cin >> block;
-			if (block == 'A' || block == 'B')
+			if (block == "A" || block == "B")
 			{
 				student.dinner = block;
-				if (student.dinner == 'A')
+				if (student.dinner == "A")
 				{
 					App.dinner.total_a++;
 					App.dinner.list_a.push_back(student);
@@ -258,52 +271,52 @@ inline void logged_student(app& App)
 		switch (option)
 		{
 		case DisStudent:
-			{
-				cout << "Disabling student" << endl;
-				disable_student(App);
-				break;
-			}
+		{
+			cout << "Disabling student" << endl;
+			disable_student(App);
+			break;
+		}
 
 		case EnaStudent:
-			{
-				cout << "Enabling student" << endl;
-				enable_student(App);
-				break;
-			}
+		{
+			cout << "Enabling student" << endl;
+			enable_student(App);
+			break;
+		}
 
 		case RegBreakfast:
-			{
-				cout << "Register Breakfast" << endl;
-				register_breakfast(App);
-				break;
-			}
+		{
+			cout << "Register Breakfast" << endl;
+			register_breakfast(App);
+			break;
+		}
 
 		case RegMeal:
-			{
-				cout << "Register Meal" << endl;
-				register_meal(App);
-				break;
-			}
+		{
+			cout << "Register Meal" << endl;
+			register_meal(App);
+			break;
+		}
 
 		case RegDinner:
-			{
-				cout << "Register Dinner" << endl;
-				register_dinner(App);
-				break;
-			}
+		{
+			cout << "Register Dinner" << endl;
+			register_dinner(App);
+			break;
+		}
 
 		case ExitstudentLog:
-			{
-				cout << "Return to Main Menu" << endl;
-				run = false;
-				break;
-			}
+		{
+			cout << "Return to Main Menu" << endl;
+			run = false;
+			break;
+		}
 
 		default:
-			{
-				cout << "Invalid Option" << endl;
-				break;
-			}
+		{
+			cout << "Invalid Option" << endl;
+			break;
+		}
 		}
 	}
 }

@@ -68,8 +68,8 @@ inline void read_students(vector<student>& students)
 
 		int _id, _age;
 		string _password, _name, _middle_name, last_name;
-		char _gender, _breakfast, _meal, _dinner;
-		bool _status;
+		string _gender, _breakfast, _meal, _dinner;
+		string _status;
 
 		while (getline(ss, value, ','))
 		{
