@@ -1,42 +1,38 @@
 #pragma once
 
-#include <iostream>
-#include <cmath>
-#include <vector>
-#include <string>
-#include "Student.h"
-
-using namespace std;
-
-enum ENUMStudentMenu {
+enum StudentMenu
+{
 	LogStud = 1,
 	AddStud,
 	PrAStud,
-	ExitStudent
+	Exitstudent
 };
 
-enum ENUMLoggedStudentMenu {
+enum LoggedStudentMenu
+{
 	DisStudent = 1,
 	EnaStudent,
 	RegBreakfast,
 	RegMeal,
 	RegDinner,
-	ExitStudentLog
+	ExitstudentLog
 };
 
-enum ENUMAdminMenu {
+enum AdminMenu
+{
 	LogAdm = 1,
 	AddAdm,
 	PrAAdm,
 	ExitAdmin
 };
 
-enum ENUMLoggedAdminMenu {
+enum LoggedAdminMenu
+{
 	DisAdmin = 1,
 	EnaAdmin,
-	EdStudCap,
-	Cap4Meal,
-	ModBlock,
-	SeeStudentsBlock,
+	EdTotCap,
+	EdSpecMealBlockCap,
+	HowManyStudsBlock,
+	WhichStudsBlock,
 	ExitAdminLog
 };
