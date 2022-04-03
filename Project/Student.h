@@ -29,9 +29,9 @@ inline int get_student_id(const vector<student>& list)
 	return get_student_id(list);
 }
 
-inline void print_students(const vector<student>& list)
+inline void print_students(const app App)
 {
-	for (auto& i : list)
+	for (auto& i : App.students)
 	{
 		string status;
 		if (i.status == true) status = "Active";
@@ -44,10 +44,10 @@ inline void print_students(const vector<student>& list)
 	}
 }
 
-inline void add_student(vector<student>& list)
+inline void add_student(app& App)
 {
 	student temp;
-	temp.id = get_student_id(list);
+	temp.id = get_student_id(App.students);
 	cout << " ------ Add Student ------ " << endl;
 	cout << "ID: " << temp.id << endl;
 	cout << "Name: ";
@@ -64,19 +64,19 @@ inline void add_student(vector<student>& list)
 	cin.ignore();
 	cout << "PASSWORD: ";
 	getline(cin, temp.password);
-	list.push_back(temp);
+	App.students.push_back(temp);
 
 	system("clear");
 }
 
-inline void enable_student(vector<student>& list)
+inline void enable_student(app& App)
 {
 	bool found = false;
 	cout << "ID of Student to enable: ";
 	int is;
 	cin >> is;
 	cin.ignore();
-	for (auto& i : list)
+	for (auto& i : App.students)
 	{
 		if (is == i.id)
 		{
@@ -88,14 +88,14 @@ inline void enable_student(vector<student>& list)
 	if (!found) cout << "Student ID not found" << endl;
 }
 
-inline void disable_student(vector<student>& list)
+inline void disable_student(app& App)
 {
 	bool found = false;
 	cout << "ID of Student to disable: ";
 	int is;
 	cin >> is;
 	cin.ignore();
-	for (auto& i : list)
+	for (auto& i : App.students)
 	{
 		if (is == i.id)
 		{
@@ -238,7 +238,6 @@ inline void register_dinner(app& App)
 
 inline void logged_student(app& App)
 {
-	vector<student> list = App.students;
 	bool run = true;
 	int option;
 
@@ -259,52 +258,52 @@ inline void logged_student(app& App)
 		switch (option)
 		{
 		case DisStudent:
-		{
-			cout << "Disabling student" << endl;
-			disable_student(list);
-			break;
-		}
+			{
+				cout << "Disabling student" << endl;
+				disable_student(App);
+				break;
+			}
 
 		case EnaStudent:
-		{
-			cout << "Enabling student" << endl;
-			enable_student(list);
-			break;
-		}
+			{
+				cout << "Enabling student" << endl;
+				enable_student(App);
+				break;
+			}
 
 		case RegBreakfast:
-		{
-			cout << "Register Breakfast" << endl;
-			register_breakfast(App);
-			break;
-		}
+			{
+				cout << "Register Breakfast" << endl;
+				register_breakfast(App);
+				break;
+			}
 
 		case RegMeal:
-		{
-			cout << "Register Meal" << endl;
-			register_meal(App);
-			break;
-		}
+			{
+				cout << "Register Meal" << endl;
+				register_meal(App);
+				break;
+			}
 
 		case RegDinner:
-		{
-			cout << "Register Dinner" << endl;
-			register_dinner(App);
-			break;
-		}
+			{
+				cout << "Register Dinner" << endl;
+				register_dinner(App);
+				break;
+			}
 
 		case ExitstudentLog:
-		{
-			cout << "Return to Main Menu" << endl;
-			run = false;
-			break;
-		}
+			{
+				cout << "Return to Main Menu" << endl;
+				run = false;
+				break;
+			}
 
 		default:
-		{
-			cout << "Invalid Option" << endl;
-			break;
-		}
+			{
+				cout << "Invalid Option" << endl;
+				break;
+			}
 		}
 	}
 }

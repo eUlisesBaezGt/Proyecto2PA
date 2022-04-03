@@ -6,7 +6,7 @@
 
 #include "App.h"
 
-inline bool check_admin_id(const int id, const vector<admin>& list)
+inline bool check_admin_id(const int id, const vector<admin> list)
 {
 	bool used = false;
 	for (auto& i : list)
@@ -17,7 +17,7 @@ inline bool check_admin_id(const int id, const vector<admin>& list)
 	return used;
 }
 
-inline int get_admin_id(const vector<admin>& list)
+inline int get_admin_id(const vector<admin> list)
 {
 	const int n = rand() % 100;
 	const bool used = check_admin_id(n, list);
@@ -25,9 +25,9 @@ inline int get_admin_id(const vector<admin>& list)
 	return get_admin_id(list);
 }
 
-inline void print_admins(const vector<admin>& list)
+inline void print_admins(const app App)
 {
-	for (auto& i : list)
+	for (auto& i : App.admins)
 	{
 		string status;
 		if (i.status == true) status = "Active";
@@ -39,10 +39,10 @@ inline void print_admins(const vector<admin>& list)
 	}
 }
 
-inline void add_admin(vector<admin>& list)
+inline void add_admin(app& App)
 {
 	admin temp;
-	temp.id = get_admin_id(list);
+	temp.id = get_admin_id(App.admins);
 	cout << " ------ Add Admin ------ " << endl;
 	cout << "ID: " << temp.id << endl;
 	cout << "Name: ";
@@ -59,19 +59,19 @@ inline void add_admin(vector<admin>& list)
 	cin.ignore();
 	cout << "PASSWORD: ";
 	getline(cin, temp.password);
-	list.push_back(temp);
+	App.admins.push_back(temp);
 
 	system("clear");
 }
 
-inline void enable_admin(vector<admin>& list)
+inline void enable_admin(app& App)
 {
 	bool found = false;
 	cout << "ID of Admin to enable: ";
 	int is;
 	cin >> is;
 	cin.ignore();
-	for (auto& i : list)
+	for (auto& i : App.admins)
 	{
 		if (is == i.id)
 		{
@@ -83,14 +83,14 @@ inline void enable_admin(vector<admin>& list)
 	if (!found) cout << "Admin ID not found" << endl;
 }
 
-inline void disable_admin(vector<admin>& list)
+inline void disable_admin(app& App)
 {
 	bool found = false;
 	cout << "ID of Admin to disable: ";
 	int is;
 	cin >> is;
 	cin.ignore();
-	for (auto& i : list)
+	for (auto& i : App.admins)
 	{
 		if (is == i.id)
 		{
@@ -378,13 +378,13 @@ inline void which_students_block(app& App)
 		if (block == 'A')
 		{
 			list = App.breakfast.list_a;
-			print_students(list);
+			print_students(App);
 			break;
 		}
 		if (block == 'B')
 		{
 			list = App.breakfast.list_b;
-			print_students(list);
+			print_students(App);
 			break;
 		}
 		if (block != 'A' && block != 'B') cout << "Invalid option" << endl;
@@ -395,13 +395,13 @@ inline void which_students_block(app& App)
 		if (block == 'A')
 		{
 			list = App._meal.list_a;
-			print_students(list);
+			print_students(App);
 			break;
 		}
 		if (block == 'B')
 		{
 			list = App._meal.list_b;
-			print_students(list);
+			print_students(App);
 			break;
 		}
 		if (block != 'A' && block != 'B') cout << "Invalid option" << endl;
@@ -412,13 +412,13 @@ inline void which_students_block(app& App)
 		if (block == 'A')
 		{
 			list = App.dinner.list_a;
-			print_students(list);
+			print_students(App);
 			break;
 		}
 		if (block == 'B')
 		{
 			list = App.dinner.list_b;
-			print_students(list);
+			print_students(App);
 			break;
 		}
 		if (block != 'A' && block != 'B') cout << "Invalid option" << endl;
@@ -459,14 +459,14 @@ inline void logged_admin(app& App)
 		case DisAdmin:
 		{
 			cout << "Disabling Admin..." << endl;
-			disable_admin(list);
+			disable_admin(App);
 			break;
 		}
 
 		case EnaAdmin:
 		{
 			cout << "Enabling Admin..." << endl;
-			enable_admin(list);
+			enable_admin(App);
 			break;
 		}
 

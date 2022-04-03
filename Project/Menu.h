@@ -9,7 +9,6 @@
 
 inline void admin_menu(app& App)
 {
-	vector<admin> list = App.admins;
 	int option;
 	bool run = true;
 
@@ -31,10 +30,10 @@ inline void admin_menu(app& App)
 			login_admin(App);
 			break;
 		case AddAdm:
-			add_admin(list);
+			add_admin(App);
 			break;
 		case PrAAdm:
-			print_admins(list);
+			print_admins(App);
 			break;
 		case ExitAdmin:
 			cout << "Return to Main Menu" << endl;
@@ -50,7 +49,6 @@ inline void admin_menu(app& App)
 
 inline void student_menu(app& App)
 {
-	vector<student> list = App.students;
 	int option;
 	bool run = true;
 
@@ -72,10 +70,10 @@ inline void student_menu(app& App)
 			login_stud(App);
 			break;
 		case AddStud:
-			add_student(list);
+			add_student(App);
 			break;
 		case PrAStud:
-			print_students(list);
+			print_students(App);
 			break;
 		case Exitstudent:
 			run = false;
