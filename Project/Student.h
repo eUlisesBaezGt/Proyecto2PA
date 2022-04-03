@@ -5,57 +5,10 @@
 #include <vector>
 #include <string>
 
+#include "App.h"
 #include "Enums.h"
 
 using namespace std;
-
-class student;
-
-
-struct breakfast
-{
-	int Total;
-	int TotalA;
-	int TotalB;
-
-	vector<student> listA;
-	vector<student> listB;
-};
-
-struct meal
-{
-	int Total;
-	int TotalA;
-	int TotalB;
-
-	vector<student> listA;
-	vector<student> listB;
-};
-
-struct dinner
-{
-	int Total;
-	int TotalA;
-	int TotalB;
-
-	vector<student> listA;
-	vector<student> listB;
-};
-
-class student
-{
-public:
-	int id{};
-	string password{};
-
-	string name;
-	string middleName;
-	string lastName;
-	int age{};
-	char gender{};
-	bool status = true;
-};
-
 
 inline bool check_student_id(const int id, const vector<student>& list)
 {
@@ -86,7 +39,8 @@ inline void print_students(const vector<student>& list)
 		cout << "-----------------------" << endl;
 		cout
 			<< "ID: " << i.id << "\tName: " << i.name << "\tMiddle Name: " << i.middleName
-			<< "\tLast Name: " << i.lastName << "\tStatus: " << status << endl;
+			<< "\tLast Name: " << i.lastName << "\tStatus: " << status << "\tBreakfast: " << i.breakfast
+			<< "\tMeal: " << i._meal << "\tDinner: " << i.dinner << endl;
 	}
 }
 
@@ -156,14 +110,141 @@ inline void disable_student(vector<student>& list)
 	}
 }
 
-inline void logged_student(vector<student>& list)
+inline void register_breakfast(app& App)
 {
+	bool found = false;
+	char block;
+
+	if (App.breakfast.total >= App.total_students)
+	{
+		cout << "No more students can register for breakfast" << endl;
+		return;
+	}
+	cout << "ID of Student: ";
+	int is;
+	cin >> is;
+	cin.ignore();
+	for (auto& student : App.students)
+	{
+		if (is == student.id)
+		{
+			App.breakfast.total++;
+			found = true;
+			cout << "Select block: ";
+			cin >> block;
+			if (block == 'A' || block == 'B')
+			{
+				student.breakfast = block;
+				if (student.breakfast == 'A')
+				{
+					App.breakfast.total_a++;
+					App.breakfast.list_a.push_back(student);
+					break;
+				}
+				App.breakfast.total_b++;
+				App.breakfast.list_b.push_back(student);
+				break;
+			}
+		}
+		cout << "Invalid block" << endl;
+		break;
+	}
+	if (!found) cout << "Student ID not found" << endl;
+}
+
+inline void register_meal(app& App)
+{
+	bool found = false;
+	char block;
+
+	if (App._meal.total >= App.total_students)
+	{
+		cout << "No more students can register for meal" << endl;
+		return;
+	}
+	cout << "ID of Student: ";
+	int is;
+	cin >> is;
+	cin.ignore();
+	for (auto& student : App.students)
+	{
+		if (is == student.id)
+		{
+			App._meal.total++;
+			found = true;
+			cout << "Select block: ";
+			cin >> block;
+			if (block == 'A' || block == 'B')
+			{
+				student._meal = block;
+				if (student._meal == 'A')
+				{
+					App._meal.total_a++;
+					App._meal.list_a.push_back(student);
+					break;
+				}
+				App._meal.total_b++;
+				App._meal.list_b.push_back(student);
+				break;
+			}
+		}
+		cout << "Invalid block" << endl;
+		break;
+	}
+	if (!found) cout << "Student ID not found" << endl;
+}
+
+inline void register_dinner(app& App)
+{
+	bool found = false;
+	char block;
+
+	if (App.dinner.total >= App.total_students)
+	{
+		cout << "No more students can register for dinner" << endl;
+		return;
+	}
+	cout << "ID of Student: ";
+	int is;
+	cin >> is;
+	cin.ignore();
+	for (auto& student : App.students)
+	{
+		if (is == student.id)
+		{
+			App.dinner.total++;
+			found = true;
+			cout << "Select block: ";
+			cin >> block;
+			if (block == 'A' || block == 'B')
+			{
+				student.dinner = block;
+				if (student.dinner == 'A')
+				{
+					App.dinner.total_a++;
+					App.dinner.list_a.push_back(student);
+					break;
+				}
+				App.dinner.total_b++;
+				App.dinner.list_b.push_back(student);
+				break;
+			}
+		}
+		cout << "Invalid block" << endl;
+		break;
+	}
+	if (!found) cout << "Student ID not found" << endl;
+}
+
+inline void logged_student(app& App)
+{
+	vector<student> list = App.students;
 	bool run = true;
 	int option;
 
 	while (run)
 	{
-		cout << "-------- LOGGED student MENU -------- " << endl;
+		cout << "-------- LOGGED STUDENT MENU -------- " << endl;
 		cout << "1) Disable student" << endl;
 		cout << "2) Enable student" << endl;
 		cout << "3) Register Breakfast" << endl;
@@ -194,18 +275,21 @@ inline void logged_student(vector<student>& list)
 		case RegBreakfast:
 		{
 			cout << "Register Breakfast" << endl;
+			register_breakfast(App);
 			break;
 		}
 
 		case RegMeal:
 		{
 			cout << "Register Meal" << endl;
+			register_meal(App);
 			break;
 		}
 
 		case RegDinner:
 		{
 			cout << "Register Dinner" << endl;
+			register_dinner(App);
 			break;
 		}
 

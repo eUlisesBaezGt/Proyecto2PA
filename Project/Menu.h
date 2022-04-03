@@ -1,15 +1,15 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
 
 #include "Student.h"
 #include "Enums.h"
 #include "Admin.h"
 #include "Logins.h"
 
-inline void admin_menu(vector<admin>& list)
+inline void admin_menu(app& App)
 {
+	vector<admin> list = App.admins;
 	int option;
 	bool run = true;
 
@@ -28,7 +28,7 @@ inline void admin_menu(vector<admin>& list)
 		switch (option)
 		{
 		case LogAdm:
-			login_admin(list);
+			login_admin(App);
 			break;
 		case AddAdm:
 			add_admin(list);
@@ -47,8 +47,10 @@ inline void admin_menu(vector<admin>& list)
 	}
 }
 
-inline void student_menu(vector<student> list)
+
+inline void student_menu(app& App)
 {
+	vector<student> list = App.students;
 	int option;
 	bool run = true;
 
@@ -67,7 +69,7 @@ inline void student_menu(vector<student> list)
 		switch (option)
 		{
 		case LogStud:
-			login_stud(list);
+			login_stud(App);
 			break;
 		case AddStud:
 			add_student(list);
@@ -88,8 +90,7 @@ inline void student_menu(vector<student> list)
 
 inline void main_menu()
 {
-	vector<student> students;
-	vector<admin> admins;
+	app App;
 	char choice;
 	bool run = true;
 
@@ -106,11 +107,11 @@ inline void main_menu()
 		{
 		case 'A':
 			cout << "Using as admin " << endl;
-			admin_menu(admins);
+			admin_menu(App);
 			break;
 		case 'S':
 			cout << "Using as student" << endl;
-			student_menu(students);
+			student_menu(App);
 			break;
 		case 'Q':
 			cout << "Goodbye!" << endl;
