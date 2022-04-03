@@ -1,36 +1,9 @@
 #pragma once
-
-#include "App.h"
 #include "Admin.h"
-#include "Student.h"
+#include "Menu.h"
 
 
-inline void login_admin(app& App)
-{
-	bool found = false;
-	int id;
-	string password;
-	cout << "Enter your ID: ";
-	cin >> id;
-	cin.ignore();
-	cout << "Enter your password: ";
-	getline(cin, password);
-	for (auto& i : App.admins)
-	{
-		if (i.id == id && i.password == password && i.status == "true")
-		{
-			found = true;
-			cout << "Welcome " << endl;
-			logged_admin(App);
-			break;
-		}
-	}
-	if (!found) { cout << "Invalid ID or password or user disabled" << endl; }
-}
-
-
-inline void login_stud(app& App)
-{
+void LoginAdmin(vector<Admin>& list) {
 	bool found = false;
 	int ID;
 	string Password;
@@ -39,15 +12,32 @@ inline void login_stud(app& App)
 	cin.ignore();
 	cout << "Enter your password: ";
 	getline(cin, Password);
-	for (auto& i : App.students)
-	{
-		if (i.id == ID && i.password == Password && i.status == "true")
-		{
-			found = true;
-			cout << "Welcome " << endl;
-			logged_student(App);
-			break;
+	for (auto& i : list) {
+		if (i.id == ID && i.password == Password && i.status) {
+			found = true; break;
 		}
 	}
-	if (!found) { cout << "Invalid ID or password or user disabled" << endl; }
+	if (found) { cout << "Welcome " << endl; Log_Admin(list); }
+	else if (!found) { cout << "Invalid ID or password or user disabled" << endl; }
+}
+
+
+
+
+void LoginStud(vector<Student>& list) {
+	bool found = false;
+	int ID;
+	string Password;
+	cout << "Enter your ID: ";
+	cin >> ID;
+	cin.ignore();
+	cout << "Enter your password: ";
+	getline(cin, Password);
+	for (auto& i : list) {
+		if (i.id == ID && i.password == Password && i.status) {
+			found = true; break;
+		}
+	}
+	if (found) { cout << "Welcome " << endl; Log_Stud(list); }
+	else if (!found) { cout << "Invalid ID or password or user disabled" << endl; }
 }
