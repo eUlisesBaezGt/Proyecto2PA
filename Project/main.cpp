@@ -2,7 +2,8 @@
 
 using namespace std;
 
-int main() {
-    MainMenu();
-    return 0;
+int main()
+{
+	main_menu();
+	return 0;
 }

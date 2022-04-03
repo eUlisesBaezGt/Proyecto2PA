@@ -5,75 +5,62 @@
 #include <vector>
 #include <string>
 
+#include "App.h"
 #include "Enums.h"
-#include "Menu.h"
 
-class Student;
 using namespace std;
 
-struct Breakfast
+inline bool check_student_id(const int id, const vector<student>& list)
 {
-	int Total;
-	int TotalA;
-	int TotalB;
-
-	vector<Student> listA;
-	vector<Student> listB;
-};
-
-struct Meal
-{
-	int Total;
-	int TotalA;
-	int TotalB;
-
-	vector<Student> listA;
-	vector<Student> listB;
-};
-
-struct Dinner
-{
-	int Total;
-	int TotalA;
-	int TotalB;
-
-	vector<Student> listA;
-	vector<Student> listB;
-};
-
-class Student {
-public:
-	int id{};
-	string password{};
-
-	string name;
-	string middleName;
-	string lastName;
-	int age{};
-	char gender{};
-	bool status = true;
-
-};
-
-bool CheckStudentID(int id, const vector<Student> list) {
-	bool b = false;
-	for (auto& i : list) {
-		if (i.id == id) return true; break;
+	bool used = false;
+	for (auto& i : list)
+	{
+		if (i.id == id) used = true;
+		break;
 	}
-	return b;
+	return used;
 }
 
-int GetStudentId(int n, const vector<Student> list) {
-	n = rand() % 100;
-	for (int i = 0; i < list.size(); ++i) {
-		if (!CheckStudentID(n, list)) return n; break;
+inline int get_student_id(const vector<student>& list)
+{
+	const int n = rand() % 100;
+	const bool used = check_student_id(n, list);
+	if (!used) return n;
+	return get_student_id(list);
+}
+
+inline void print_students(vector<student>& list)
+{
+	for (auto& i : list)
+	{
+		string status;
+		if (i.status == "true") status = "Active";
+		else status = "Inactive";
+		cout << "-----------------------" << endl;
+		cout
+			<< "ID: " << i.id << "\tName: " << i.name << "\tLast Name: " << i.lastName << endl;
 	}
 }
 
-void AddStudent(vector<Student>& list) {
-	Student temp;
-	int n = 0;
-	temp.id = GetStudentId(n, list);
+inline void print_students(const app App)
+{
+	for (auto& i : App.students)
+	{
+		string status;
+		if (i.status == "true") status = "Active";
+		else status = "Inactive";
+		cout << "-----------------------" << endl;
+		cout
+			<< "ID: " << i.id << "\tName: " << i.name << "\tMiddle Name: " << i.middleName
+			<< "\tLast Name: " << i.lastName << "\tStatus: " << status << "\tBreakfast: " << i.breakfast
+			<< "\tMeal: " << i._meal << "\tDinner: " << i.dinner << endl;
+	}
+}
+
+inline void add_student(app& App)
+{
+	student temp;
+	temp.id = get_student_id(App.students);
 	cout << " ------ Add Student ------ " << endl;
 	cout << "ID: " << temp.id << endl;
 	cout << "Name: ";
@@ -90,96 +77,246 @@ void AddStudent(vector<Student>& list) {
 	cin.ignore();
 	cout << "PASSWORD: ";
 	getline(cin, temp.password);
-	list.push_back(temp);
+	App.students.push_back(temp);
 
 	system("clear");
 }
 
-void PrintStudents(const vector<Student> list) {
-	for (auto& i : list) {
-		cout << "-----------------------" << endl;
-		cout << "ID: " << i.id << "\tName: " << i.name << "\tMiddle Name: " << i.middleName
-			<< "\tLast Name: " << i.lastName << "\nStatus" << i.status;
-	}
-}
-
-void EnableStudent(vector<Student>& list) {
+inline void enable_student(app& App)
+{
 	bool found = false;
 	cout << "ID of Student to enable: ";
-	int IS;
-	cin >> IS;
+	int is;
+	cin >> is;
 	cin.ignore();
-	for (auto& i : list) {
-		if (IS == i.id) {
+	for (auto& i : App.students)
+	{
+		if (is == i.id)
+		{
 			found = true;
-			i.status = true;
+			i.status = "true";
 			cout << "Student status successfully updated" << endl;
 		}
 	}
-	if (!found) {
-		cout << "Student ID not found" << endl;
-	}
+	if (!found) cout << "Student ID not found" << endl;
 }
 
-void DisableStudent(vector<Student>& list) {
+inline void disable_student(app& App)
+{
 	bool found = false;
 	cout << "ID of Student to disable: ";
-	int IS;
-	cin >> IS;
+	int is;
+	cin >> is;
 	cin.ignore();
-	for (auto& i : list) {
-		if (IS == i.id) {
+	for (auto& i : App.students)
+	{
+		if (is == i.id)
+		{
 			found = true;
-			i.status = false;
+			i.status = "false";
 			cout << "Student status successfully updated" << endl;
 		}
 	}
-	if (!found) {
+	if (!found)
+	{
 		cout << "Student ID not found" << endl;
 	}
 }
 
-void Log_Stud(vector<Student>& students) {
+inline void register_breakfast(app& App)
+{
+	bool found = false;
+	string block;
+
+	if (App.breakfast.total >= App.total_students)
+	{
+		cout << "No more students can register for breakfast" << endl;
+		return;
+	}
+	cout << "ID of Student: ";
+	int is;
+	cin >> is;
+	cin.ignore();
+	for (auto& student : App.students)
+	{
+		if (is == student.id)
+		{
+			App.breakfast.total++;
+			found = true;
+			cout << "Select block: ";
+			cin >> block;
+			if (block == "A" || block == "B")
+			{
+				student.breakfast = block;
+				if (student.breakfast == "A")
+				{
+					App.breakfast.total_a++;
+					App.breakfast.list_a.push_back(student);
+					break;
+				}
+				App.breakfast.total_b++;
+				App.breakfast.list_b.push_back(student);
+				break;
+			}
+		}
+		cout << "Invalid block" << endl;
+		break;
+	}
+	if (!found) cout << "Student ID not found" << endl;
+}
+
+inline void register_meal(app& App)
+{
+	bool found = false;
+	string block;
+
+	if (App._meal.total >= App.total_students)
+	{
+		cout << "No more students can register for meal" << endl;
+		return;
+	}
+	cout << "ID of Student: ";
+	int is;
+	cin >> is;
+	cin.ignore();
+	for (auto& student : App.students)
+	{
+		if (is == student.id)
+		{
+			App._meal.total++;
+			found = true;
+			cout << "Select block: ";
+			cin >> block;
+			if (block == "A" || block == "B")
+			{
+				student._meal = block;
+				if (student._meal == "A")
+				{
+					App._meal.total_a++;
+					App._meal.list_a.push_back(student);
+					break;
+				}
+				App._meal.total_b++;
+				App._meal.list_b.push_back(student);
+				break;
+			}
+		}
+		cout << "Invalid block" << endl;
+		break;
+	}
+	if (!found) cout << "Student ID not found" << endl;
+}
+
+inline void register_dinner(app& App)
+{
+	bool found = false;
+	string block;
+
+	if (App.dinner.total >= App.total_students)
+	{
+		cout << "No more students can register for dinner" << endl;
+		return;
+	}
+	cout << "ID of Student: ";
+	int is;
+	cin >> is;
+	cin.ignore();
+	for (auto& student : App.students)
+	{
+		if (is == student.id)
+		{
+			App.dinner.total++;
+			found = true;
+			cout << "Select block: ";
+			cin >> block;
+			if (block == "A" || block == "B")
+			{
+				student.dinner = block;
+				if (student.dinner == "A")
+				{
+					App.dinner.total_a++;
+					App.dinner.list_a.push_back(student);
+					break;
+				}
+				App.dinner.total_b++;
+				App.dinner.list_b.push_back(student);
+				break;
+			}
+		}
+		cout << "Invalid block" << endl;
+		break;
+	}
+	if (!found) cout << "Student ID not found" << endl;
+}
+
+inline void logged_student(app& App)
+{
 	bool run = true;
 	int option;
 
 	while (run)
 	{
-		cout << "-------- LOGGED STUDENT MENU -------- ";
-		cout << "1) Disable Student" << endl;
-		cout << "2) Enable Student" << endl;
+		cout << "-------- LOGGED STUDENT MENU -------- " << endl;
+		cout << "1) Disable student" << endl;
+		cout << "2) Enable student" << endl;
 		cout << "3) Register Breakfast" << endl;
 		cout << "4) Register Meal" << endl;
 		cout << "5) Register Dinner" << endl;
 		cout << "6) Exit" << endl;
-		cout << "Select your option: ";
 
+		cout << "Select your option: ";
 		cin >> option;
 		cin.ignore();
-		switch (option) {
+
+		switch (option)
+		{
 		case DisStudent:
-			cout << "Disable Student" << endl;
-			DisableStudent(students);
+		{
+			cout << "Disabling student" << endl;
+			disable_student(App);
 			break;
+		}
+
 		case EnaStudent:
-			cout << "Enable Student" << endl;
-			EnableStudent(students);
+		{
+			cout << "Enabling student" << endl;
+			enable_student(App);
 			break;
+		}
+
 		case RegBreakfast:
+		{
 			cout << "Register Breakfast" << endl;
+			register_breakfast(App);
 			break;
+		}
+
 		case RegMeal:
+		{
 			cout << "Register Meal" << endl;
+			register_meal(App);
 			break;
+		}
+
 		case RegDinner:
+		{
 			cout << "Register Dinner" << endl;
+			register_dinner(App);
 			break;
-		case ExitStudentLog:
+		}
+
+		case ExitstudentLog:
+		{
 			cout << "Return to Main Menu" << endl;
+			run = false;
 			break;
+		}
+
 		default:
-			cout << "Invalid option";
+		{
+			cout << "Invalid Option" << endl;
 			break;
+		}
 		}
 	}
 }
