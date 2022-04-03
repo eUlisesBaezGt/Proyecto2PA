@@ -302,7 +302,7 @@ inline void logged_student(app& App)
 			break;
 		}
 
-		case ExitstudentLog:
+		case ExitStudentLog:
 		{
 			cout << "Return to Main Menu" << endl;
 			run = false;

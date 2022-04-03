@@ -75,7 +75,7 @@ inline void student_menu(app& App)
 		case PrAStud:
 			print_students(App);
 			break;
-		case Exitstudent:
+		case ExitStudent:
 			run = false;
 			cout << "Return to Main Menu" << endl;
 			break;

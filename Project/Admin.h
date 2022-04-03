@@ -76,7 +76,7 @@ inline void enable_admin(app& App)
 		if (is == i.id)
 		{
 			found = true;
-			i.status = true;
+			i.status = "true";
 			cout << "Admin status successfully updated" << endl;
 		}
 	}
@@ -109,7 +109,6 @@ inline void edit_total_capacity(app& App)
 {
 	cout << "-------- EDIT TOTAL CAPACITY --------" << endl;
 	cout << "Enter new total capacity: ";
-	int cap;
 	cin >> App.total_students;
 	cin.ignore();
 	cout << "Total Capacity successfully updated" << endl;

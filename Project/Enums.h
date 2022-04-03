@@ -5,7 +5,7 @@ enum StudentMenu
 	LogStud = 1,
 	AddStud,
 	PrAStud,
-	Exitstudent
+	ExitStudent
 };
 
 enum LoggedStudentMenu
@@ -15,7 +15,7 @@ enum LoggedStudentMenu
 	RegBreakfast,
 	RegMeal,
 	RegDinner,
-	ExitstudentLog
+	ExitStudentLog
 };
 
 enum AdminMenu
