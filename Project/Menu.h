@@ -89,7 +89,7 @@ inline void student_menu(app& App)
 inline void main_menu()
 {
 	app App;
-	string choice;
+	char choice;
 	bool run = true;
 
 	while (run)

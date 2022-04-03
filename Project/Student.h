@@ -33,9 +33,6 @@ inline void print_students(vector<student>& list)
 {
 	for (auto& i : list)
 	{
-		string status;
-		if (i.status == "true") status = "Active";
-		else status = "Inactive";
 		cout << "-----------------------" << endl;
 		cout
 			<< "ID: " << i.id << "\tName: " << i.name << "\tLast Name: " << i.lastName << endl;
