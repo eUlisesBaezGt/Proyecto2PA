@@ -76,6 +76,7 @@ inline void add_student(app& App)
 	getline(cin, temp.password);
 	App.students.push_back(temp);
 
+
 	system("clear");
 }
 
