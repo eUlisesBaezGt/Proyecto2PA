@@ -362,8 +362,8 @@ inline void read_blocks_dinner(app& App)
 		stringstream ss(line);
 
 		int colIdx = 0;
-		int _capacity;
 		string _block;
+		int _capacity;
 
 		while (getline(ss, value, ','))
 		{
@@ -379,20 +379,21 @@ inline void read_blocks_dinner(app& App)
 				break;
 			}
 
+			if (_block == "A")
+			{
+				_capacity = App.dinner.total_a;
+			}
+			if (_block == "B")
+			{
+				_capacity = App.dinner.total_b;
+			}
+			App.dinner.total = App.dinner.total_a + App.dinner.total_b;
+
+
 			// Si el siguiente token es una coma, ignoralo y se mueve al siguiente elemento
 			if (ss.peek() == ',') ss.ignore();
 			colIdx++;
 		}
-		if (_block == "A")
-		{
-			_capacity = App.dinner.total_a;
-		}
-		if (_block == "B")
-		{
-			_capacity = App.dinner.total_b;
-		}
-		App.dinner.total = App.dinner.total_a + App.dinner.total_b;
-
 		myFileInput.close();
 	}
 }
@@ -483,6 +484,7 @@ inline void read_admins(app& App)
 	myFileInput.close();
 }
 
+
 inline void add_student_2_file(const app App)
 {
 	ofstream myFileOutput("Students.csv", ios_base::app);
@@ -490,7 +492,7 @@ inline void add_student_2_file(const app App)
 	{
 		myFileOutput << student.id << "," << student.password << "," << student.name << ","
 			<< student.middleName << "," << student.lastName << "," << student.age << ","
-			<< student.gender << ",";
+			<< student.gender;
 	}
 	myFileOutput.close();
 }
@@ -502,7 +504,29 @@ inline void add_admin_2_file(const app App)
 	{
 		myFileOutput << admin.id << "," << admin.password << "," << admin.name << ","
 			<< admin.middleName << "," << admin.lastName << "," << admin.age << ","
-			<< admin.gender << ",";
+			<< admin.gender;
 	}
 	myFileOutput.close();
+}
+
+inline void update_total(const app App)
+{
+	const int n = App.total_students;
+	ofstream myFileOutput("Total.csv");
+	myFileOutput << n;
+}
+
+inline void update_block(const app App)
+{
+	ofstream myFileOutput("BlockBreakfast.csv");
+	ofstream myFileOutput2("BlockMeal.csv");
+	ofstream myFileOutput3("BlockDinnerBreakfast.csv");
+	myFileOutput << "A" << "," << App.breakfast.total_a << "\n"
+		<< "B" << App.breakfast.total_b;
+
+	myFileOutput2 << "A" << "," << App._meal.total_a << "\n"
+		<< "B" << App._meal.total_b;
+
+	myFileOutput3 << "A" << "," << App.dinner.total_a << "\n"
+		<< "B" << App.dinner.total_b;
 }
