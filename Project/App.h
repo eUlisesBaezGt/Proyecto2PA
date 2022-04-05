@@ -39,6 +39,7 @@ public:
 struct meal
 {
 	int total{};
+	int Maxtotal{};
 	int total_a{};
 	int total_b{};
 

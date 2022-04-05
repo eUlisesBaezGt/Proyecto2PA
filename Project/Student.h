@@ -7,6 +7,7 @@
 
 #include "App.h"
 #include "Enums.h"
+#include "Files.h"
 
 using namespace std;
 
@@ -23,7 +24,7 @@ inline bool check_student_id(const int id, const vector<student>& list)
 
 inline int get_student_id(const vector<student>& list)
 {
-	const int n = rand() % 100;
+	const int n = rand() % (1000 + 1 - 0) + 0;
 	const bool used = check_student_id(n, list);
 	if (!used) return n;
 	return get_student_id(list);
@@ -62,6 +63,7 @@ inline void add_student(app& App)
 	cout << "ID: " << temp.id << endl;
 	cout << "Name: ";
 	getline(cin, temp.name);
+	getline(cin, temp.name);
 	cout << "Middle Name: ";
 	getline(cin, temp.middleName);
 	cout << "Last Name: ";
@@ -75,6 +77,7 @@ inline void add_student(app& App)
 	cout << "PASSWORD: ";
 	getline(cin, temp.password);
 	App.students.push_back(temp);
+	add_student_2_file(App);
 
 
 	system("clear");
@@ -247,6 +250,134 @@ inline void register_dinner(app& App)
 	if (!found) cout << "Student ID not found" << endl;
 }
 
+inline void delete_register(app& App)
+{
+	bool found = false;
+	int option;
+
+	cout << "ID of Student: ";
+	int is;
+	cin >> is;
+	cin.ignore();
+	for (auto& student : App.students)
+	{
+		if (is == student.id)
+		{
+			cout << "-------- DELETE REGISTER -------- " << endl;
+			cout << "1) Delete Breakfast" << endl;
+			cout << "2) Delete Meal" << endl;
+			cout << "3) Delete Dinner" << endl;
+			cout << "4) Cancel" << endl;
+
+			cout << "Select your option: ";
+			cin >> option;
+			cin.ignore();
+
+			switch (option)
+			{
+			case 1:
+				{
+					App.breakfast.total--;
+					if (student.breakfast == "A")
+					{
+						App.breakfast.total_a--;
+						student.breakfast = "";
+						for (int i = 0; i < App.breakfast.list_a.size(); ++i)
+						{
+							if (App.breakfast.list_a[i].id == is)
+							{
+								App.breakfast.list_a.erase(App.breakfast.list_a.begin() + i);
+								break;
+							}
+						}
+					}
+					if (student.breakfast == "B")
+					{
+						App.breakfast.total_b--;
+						student.breakfast = "";
+						for (int i = 0; i < App.breakfast.list_b.size(); ++i)
+						{
+							if (App.breakfast.list_b[i].id == is)
+							{
+								App.breakfast.list_b.erase(App.breakfast.list_b.begin() + i);
+								break;
+							}
+						}
+					}
+				}
+			case 2:
+				{
+					App._meal.total--;
+					if (student._meal == "A")
+					{
+						App._meal.total_a--;
+						student._meal = "";
+						for (int i = 0; i < App._meal.list_a.size(); ++i)
+						{
+							if (App._meal.list_a[i].id == is)
+							{
+								App._meal.list_a.erase(App._meal.list_a.begin() + i);
+								break;
+							}
+						}
+					}
+					if (student._meal == "B")
+					{
+						App._meal.total_b--;
+						student._meal = "";
+						for (int i = 0; i < App._meal.list_b.size(); ++i)
+						{
+							if (App._meal.list_b[i].id == is)
+							{
+								App._meal.list_b.erase(App._meal.list_b.begin() + i);
+								break;
+							}
+						}
+					}
+				}
+			case 3:
+				{
+					App.dinner.total--;
+					if (student.dinner == "A")
+					{
+						App.dinner.total_a--;
+						student.dinner = "";
+						for (int i = 0; i < App.dinner.list_a.size(); ++i)
+						{
+							if (App.dinner.list_a[i].id == is)
+							{
+								App.dinner.list_a.erase(App.dinner.list_a.begin() + i);
+								break;
+							}
+						}
+					}
+					if (student.dinner == "B")
+					{
+						App.dinner.total_b--;
+						student.dinner = "";
+						for (int i = 0; i < App.dinner.list_b.size(); ++i)
+						{
+							if (App.dinner.list_b[i].id == is)
+							{
+								App.dinner.list_b.erase(App.dinner.list_b.begin() + i);
+								break;
+							}
+						}
+					}
+				}
+			case 4:
+				return;
+			default:
+				cout << "Invalid option" << endl;
+				break;
+			}
+
+			break;
+		}
+	}
+	if (!found) cout << "Student ID not found" << endl;
+}
+
 inline void logged_student(app& App)
 {
 	bool run = true;
@@ -260,7 +391,8 @@ inline void logged_student(app& App)
 		cout << "3) Register Breakfast" << endl;
 		cout << "4) Register Meal" << endl;
 		cout << "5) Register Dinner" << endl;
-		cout << "6) Exit" << endl;
+		cout << "6) Delete Register" << endl;
+		cout << "7) Exit" << endl;
 
 		cout << "Select your option: ";
 		cin >> option;
@@ -269,52 +401,58 @@ inline void logged_student(app& App)
 		switch (option)
 		{
 		case DisStudent:
-		{
-			cout << "Disabling student" << endl;
-			disable_student(App);
-			break;
-		}
+			{
+				cout << "Disabling student" << endl;
+				disable_student(App);
+				break;
+			}
 
 		case EnaStudent:
-		{
-			cout << "Enabling student" << endl;
-			enable_student(App);
-			break;
-		}
+			{
+				cout << "Enabling student" << endl;
+				enable_student(App);
+				break;
+			}
 
 		case RegBreakfast:
-		{
-			cout << "Register Breakfast" << endl;
-			register_breakfast(App);
-			break;
-		}
+			{
+				cout << "Register Breakfast" << endl;
+				register_breakfast(App);
+				break;
+			}
 
 		case RegMeal:
-		{
-			cout << "Register Meal" << endl;
-			register_meal(App);
-			break;
-		}
+			{
+				cout << "Register Meal" << endl;
+				register_meal(App);
+				break;
+			}
 
 		case RegDinner:
-		{
-			cout << "Register Dinner" << endl;
-			register_dinner(App);
-			break;
-		}
+			{
+				cout << "Register Dinner" << endl;
+				register_dinner(App);
+				break;
+			}
+		case ChangeReg:
+			{
+				cout << "Change register" << endl;
+				delete_register(App);
+				break;
+			}
 
 		case ExitStudentLog:
-		{
-			cout << "Return to Main Menu" << endl;
-			run = false;
-			break;
-		}
+			{
+				cout << "Return to Main Menu" << endl;
+				run = false;
+				break;
+			}
 
 		default:
-		{
-			cout << "Invalid Option" << endl;
-			break;
-		}
+			{
+				cout << "Invalid Option" << endl;
+				break;
+			}
 		}
 	}
 }

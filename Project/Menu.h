@@ -5,6 +5,7 @@
 #include "Student.h"
 #include "Enums.h"
 #include "Admin.h"
+#include "Files.h"
 #include "Logins.h"
 
 inline void admin_menu(app& App)
@@ -91,6 +92,13 @@ inline void main_menu()
 	app App;
 	char choice;
 	bool run = true;
+
+	read_admins(App);
+	read_students(App);
+	read_total_students(App);
+	read_blocks_breakfast(App);
+	read_blocks_meal(App);
+	read_blocks_dinner(App);
 
 	while (run)
 	{

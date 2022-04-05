@@ -15,6 +15,7 @@ enum LoggedStudentMenu
 	RegBreakfast,
 	RegMeal,
 	RegDinner,
+	ChangeReg,
 	ExitStudentLog
 };
 
