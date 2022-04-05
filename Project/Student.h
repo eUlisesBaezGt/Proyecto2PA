@@ -59,10 +59,9 @@ inline void add_student(app& App)
 {
 	student temp;
 	temp.id = get_student_id(App.students);
-	cout << " ------ Add Student ------ " << endl;
+	cout << " ------ Add Admin ------ " << endl;
 	cout << "ID: " << temp.id << endl;
 	cout << "Name: ";
-	getline(cin, temp.name);
 	getline(cin, temp.name);
 	cout << "Middle Name: ";
 	getline(cin, temp.middleName);
@@ -77,7 +76,9 @@ inline void add_student(app& App)
 	cout << "PASSWORD: ";
 	getline(cin, temp.password);
 	App.students.push_back(temp);
-	add_student_2_file(App);
+	add_admin_2_file(App);
+
+	system("cls");
 
 
 	system("cls");
@@ -404,6 +405,7 @@ inline void logged_student(app& App)
 		{
 			cout << "Disabling student" << endl;
 			disable_student(App);
+			add_student_2_file(App);
 			break;
 		}
 
@@ -411,6 +413,7 @@ inline void logged_student(app& App)
 		{
 			cout << "Enabling student" << endl;
 			enable_student(App);
+			add_student_2_file(App);
 			break;
 		}
 
@@ -418,6 +421,7 @@ inline void logged_student(app& App)
 		{
 			cout << "Register Breakfast" << endl;
 			register_breakfast(App);
+			add_student_2_file(App);
 			break;
 		}
 
@@ -425,6 +429,7 @@ inline void logged_student(app& App)
 		{
 			cout << "Register Meal" << endl;
 			register_meal(App);
+			add_student_2_file(App);
 			break;
 		}
 
@@ -432,18 +437,21 @@ inline void logged_student(app& App)
 		{
 			cout << "Register Dinner" << endl;
 			register_dinner(App);
+			add_student_2_file(App);
 			break;
 		}
 		case ChangeReg:
 		{
 			cout << "Change register" << endl;
 			delete_register(App);
+			add_student_2_file(App);
 			break;
 		}
 
 		case ExitStudentLog:
 		{
 			cout << "Return to Main Menu" << endl;
+			add_student_2_file(App);
 			run = false;
 			break;
 		}

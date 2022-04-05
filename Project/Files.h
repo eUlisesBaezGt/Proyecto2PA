@@ -16,9 +16,11 @@ inline void make_files()
 	ifile.open(filename);
 	if (!ifile)
 	{
-		ifile.close();
 		ofstream myFileOutput(filename);
-		myFileOutput << "ID,Password,Name,Middle_Name,Last_Name,Age,Gender,Status,Breakfast,Meal,Dinner\n";
+		myFileOutput << "id" << "," << "password" << "," << "name" << ","
+			<< "middleName" << "," << "lastName" << "," << "age" << ","
+			<< "gender" << "," << "status" << "," << "breakfast" << "," << "meal" << "," << "dinner"
+			<< "\n";
 		myFileOutput.close();
 	}
 
@@ -27,9 +29,10 @@ inline void make_files()
 	ifile2.open(filename2);
 	if (!ifile2)
 	{
-		ifile2.close();
 		ofstream myFileOutput(filename2);
-		myFileOutput << "ID,Password,Name,Middle_Name,Last_Name,Age,Gender,Status,Breakfast,Meal,Dinner\n";
+		myFileOutput << "id" << "," << "password" << "," << "name" << ","
+			<< "middleName" << "," << "lastName" << "," << "age" << ","
+			<< "gender" << "," << "status" << "\n";
 		myFileOutput.close();
 	}
 
@@ -38,7 +41,6 @@ inline void make_files()
 	ifile3.open(filename3);
 	if (!ifile3)
 	{
-		ifile3.close();
 		ofstream myFileOutput(filename3);
 		myFileOutput << "100\n";
 		myFileOutput.close();
@@ -49,7 +51,6 @@ inline void make_files()
 	ifile4.open(filename4);
 	if (!ifile4)
 	{
-		ifile4.close();
 		ofstream myFileOutput(filename4);
 		myFileOutput << "Block,Capacity\n";
 		myFileOutput.close();
@@ -60,7 +61,6 @@ inline void make_files()
 	ifile5.open(filename5);
 	if (!ifile5)
 	{
-		ifile5.close();
 		ofstream myFileOutput(filename5);
 		myFileOutput << "Block,Capacity\n";
 		myFileOutput.close();
@@ -71,7 +71,6 @@ inline void make_files()
 	ifile6.open(filename6);
 	if (!ifile6)
 	{
-		ifile6.close();
 		ofstream myFileOutput(filename6);
 		myFileOutput << "Block,Capacity\n";
 		myFileOutput.close();
@@ -462,13 +461,16 @@ inline void add_student_2_file(const app App)
 	ofstream myFileOutput("Students.csv");
 	myFileOutput << "id" << "," << "password" << "," << "name" << ","
 		<< "middleName" << "," << "lastName" << "," << "age" << ","
-		<< "gender" << "," << "status" << "\n";
+		<< "gender" << "," << "status" << "," << "breakfast" << "," << "meal" << "," << "dinner"
+		<< "\n";
+
 
 	for (auto& student : App.students)
 	{
 		myFileOutput << student.id << "," << student.password << "," << student.name << ","
 			<< student.middleName << "," << student.lastName << "," << student.age << ","
-			<< student.gender << "," << student.status << "\n";
+			<< student.gender << "," << student.status << "," << student.breakfast << "," << student._meal << ","
+			<< student.dinner << "\n";
 	}
 	myFileOutput.close();
 }
