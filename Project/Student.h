@@ -80,7 +80,7 @@ inline void add_student(app& App)
 	add_student_2_file(App);
 
 
-	system("clear");
+	system("cls");
 }
 
 inline void enable_student(app& App)
@@ -276,95 +276,95 @@ inline void delete_register(app& App)
 			switch (option)
 			{
 			case 1:
+			{
+				App.breakfast.total--;
+				if (student.breakfast == "A")
 				{
-					App.breakfast.total--;
-					if (student.breakfast == "A")
+					App.breakfast.total_a--;
+					student.breakfast = "";
+					for (int i = 0; i < App.breakfast.list_a.size(); ++i)
 					{
-						App.breakfast.total_a--;
-						student.breakfast = "";
-						for (int i = 0; i < App.breakfast.list_a.size(); ++i)
+						if (App.breakfast.list_a[i].id == is)
 						{
-							if (App.breakfast.list_a[i].id == is)
-							{
-								App.breakfast.list_a.erase(App.breakfast.list_a.begin() + i);
-								break;
-							}
-						}
-					}
-					if (student.breakfast == "B")
-					{
-						App.breakfast.total_b--;
-						student.breakfast = "";
-						for (int i = 0; i < App.breakfast.list_b.size(); ++i)
-						{
-							if (App.breakfast.list_b[i].id == is)
-							{
-								App.breakfast.list_b.erase(App.breakfast.list_b.begin() + i);
-								break;
-							}
+							App.breakfast.list_a.erase(App.breakfast.list_a.begin() + i);
+							break;
 						}
 					}
 				}
+				if (student.breakfast == "B")
+				{
+					App.breakfast.total_b--;
+					student.breakfast = "";
+					for (int i = 0; i < App.breakfast.list_b.size(); ++i)
+					{
+						if (App.breakfast.list_b[i].id == is)
+						{
+							App.breakfast.list_b.erase(App.breakfast.list_b.begin() + i);
+							break;
+						}
+					}
+				}
+			}
 			case 2:
+			{
+				App._meal.total--;
+				if (student._meal == "A")
 				{
-					App._meal.total--;
-					if (student._meal == "A")
+					App._meal.total_a--;
+					student._meal = "";
+					for (int i = 0; i < App._meal.list_a.size(); ++i)
 					{
-						App._meal.total_a--;
-						student._meal = "";
-						for (int i = 0; i < App._meal.list_a.size(); ++i)
+						if (App._meal.list_a[i].id == is)
 						{
-							if (App._meal.list_a[i].id == is)
-							{
-								App._meal.list_a.erase(App._meal.list_a.begin() + i);
-								break;
-							}
-						}
-					}
-					if (student._meal == "B")
-					{
-						App._meal.total_b--;
-						student._meal = "";
-						for (int i = 0; i < App._meal.list_b.size(); ++i)
-						{
-							if (App._meal.list_b[i].id == is)
-							{
-								App._meal.list_b.erase(App._meal.list_b.begin() + i);
-								break;
-							}
+							App._meal.list_a.erase(App._meal.list_a.begin() + i);
+							break;
 						}
 					}
 				}
+				if (student._meal == "B")
+				{
+					App._meal.total_b--;
+					student._meal = "";
+					for (int i = 0; i < App._meal.list_b.size(); ++i)
+					{
+						if (App._meal.list_b[i].id == is)
+						{
+							App._meal.list_b.erase(App._meal.list_b.begin() + i);
+							break;
+						}
+					}
+				}
+			}
 			case 3:
+			{
+				App.dinner.total--;
+				if (student.dinner == "A")
 				{
-					App.dinner.total--;
-					if (student.dinner == "A")
+					App.dinner.total_a--;
+					student.dinner = "";
+					for (int i = 0; i < App.dinner.list_a.size(); ++i)
 					{
-						App.dinner.total_a--;
-						student.dinner = "";
-						for (int i = 0; i < App.dinner.list_a.size(); ++i)
+						if (App.dinner.list_a[i].id == is)
 						{
-							if (App.dinner.list_a[i].id == is)
-							{
-								App.dinner.list_a.erase(App.dinner.list_a.begin() + i);
-								break;
-							}
-						}
-					}
-					if (student.dinner == "B")
-					{
-						App.dinner.total_b--;
-						student.dinner = "";
-						for (int i = 0; i < App.dinner.list_b.size(); ++i)
-						{
-							if (App.dinner.list_b[i].id == is)
-							{
-								App.dinner.list_b.erase(App.dinner.list_b.begin() + i);
-								break;
-							}
+							App.dinner.list_a.erase(App.dinner.list_a.begin() + i);
+							break;
 						}
 					}
 				}
+				if (student.dinner == "B")
+				{
+					App.dinner.total_b--;
+					student.dinner = "";
+					for (int i = 0; i < App.dinner.list_b.size(); ++i)
+					{
+						if (App.dinner.list_b[i].id == is)
+						{
+							App.dinner.list_b.erase(App.dinner.list_b.begin() + i);
+							break;
+						}
+					}
+				}
+			}
 			case 4:
 				return;
 			default:
@@ -401,58 +401,58 @@ inline void logged_student(app& App)
 		switch (option)
 		{
 		case DisStudent:
-			{
-				cout << "Disabling student" << endl;
-				disable_student(App);
-				break;
-			}
+		{
+			cout << "Disabling student" << endl;
+			disable_student(App);
+			break;
+		}
 
 		case EnaStudent:
-			{
-				cout << "Enabling student" << endl;
-				enable_student(App);
-				break;
-			}
+		{
+			cout << "Enabling student" << endl;
+			enable_student(App);
+			break;
+		}
 
 		case RegBreakfast:
-			{
-				cout << "Register Breakfast" << endl;
-				register_breakfast(App);
-				break;
-			}
+		{
+			cout << "Register Breakfast" << endl;
+			register_breakfast(App);
+			break;
+		}
 
 		case RegMeal:
-			{
-				cout << "Register Meal" << endl;
-				register_meal(App);
-				break;
-			}
+		{
+			cout << "Register Meal" << endl;
+			register_meal(App);
+			break;
+		}
 
 		case RegDinner:
-			{
-				cout << "Register Dinner" << endl;
-				register_dinner(App);
-				break;
-			}
+		{
+			cout << "Register Dinner" << endl;
+			register_dinner(App);
+			break;
+		}
 		case ChangeReg:
-			{
-				cout << "Change register" << endl;
-				delete_register(App);
-				break;
-			}
+		{
+			cout << "Change register" << endl;
+			delete_register(App);
+			break;
+		}
 
 		case ExitStudentLog:
-			{
-				cout << "Return to Main Menu" << endl;
-				run = false;
-				break;
-			}
+		{
+			cout << "Return to Main Menu" << endl;
+			run = false;
+			break;
+		}
 
 		default:
-			{
-				cout << "Invalid Option" << endl;
-				break;
-			}
+		{
+			cout << "Invalid Option" << endl;
+			break;
+		}
 		}
 	}
 }
