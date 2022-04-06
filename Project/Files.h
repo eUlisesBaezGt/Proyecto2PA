@@ -42,7 +42,7 @@ inline void make_files()
 	if (!ifile3)
 	{
 		ofstream myFileOutput(filename3);
-		myFileOutput << "100\n";
+		myFileOutput << "4\n";
 		myFileOutput.close();
 	}
 
@@ -53,6 +53,8 @@ inline void make_files()
 	{
 		ofstream myFileOutput(filename4);
 		myFileOutput << "Block,Capacity\n";
+		myFileOutput << "A,2\n";
+		myFileOutput << "B,2\n";
 		myFileOutput.close();
 	}
 
@@ -63,6 +65,8 @@ inline void make_files()
 	{
 		ofstream myFileOutput(filename5);
 		myFileOutput << "Block,Capacity\n";
+		myFileOutput << "A,2\n";
+		myFileOutput << "B,2\n";
 		myFileOutput.close();
 	}
 
@@ -73,6 +77,8 @@ inline void make_files()
 	{
 		ofstream myFileOutput(filename6);
 		myFileOutput << "Block,Capacity\n";
+		myFileOutput << "A,2\n";
+		myFileOutput << "B,2\n";
 		myFileOutput.close();
 	}
 }
@@ -292,43 +298,44 @@ inline void read_blocks_breakfast(app& App)
 		{
 			headers.push_back(colname);
 		}
-	}
-	while (getline(myFileInput, line))
-	{
-		// Create a stringstream of the current line
-		stringstream ss(line);
-
-		int colIdx = 0;
-		int _capacity;
-		string _block;
-
-		while (getline(ss, value, ','))
+		while (getline(myFileInput, line))
 		{
-			switch (colIdx)
+			// Create a stringstream of the current line
+			stringstream ss(line);
+
+			int colIdx = 0;
+			int _capacity = 0;
+			string _block;
+
+			while (getline(ss, value, ','))
 			{
-			case 0:
-				_block = value;
-				break;
-			case 1:
-				_capacity = stoi(value);
-				break;
-			default:
-				break;
-			}
+				switch (colIdx)
+				{
+				case 0:
+					_block = value;
+					break;
+				case 1:
+					_capacity = stoi(value);
+					break;
+				default:
+					break;
+				}
 
-			// Si el siguiente token es una coma, ignoralo y se mueve al siguiente elemento
-			if (ss.peek() == ',') ss.ignore();
-			colIdx++;
+				if (_block == "A")
+				{
+					App.breakfast.total_a = _capacity;
+				}
+				if (_block == "B")
+				{
+					App.breakfast.total_b = _capacity;
+				}
+
+				// Si el siguiente token es una coma, ignoralo y se mueve al siguiente elemento
+				if (ss.peek() == ',') ss.ignore();
+				colIdx++;
+			}
+			App.breakfast.total = App.breakfast.total_a + App.breakfast.total_b;
 		}
-		if (_block == "A")
-		{
-			App.breakfast.total_a = _capacity;
-		}
-		if (_block == "B")
-		{
-			App.breakfast.total_b = _capacity;
-		}
-		App.breakfast.total = App.breakfast.total_a + App.breakfast.total_b;
 		myFileInput.close();
 	}
 }
@@ -353,43 +360,44 @@ inline void read_blocks_meal(app& App)
 		{
 			headers.push_back(colname);
 		}
-	}
-	while (getline(myFileInput, line))
-	{
-		// Create a stringstream of the current line
-		stringstream ss(line);
-
-		int colIdx = 0;
-		int _capacity;
-		string _block;
-
-		while (getline(ss, value, ','))
+		while (getline(myFileInput, line))
 		{
-			switch (colIdx)
+			// Create a stringstream of the current line
+			stringstream ss(line);
+
+			int colIdx = 0;
+			int _capacity = 0;
+			string _block;
+
+			while (getline(ss, value, ','))
 			{
-			case 0:
-				_block = value;
-				break;
-			case 1:
-				_capacity = stoi(value);
-				break;
-			default:
-				break;
-			}
+				switch (colIdx)
+				{
+				case 0:
+					_block = value;
+					break;
+				case 1:
+					_capacity = stoi(value);
+					break;
+				default:
+					break;
+				}
 
-			// Si el siguiente token es una coma, ignoralo y se mueve al siguiente elemento
-			if (ss.peek() == ',') ss.ignore();
-			colIdx++;
+				if (_block == "A")
+				{
+					App._meal.total_a = _capacity;
+				}
+				if (_block == "B")
+				{
+					App._meal.total_b = _capacity;
+				}
+
+				// Si el siguiente token es una coma, ignoralo y se mueve al siguiente elemento
+				if (ss.peek() == ',') ss.ignore();
+				colIdx++;
+			}
+			App._meal.total = App._meal.total_a + App._meal.total_b;
 		}
-		if (_block == "A")
-		{
-			App._meal.total_a = _capacity;
-		}
-		if (_block == "B")
-		{
-			App._meal.total_b = _capacity;
-		}
-		App._meal.total = App._meal.total_a + App._meal.total_b;
 		myFileInput.close();
 	}
 }
@@ -414,43 +422,44 @@ inline void read_blocks_dinner(app& App)
 		{
 			headers.push_back(colname);
 		}
-	}
-	while (getline(myFileInput, line))
-	{
-		// Create a stringstream of the current line
-		stringstream ss(line);
-
-		int colIdx = 0;
-		string _block;
-		int _capacity;
-
-		while (getline(ss, value, ','))
+		while (getline(myFileInput, line))
 		{
-			switch (colIdx)
+			// Create a stringstream of the current line
+			stringstream ss(line);
+
+			int colIdx = 0;
+			int _capacity = 0;
+			string _block;
+
+			while (getline(ss, value, ','))
 			{
-			case 0:
-				_block = value;
-				break;
-			case 1:
-				_capacity = stoi(value);
-				break;
-			default:
-				break;
-			}
+				switch (colIdx)
+				{
+				case 0:
+					_block = value;
+					break;
+				case 1:
+					_capacity = stoi(value);
+					break;
+				default:
+					break;
+				}
 
-			// Si el siguiente token es una coma, ignoralo y se mueve al siguiente elemento
-			if (ss.peek() == ',') ss.ignore();
-			colIdx++;
+				if (_block == "A")
+				{
+					App.dinner.total_a = _capacity;
+				}
+				if (_block == "B")
+				{
+					App.dinner.total_b = _capacity;
+				}
+
+				// Si el siguiente token es una coma, ignoralo y se mueve al siguiente elemento
+				if (ss.peek() == ',') ss.ignore();
+				colIdx++;
+			}
+			App.dinner.total = App.dinner.total_a + App.dinner.total_b;
 		}
-		if (_block == "A")
-		{
-			App.dinner.total_a = _capacity;
-		}
-		if (_block == "B")
-		{
-			App.dinner.total_b = _capacity;
-		}
-		App.dinner.total = App.dinner.total_a + App.dinner.total_b;
 		myFileInput.close();
 	}
 }

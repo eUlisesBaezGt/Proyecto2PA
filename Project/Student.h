@@ -76,10 +76,7 @@ inline void add_student(app& App)
 	cout << "PASSWORD: ";
 	getline(cin, temp.password);
 	App.students.push_back(temp);
-	add_admin_2_file(App);
-
-	system("cls");
-
+	add_student_2_file(App);
 
 	system("cls");
 }
@@ -127,12 +124,20 @@ inline void disable_student(app& App)
 
 inline void register_breakfast(app& App)
 {
+	App.breakfast.total = 0;
+	for (auto& i : App.students)
+	{
+		if (!i.breakfast.empty()) App.breakfast.total ++;
+	}
+	App.breakfast.Maxtotal = App.total_students;
+	int cap = 0;
+
 	bool found = false;
 	string block;
 
-	if (App.breakfast.total >= App.total_students)
+	if (App.breakfast.total >= App.total_students || App.breakfast.total == App.breakfast.Maxtotal)
 	{
-		cout << "No more students can register for breakfast" << endl;
+		cout << "No more students can register here" << endl;
 		return;
 	}
 	cout << "ID of Student: ";
@@ -143,38 +148,75 @@ inline void register_breakfast(app& App)
 	{
 		if (is == student.id)
 		{
-			App.breakfast.total++;
 			found = true;
 			cout << "Select block: ";
 			cin >> block;
 			if (block == "A" || block == "B")
 			{
-				student.breakfast = block;
-				if (student.breakfast == "A")
+				if (block == "A")
 				{
-					App.breakfast.total_a++;
-					App.breakfast.list_a.push_back(student);
-					break;
+					for (auto& i : App.students)
+					{
+						if (i.breakfast == "A")
+						{
+							cap++;
+						}
+					}
+					if (cap == App.breakfast.total_a) cout << "Block A is full" << endl;
+					else
+					{
+						student.breakfast = block;
+						App.breakfast.total_a++;
+						App.breakfast.list_a.push_back(student);
+						App.breakfast.total++;
+						cout << "Registered correctly" << endl;
+						break;
+					}
 				}
-				App.breakfast.total_b++;
-				App.breakfast.list_b.push_back(student);
-				break;
+				else
+				{
+					cap = 0;
+					for (auto& i : App.students)
+					{
+						if (i.breakfast == "B")
+						{
+							cap++;
+						}
+					}
+					if (cap == App.breakfast.total_b) cout << "Block B is full" << endl;
+					else
+					{
+						student.breakfast = block;
+						App.breakfast.total_b++;
+						App.breakfast.list_b.push_back(student);
+						App.breakfast.total++;
+						cout << "Registered correctly" << endl;
+						break;
+					}
+				}
 			}
 		}
-		cout << "Invalid block" << endl;
-		break;
 	}
 	if (!found) cout << "Student ID not found" << endl;
 }
 
+
 inline void register_meal(app& App)
 {
+	App._meal.total = 0;
+	for (auto& i : App.students)
+	{
+		if (!i._meal.empty()) App._meal.total++;
+	}
+	App._meal.Maxtotal = App.total_students;
+	int cap = 0;
+
 	bool found = false;
 	string block;
 
-	if (App._meal.total >= App.total_students)
+	if (App._meal.total >= App.total_students || App._meal.total == App._meal.Maxtotal)
 	{
-		cout << "No more students can register for meal" << endl;
+		cout << "No more students can register here" << endl;
 		return;
 	}
 	cout << "ID of Student: ";
@@ -185,38 +227,74 @@ inline void register_meal(app& App)
 	{
 		if (is == student.id)
 		{
-			App._meal.total++;
 			found = true;
 			cout << "Select block: ";
 			cin >> block;
 			if (block == "A" || block == "B")
 			{
-				student._meal = block;
-				if (student._meal == "A")
+				if (block == "A")
 				{
-					App._meal.total_a++;
-					App._meal.list_a.push_back(student);
-					break;
+					for (auto& i : App.students)
+					{
+						if (i._meal == "A")
+						{
+							cap++;
+						}
+					}
+					if (cap == App._meal.total_a) cout << "Block A is full" << endl;
+					else
+					{
+						student._meal = block;
+						App._meal.total_a++;
+						App._meal.list_a.push_back(student);
+						App._meal.total++;
+						cout << "Registered correctly" << endl;
+						break;
+					}
 				}
-				App._meal.total_b++;
-				App._meal.list_b.push_back(student);
-				break;
+				else
+				{
+					cap = 0;
+					for (auto& i : App.students)
+					{
+						if (i._meal == "B")
+						{
+							cap++;
+						}
+					}
+					if (cap == App._meal.total_b) cout << "Block B is full" << endl;
+					else
+					{
+						student._meal = block;
+						App._meal.total_b++;
+						App._meal.list_b.push_back(student);
+						App._meal.total++;
+						cout << "Registered correctly" << endl;
+						break;
+					}
+				}
 			}
 		}
-		cout << "Invalid block" << endl;
-		break;
 	}
 	if (!found) cout << "Student ID not found" << endl;
 }
 
 inline void register_dinner(app& App)
 {
+	App.dinner.total = 0;
+	for (auto& i : App.students)
+	{
+		if (!i._meal.empty()) App.dinner.total++;
+	}
+	App.dinner.Maxtotal = App.total_students;
+	int cap = 0;
+
 	bool found = false;
 	string block;
 
-	if (App.dinner.total >= App.total_students)
+	if (App.dinner.total >= App.total_students || App.dinner.total == App.dinner.Maxtotal)
 	{
-		cout << "No more students can register for dinner" << endl;
+		cout << "No more students can register here" << endl;
 		return;
 	}
 	cout << "ID of Student: ";
@@ -227,26 +305,54 @@ inline void register_dinner(app& App)
 	{
 		if (is == student.id)
 		{
-			App.dinner.total++;
 			found = true;
 			cout << "Select block: ";
 			cin >> block;
 			if (block == "A" || block == "B")
 			{
-				student.dinner = block;
-				if (student.dinner == "A")
+				if (block == "A")
 				{
-					App.dinner.total_a++;
-					App.dinner.list_a.push_back(student);
-					break;
+					for (auto& i : App.students)
+					{
+						if (i.dinner == "A")
+						{
+							cap++;
+						}
+					}
+					if (cap == App.dinner.total_a) cout << "Block A is full" << endl;
+					else
+					{
+						student.dinner = block;
+						App.dinner.total_a++;
+						App.dinner.list_a.push_back(student);
+						App.dinner.total++;
+						cout << "Registered correctly" << endl;
+						break;
+					}
 				}
-				App.dinner.total_b++;
-				App.dinner.list_b.push_back(student);
-				break;
+				else
+				{
+					cap = 0;
+					for (auto& i : App.students)
+					{
+						if (i.dinner == "B")
+						{
+							cap++;
+						}
+					}
+					if (cap == App.dinner.total_b) cout << "Block B is full" << endl;
+					else
+					{
+						student.dinner = block;
+						App.dinner.total_b++;
+						App.dinner.list_b.push_back(student);
+						App.dinner.total++;
+						cout << "Registered correctly" << endl;
+						break;
+					}
+				}
 			}
 		}
-		cout << "Invalid block" << endl;
-		break;
 	}
 	if (!found) cout << "Student ID not found" << endl;
 }
@@ -254,7 +360,6 @@ inline void register_dinner(app& App)
 inline void delete_register(app& App)
 {
 	bool found = false;
-	int option;
 
 	cout << "ID of Student: ";
 	int is;
@@ -264,118 +369,45 @@ inline void delete_register(app& App)
 	{
 		if (is == student.id)
 		{
+			found = true;
 			cout << "-------- DELETE REGISTER -------- " << endl;
-			cout << "1) Delete Breakfast" << endl;
-			cout << "2) Delete Meal" << endl;
-			cout << "3) Delete Dinner" << endl;
-			cout << "4) Cancel" << endl;
-
-			cout << "Select your option: ";
-			cin >> option;
-			cin.ignore();
-
-			switch (option)
+			App.breakfast.total--;
+			if (student.breakfast == "A")
 			{
-			case 1:
-			{
-				App.breakfast.total--;
-				if (student.breakfast == "A")
-				{
-					App.breakfast.total_a--;
-					student.breakfast = "";
-					for (int i = 0; i < App.breakfast.list_a.size(); ++i)
-					{
-						if (App.breakfast.list_a[i].id == is)
-						{
-							App.breakfast.list_a.erase(App.breakfast.list_a.begin() + i);
-							break;
-						}
-					}
-				}
-				if (student.breakfast == "B")
-				{
-					App.breakfast.total_b--;
-					student.breakfast = "";
-					for (int i = 0; i < App.breakfast.list_b.size(); ++i)
-					{
-						if (App.breakfast.list_b[i].id == is)
-						{
-							App.breakfast.list_b.erase(App.breakfast.list_b.begin() + i);
-							break;
-						}
-					}
-				}
-			}
-			case 2:
-			{
-				App._meal.total--;
-				if (student._meal == "A")
-				{
-					App._meal.total_a--;
-					student._meal = "";
-					for (int i = 0; i < App._meal.list_a.size(); ++i)
-					{
-						if (App._meal.list_a[i].id == is)
-						{
-							App._meal.list_a.erase(App._meal.list_a.begin() + i);
-							break;
-						}
-					}
-				}
-				if (student._meal == "B")
-				{
-					App._meal.total_b--;
-					student._meal = "";
-					for (int i = 0; i < App._meal.list_b.size(); ++i)
-					{
-						if (App._meal.list_b[i].id == is)
-						{
-							App._meal.list_b.erase(App._meal.list_b.begin() + i);
-							break;
-						}
-					}
-				}
-			}
-			case 3:
-			{
-				App.dinner.total--;
-				if (student.dinner == "A")
-				{
-					App.dinner.total_a--;
-					student.dinner = "";
-					for (int i = 0; i < App.dinner.list_a.size(); ++i)
-					{
-						if (App.dinner.list_a[i].id == is)
-						{
-							App.dinner.list_a.erase(App.dinner.list_a.begin() + i);
-							break;
-						}
-					}
-				}
-				if (student.dinner == "B")
-				{
-					App.dinner.total_b--;
-					student.dinner = "";
-					for (int i = 0; i < App.dinner.list_b.size(); ++i)
-					{
-						if (App.dinner.list_b[i].id == is)
-						{
-							App.dinner.list_b.erase(App.dinner.list_b.begin() + i);
-							break;
-						}
-					}
-				}
-			}
-			case 4:
-				return;
-			default:
-				cout << "Invalid option" << endl;
-				break;
+				App.breakfast.total_a--;
+				student.breakfast = "";
 			}
 
-			break;
+			if (student.breakfast == "B")
+			{
+				App.breakfast.total_b--;
+				student.breakfast = "";
+			}
+			App._meal.total--;
+			if (student._meal == "A")
+			{
+				App._meal.total_a--;
+				student._meal = "";
+			}
+			if (student._meal == "B")
+			{
+				App._meal.total_b--;
+				student._meal = "";
+			}
+			App.dinner.total--;
+			if (student.dinner == "A")
+			{
+				App.dinner.total_a--;
+				student.dinner = "";
+			}
+			if (student.dinner == "B")
+			{
+				App.dinner.total_b--;
+				student.dinner = "";
+			}
 		}
 	}
+
 	if (!found) cout << "Student ID not found" << endl;
 }
 
@@ -402,65 +434,58 @@ inline void logged_student(app& App)
 		switch (option)
 		{
 		case DisStudent:
-		{
-			cout << "Disabling student" << endl;
-			disable_student(App);
-			add_student_2_file(App);
-			break;
-		}
+			{
+				cout << "Disabling student" << endl;
+				disable_student(App);
+				break;
+			}
 
 		case EnaStudent:
-		{
-			cout << "Enabling student" << endl;
-			enable_student(App);
-			add_student_2_file(App);
-			break;
-		}
+			{
+				cout << "Enabling student" << endl;
+				enable_student(App);
+				break;
+			}
 
 		case RegBreakfast:
-		{
-			cout << "Register Breakfast" << endl;
-			register_breakfast(App);
-			add_student_2_file(App);
-			break;
-		}
+			{
+				cout << "Register Breakfast" << endl;
+				register_breakfast(App);
+				break;
+			}
 
 		case RegMeal:
-		{
-			cout << "Register Meal" << endl;
-			register_meal(App);
-			add_student_2_file(App);
-			break;
-		}
+			{
+				cout << "Register Meal" << endl;
+				register_meal(App);
+				break;
+			}
 
 		case RegDinner:
-		{
-			cout << "Register Dinner" << endl;
-			register_dinner(App);
-			add_student_2_file(App);
-			break;
-		}
+			{
+				cout << "Register Dinner" << endl;
+				register_dinner(App);
+				break;
+			}
 		case ChangeReg:
-		{
-			cout << "Change register" << endl;
-			delete_register(App);
-			add_student_2_file(App);
-			break;
-		}
+			{
+				cout << "Change register" << endl;
+				delete_register(App);
+				break;
+			}
 
 		case ExitStudentLog:
-		{
-			cout << "Return to Main Menu" << endl;
-			add_student_2_file(App);
-			run = false;
-			break;
-		}
+			{
+				cout << "Return to Main Menu" << endl;
+				run = false;
+				break;
+			}
 
 		default:
-		{
-			cout << "Invalid Option" << endl;
-			break;
-		}
+			{
+				cout << "Invalid Option" << endl;
+				break;
+			}
 		}
 	}
 }

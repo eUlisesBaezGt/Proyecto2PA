@@ -38,10 +38,10 @@ public:
 
 struct meal
 {
-	int total{};
-	int Maxtotal{};
-	int total_a{};
-	int total_b{};
+	int total=0;
+	int Maxtotal=100;
+	int total_a=0;
+	int total_b=0;
 
 	vector<student> list_a;
 	vector<student> list_b;

@@ -1,1 +1,2 @@
-ID,Password,Name,Middle_Name,Last_Name,Age,Gender,Status,Breakfast,Meal,Dinner
+id,password,name,middleName,lastName,age,gender,status
+41,a,a,a,a,5,F,true

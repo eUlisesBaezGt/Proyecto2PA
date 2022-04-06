@@ -93,15 +93,15 @@ inline void main_menu()
 	char choice;
 	bool run = true;
 
-	read_admins(App);
-	read_students(App);
-	read_total_students(App);
-	read_blocks_breakfast(App);
-	read_blocks_meal(App);
-	read_blocks_dinner(App);
-
 	while (run)
 	{
+		read_students(App);
+		read_admins(App);
+		read_total_students(App);
+		read_blocks_breakfast(App);
+		read_blocks_meal(App);
+		read_blocks_dinner(App);
+
 		cout << endl;
 		cout << "A) Use as Admin" << endl;
 		cout << "S) Use as Student" << endl;

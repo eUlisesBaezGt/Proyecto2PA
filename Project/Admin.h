@@ -5,6 +5,7 @@
 #include <string>
 
 #include "App.h"
+#include "Files.h"
 
 inline bool check_admin_id(const int id, const vector<admin> list)
 {
@@ -108,13 +109,22 @@ inline void disable_admin(app& App)
 
 inline void edit_total_capacity(app& App)
 {
+	read_total_students(App);
+	int cap;
 	cout << "-------- EDIT TOTAL CAPACITY --------" << endl;
 	cout << "Actual capacity --> " << App.total_students << endl;
 	cout << "Enter new total capacity: ";
-	cin >> App.total_students;
-	cin.ignore();
-	cout << "Total Capacity successfully updated" << endl;
-	update_total(App);
+	cin >> cap;
+	if (cap > App.total_students)
+	{
+		App.total_students = cap;
+		cout << "Total capacity successfully updated" << endl;
+		update_total(App);
+	}
+	else
+	{
+		cout << "Total capacity cannot be less than current capacity" << endl;
+	}
 }
 
 inline void edit_specific_meal_capacity(app& App)
@@ -122,6 +132,7 @@ inline void edit_specific_meal_capacity(app& App)
 	App.breakfast.Maxtotal = App.total_students;
 	App._meal.Maxtotal = App.total_students;
 	App.dinner.Maxtotal = App.total_students;
+
 
 	int option;
 	cout << "-------- EDIT SPECIFIC MEAL CAPACITY --------" << endl;
@@ -137,36 +148,36 @@ inline void edit_specific_meal_capacity(app& App)
 	switch (option)
 	{
 	case 1:
-	{
-		cout << "Enter new breakfast capacity: ";
-		cin >> App.breakfast.Maxtotal;
-		cin.ignore();
-		cout << "Breakfast capacity successfully updated" << endl;
-		break;
-	}
+		{
+			cout << "Enter new breakfast capacity: ";
+			cin >> App.breakfast.Maxtotal;
+			cin.ignore();
+			cout << "Breakfast capacity successfully updated" << endl;
+			break;
+		}
 	case 2:
-	{
-		cout << "Enter new meal capacity: ";
-		cin >> App._meal.Maxtotal;
-		cin.ignore();
-		cout << "Meal capacity successfully updated" << endl;
-		break;
-	}
+		{
+			cout << "Enter new meal capacity: ";
+			cin >> App._meal.Maxtotal;
+			cin.ignore();
+			cout << "Meal capacity successfully updated" << endl;
+			break;
+		}
 
 	case 3:
-	{
-		cout << "Enter new dinner capacity: ";
-		cin >> App.dinner.Maxtotal;
-		cin.ignore();
-		cout << "Dinner capacity successfully updated" << endl;
-		break;
-	}
+		{
+			cout << "Enter new dinner capacity: ";
+			cin >> App.dinner.Maxtotal;
+			cin.ignore();
+			cout << "Dinner capacity successfully updated" << endl;
+			break;
+		}
 
 	default:
-	{
-		cout << "Invalid option" << endl;
-		break;
-	}
+		{
+			cout << "Invalid option" << endl;
+			break;
+		}
 	}
 }
 
@@ -198,156 +209,156 @@ inline void edit_specific_meal_block_capacity(app& App)
 	switch (hour)
 	{
 	case 1:
-	{
-		if (block == "A")
 		{
-			cout << "Enter new block A capacity: ";
-			cin >> cap;
-			cin.ignore();
-			if (cap > App.breakfast.Maxtotal || cap < 0)
+			if (block == "A")
 			{
-				cout << "Invalid capacity" << endl;
-				break;
-			}
-			if (cap < App.breakfast.total_a)
-			{
-				cout << "Can not reduce capacity" << endl;
-				break;
-			}
-			App.breakfast.total_a = cap;
+				cout << "Enter new block A capacity: ";
+				cin >> cap;
+				cin.ignore();
+				if (cap > App.breakfast.Maxtotal || cap < 0)
+				{
+					cout << "Invalid capacity" << endl;
+					break;
+				}
+				if (cap < App.breakfast.total_a)
+				{
+					cout << "Cannot reduce capacity" << endl;
+					break;
+				}
+				App.breakfast.total_a = cap;
 
-			App.breakfast.total_b = App.breakfast.Maxtotal - App.breakfast.total_a;
-			update_block(App);
-			cout << "Breakfast block capacity successfully updated" << endl;
+				App.breakfast.total_b = App.breakfast.Maxtotal - App.breakfast.total_a;
+				update_block(App);
+				cout << "Breakfast block capacity successfully updated" << endl;
+				break;
+			}
+			if (block == "B")
+			{
+				cout << "Enter new block B capacity: ";
+				cin >> cap;
+				cin.ignore();
+				if (cap > App.breakfast.Maxtotal || cap < 0)
+				{
+					cout << "Invalid capacity" << endl;
+					break;
+				}
+				if (cap < App.breakfast.total_b)
+				{
+					cout << "Cannot reduce capacity" << endl;
+					break;
+				}
+				App.breakfast.total_b = cap;
+
+				App.breakfast.total_a = App.breakfast.Maxtotal - App.breakfast.total_b;
+				cout << "Breakfast block capacity successfully updated" << endl;
+				update_block(App);
+				break;
+			}
+			cout << "Invalid option" << endl;
 			break;
 		}
-		if (block == "B")
-		{
-			cout << "Enter new block B capacity: ";
-			cin >> cap;
-			cin.ignore();
-			if (cap > App.breakfast.Maxtotal || cap < 0)
-			{
-				cout << "Invalid capacity" << endl;
-				break;
-			}
-			if (cap < App.breakfast.total_b)
-			{
-				cout << "Can not reduce capacity" << endl;
-				break;
-			}
-			App.breakfast.total_b = cap;
-
-			App.breakfast.total_a = App.breakfast.Maxtotal - App.breakfast.total_b;
-			cout << "Breakfast block capacity successfully updated" << endl;
-			update_block(App);
-			break;
-		}
-		cout << "Invalid option" << endl;
-		break;
-	}
 	case 2:
-	{
-		if (block == "A")
 		{
-			cout << "Enter new block A capacity: ";
-			cin >> cap;
-			cin.ignore();
-			if (cap > App._meal.Maxtotal || cap < 0)
+			if (block == "A")
 			{
-				cout << "Invalid capacity" << endl;
-				break;
-			}
-			if (cap < App._meal.total_a)
-			{
-				cout << "Can not reduce capacity" << endl;
-				break;
-			}
-			App._meal.total_a = cap;
+				cout << "Enter new block A capacity: ";
+				cin >> cap;
+				cin.ignore();
+				if (cap > App._meal.Maxtotal || cap < 0)
+				{
+					cout << "Invalid capacity" << endl;
+					break;
+				}
+				if (cap < App._meal.total_a)
+				{
+					cout << "Cannot reduce capacity" << endl;
+					break;
+				}
+				App._meal.total_a = cap;
 
-			App._meal.total_b = App._meal.Maxtotal - App._meal.total_a;
-			cout << "Meal block capacity successfully updated" << endl;
-			update_block(App);
-			break;
-		}
-		if (block == "B")
-		{
-			cout << "Enter new block B capacity: ";
-			cin >> cap;
-			cin.ignore();
-			if (cap > App._meal.Maxtotal || cap < 0)
-			{
-				cout << "Invalid capacity" << endl;
+				App._meal.total_b = App._meal.Maxtotal - App._meal.total_a;
+				cout << "Meal block capacity successfully updated" << endl;
+				update_block(App);
 				break;
 			}
-			if (cap < App._meal.total_b)
+			if (block == "B")
 			{
-				cout << "Can not reduce capacity" << endl;
+				cout << "Enter new block B capacity: ";
+				cin >> cap;
+				cin.ignore();
+				if (cap > App._meal.Maxtotal || cap < 0)
+				{
+					cout << "Invalid capacity" << endl;
+					break;
+				}
+				if (cap < App._meal.total_b)
+				{
+					cout << "Cannot reduce capacity" << endl;
+					break;
+				}
+				App._meal.total_b = cap;
+				App._meal.total_a = App._meal.Maxtotal - App._meal.total_b;
+				cout << "Meal block capacity successfully updated" << endl;
+				update_block(App);
 				break;
 			}
-			App._meal.total_b = cap;
-			App._meal.total_a = App._meal.Maxtotal - App._meal.total_b;
-			cout << "Meal block capacity successfully updated" << endl;
-			update_block(App);
+			cout << "Invalid option" << endl;
 			break;
 		}
-		cout << "Invalid option" << endl;
-		break;
-	}
 	case 3:
-	{
-		if (block == "A")
 		{
-			cout << "Enter new block A capacity: ";
-			cin >> cap;
-			cin.ignore();
-			if (cap > App.dinner.Maxtotal || cap < 0)
+			if (block == "A")
 			{
-				cout << "Invalid capacity" << endl;
-				break;
-			}
-			if (cap < App.dinner.total_a)
-			{
-				cout << "Can not reduce capacity" << endl;
-				break;
-			}
-			App.dinner.total_a = cap;
+				cout << "Enter new block A capacity: ";
+				cin >> cap;
+				cin.ignore();
+				if (cap > App.dinner.Maxtotal || cap < 0)
+				{
+					cout << "Invalid capacity" << endl;
+					break;
+				}
+				if (cap < App.dinner.total_a)
+				{
+					cout << "Cannot reduce capacity" << endl;
+					break;
+				}
+				App.dinner.total_a = cap;
 
-			App.dinner.total_b = App.dinner.Maxtotal - App.dinner.total_a;
-			cout << "Dinner block capacity successfully updated" << endl;
-			update_block(App);
+				App.dinner.total_b = App.dinner.Maxtotal - App.dinner.total_a;
+				cout << "Dinner block capacity successfully updated" << endl;
+				update_block(App);
+				break;
+			}
+			if (block == "B")
+			{
+				cout << "Enter new block A capacity: ";
+				cin >> cap;
+				cin.ignore();
+				if (cap > App.dinner.Maxtotal || cap < 0)
+				{
+					cout << "Invalid capacity" << endl;
+					break;
+				}
+				if (cap < App.dinner.total_b)
+				{
+					cout << "Cannot reduce capacity" << endl;
+					break;
+				}
+				App.dinner.total_b = cap;
+
+				App.dinner.total_a = App.dinner.Maxtotal - App.dinner.total_b;
+				cout << "Dinner block capacity successfully updated" << endl;
+				update_block(App);
+				break;
+			}
+			cout << "Invalid option" << endl;
 			break;
 		}
-		if (block == "B")
-		{
-			cout << "Enter new block A capacity: ";
-			cin >> cap;
-			cin.ignore();
-			if (cap > App.dinner.Maxtotal || cap < 0)
-			{
-				cout << "Invalid capacity" << endl;
-				break;
-			}
-			if (cap < App.dinner.total_b)
-			{
-				cout << "Can not reduce capacity" << endl;
-				break;
-			}
-			App.dinner.total_b = cap;
-
-			App.dinner.total_a = App.dinner.Maxtotal - App.dinner.total_b;
-			cout << "Dinner block capacity successfully updated" << endl;
-			update_block(App);
-			break;
-		}
-		cout << "Invalid option" << endl;
-		break;
-	}
 	default:
-	{
-		cout << "Invalid option" << endl;
-		break;
-	}
+		{
+			cout << "Invalid option" << endl;
+			break;
+		}
 	}
 }
 
@@ -375,101 +386,136 @@ inline void how_may_students_block(const app App)
 	switch (hour)
 	{
 	case 1:
-	{
-		if (block == "A")
 		{
-			for (const auto& student : App.students)
+			if (block == "A")
 			{
-				if (student.breakfast == "A")
+				for (const auto& student : App.students)
 				{
-					capacity++;
+					if (student.breakfast == "A")
+					{
+						capacity++;
+					}
 				}
 			}
-		}
-		else if (block == "B")
-		{
-			for (const auto& student : App.students)
+			else if (block == "B")
 			{
-				if (student.breakfast == "B")
+				for (const auto& student : App.students)
 				{
-					capacity++;
+					if (student.breakfast == "B")
+					{
+						capacity++;
+					}
 				}
 			}
+			else
+			{
+				cout << "Invalid option" << endl;
+			}
+			cout << "Students --> " << capacity << endl;
+			break;
 		}
-		else
-		{
-			cout << "Invalid option" << endl;
-		}
-		cout << "Students --> " << capacity << endl;
-		break;
-	}
 	case 2:
-	{
-		if (block == "A")
 		{
-			for (const auto& student : App.students)
+			if (block == "A")
 			{
-				if (student._meal == "A")
+				for (const auto& student : App.students)
 				{
-					capacity++;
+					if (student._meal == "A")
+					{
+						capacity++;
+					}
 				}
 			}
-		}
-		else if (block == "B")
-		{
-			for (const auto& student : App.students)
+			else if (block == "B")
 			{
-				if (student._meal == "B")
+				for (const auto& student : App.students)
 				{
-					capacity++;
+					if (student._meal == "B")
+					{
+						capacity++;
+					}
 				}
 			}
+			else
+			{
+				cout << "Invalid option" << endl;
+			}
+			cout << "Students --> " << capacity << endl;
+			break;
 		}
-		else
-		{
-			cout << "Invalid option" << endl;
-		}
-		cout << "Students --> " << capacity << endl;
-		break;
-	}
 	case 3:
-	{
-		if (block == "A")
 		{
-			for (const auto& student : App.students)
+			if (block == "A")
 			{
-				if (student.dinner == "A")
+				for (const auto& student : App.students)
 				{
-					capacity++;
+					if (student.dinner == "A")
+					{
+						capacity++;
+					}
 				}
 			}
-		}
-		else if (block == "B")
-		{
-			for (const auto& student : App.students)
+			else if (block == "B")
 			{
-				if (student.dinner == "B")
+				for (const auto& student : App.students)
 				{
-					capacity++;
+					if (student.dinner == "B")
+					{
+						capacity++;
+					}
 				}
 			}
+			else
+			{
+				cout << "Invalid option" << endl;
+			}
+			cout << "Students --> " << capacity << endl;
+			break;
 		}
-		else
+	default:
 		{
 			cout << "Invalid option" << endl;
 		}
-		cout << "Students --> " << capacity << endl;
-		break;
-	}
-	default:
-	{
-		cout << "Invalid option" << endl;
-	}
 	}
 }
 
 inline void which_students_block(app& App)
 {
+	App.breakfast.list_a.clear();
+	App.breakfast.list_b.clear();
+	App._meal.list_a.clear();
+	App._meal.list_b.clear();
+	App.dinner.list_a.clear();
+	App.dinner.list_b.clear();
+
+	for (auto student : App.students)
+	{
+		if (student.breakfast == "A")
+		{
+			App.breakfast.list_a.push_back(student);
+		}
+		if (student.breakfast == "B")
+		{
+			App.breakfast.list_b.push_back(student);
+		}
+		if (student._meal == "A")
+		{
+			App._meal.list_a.push_back(student);
+		}
+		if (student._meal == "B")
+		{
+			App._meal.list_b.push_back(student);
+		}
+		if (student.dinner == "A")
+		{
+			App.dinner.list_a.push_back(student);
+		}
+		if (student.dinner == "B")
+		{
+			App.dinner.list_b.push_back(student);
+		}
+	}
+
 	int hour;
 	string block;
 	vector<student> list;
@@ -492,61 +538,61 @@ inline void which_students_block(app& App)
 	switch (hour)
 	{
 	case 1:
-	{
-		if (block == "A")
 		{
-			list = App.breakfast.list_a;
-			print_students(list);
+			if (block == "A")
+			{
+				list = App.breakfast.list_a;
+				print_students(list);
+				break;
+			}
+			if (block == "B")
+			{
+				list = App.breakfast.list_b;
+				print_students(list);
+				break;
+			}
+			if (block != "A" && block != "B") cout << "Invalid option" << endl;
 			break;
 		}
-		if (block == "B")
-		{
-			list = App.breakfast.list_b;
-			print_students(list);
-			break;
-		}
-		if (block != "A" && block != "B") cout << "Invalid option" << endl;
-		break;
-	}
 	case 2:
-	{
-		if (block == "A")
 		{
-			list = App._meal.list_a;
-			print_students(list);
+			if (block == "A")
+			{
+				list = App._meal.list_a;
+				print_students(list);
+				break;
+			}
+			if (block == "B")
+			{
+				list = App._meal.list_b;
+				print_students(list);
+				break;
+			}
+			if (block != "A" && block != "B") cout << "Invalid option" << endl;
 			break;
 		}
-		if (block == "B")
-		{
-			list = App._meal.list_b;
-			print_students(list);
-			break;
-		}
-		if (block != "A" && block != "B") cout << "Invalid option" << endl;
-		break;
-	}
 	case 3:
-	{
-		if (block == "A")
 		{
-			list = App.dinner.list_a;
-			print_students(list);
+			if (block == "A")
+			{
+				list = App.dinner.list_a;
+				print_students(list);
+				break;
+			}
+			if (block == "B")
+			{
+				list = App.dinner.list_b;
+				print_students(list);
+				break;
+			}
+			if (block != "A" && block != "B") cout << "Invalid option" << endl;
 			break;
 		}
-		if (block == "B")
-		{
-			list = App.dinner.list_b;
-			print_students(list);
-			break;
-		}
-		if (block != "A" && block != "B") cout << "Invalid option" << endl;
-		break;
-	}
 	default:
-	{
-		cout << "Invalid option" << endl;
-		break;
-	}
+		{
+			cout << "Invalid option" << endl;
+			break;
+		}
 	}
 }
 
@@ -558,7 +604,6 @@ inline void logged_admin(app& App)
 
 	while (run)
 	{
-		system("cls");
 		cout << "-------- LOGGED ADMIN MENU --------" << endl;
 		cout << "1) Disable Admin" << endl;
 		cout << "2) Enable Admin" << endl;
@@ -575,59 +620,59 @@ inline void logged_admin(app& App)
 		switch (option)
 		{
 		case DisAdmin:
-		{
-			cout << "Disabling Admin..." << endl;
-			disable_admin(App);
-			break;
-		}
+			{
+				cout << "Disabling Admin..." << endl;
+				disable_admin(App);
+				break;
+			}
 
 		case EnaAdmin:
-		{
-			cout << "Enabling Admin..." << endl;
-			enable_admin(App);
-			break;
-		}
+			{
+				cout << "Enabling Admin..." << endl;
+				enable_admin(App);
+				break;
+			}
 
 		case EdTotCap:
-		{
-			cout << "Editing Total Capacity..." << endl;
-			edit_total_capacity(App);
-			break;
-		}
+			{
+				cout << "Editing Total Capacity..." << endl;
+				edit_total_capacity(App);
+				break;
+			}
 
 		case EdSpecMealBlockCap:
-		{
-			cout << "Editing Specific Meal Block Capacity..." << endl;
-			edit_specific_meal_block_capacity(App);
-			break;
-		}
+			{
+				cout << "Editing Specific Meal Block Capacity..." << endl;
+				edit_specific_meal_block_capacity(App);
+				break;
+			}
 
 		case HowManyStudsBlock:
-		{
-			cout << "How Many Students in Block..." << endl;
-			how_may_students_block(App);
-			break;
-		}
+			{
+				cout << "How Many Students in Block..." << endl;
+				how_may_students_block(App);
+				break;
+			}
 
 		case WhichStudsBlock:
-		{
-			cout << "Which Students in Block..." << endl;
-			which_students_block(App);
-			break;
-		}
+			{
+				cout << "Which Students in Block..." << endl;
+				which_students_block(App);
+				break;
+			}
 
 		case ExitAdminLog:
-		{
-			cout << "Return to Main Menu" << endl;
-			run = false;
-			break;
-		}
+			{
+				cout << "Return to Main Menu" << endl;
+				run = false;
+				break;
+			}
 
 		default:
-		{
-			cout << "Invalid Option" << endl;
-			break;
-		}
+			{
+				cout << "Invalid Option" << endl;
+				break;
+			}
 		}
 	}
 }
