@@ -124,22 +124,12 @@ inline void disable_student(app& App)
 
 inline void register_breakfast(app& App)
 {
-	App.breakfast.total = 0;
-	for (auto& i : App.students)
-	{
-		if (!i.breakfast.empty()) App.breakfast.total ++;
-	}
 	App.breakfast.Maxtotal = App.total_students;
 	int cap = 0;
 
 	bool found = false;
 	string block;
 
-	if (App.breakfast.total >= App.total_students || App.breakfast.total == App.breakfast.Maxtotal)
-	{
-		cout << "No more students can register here" << endl;
-		return;
-	}
 	cout << "ID of Student: ";
 	int is;
 	cin >> is;
@@ -166,9 +156,7 @@ inline void register_breakfast(app& App)
 					else
 					{
 						student.breakfast = block;
-						App.breakfast.total_a++;
 						App.breakfast.list_a.push_back(student);
-						App.breakfast.total++;
 						cout << "Registered correctly" << endl;
 						break;
 					}
@@ -187,9 +175,7 @@ inline void register_breakfast(app& App)
 					else
 					{
 						student.breakfast = block;
-						App.breakfast.total_b++;
 						App.breakfast.list_b.push_back(student);
-						App.breakfast.total++;
 						cout << "Registered correctly" << endl;
 						break;
 					}
@@ -203,22 +189,12 @@ inline void register_breakfast(app& App)
 
 inline void register_meal(app& App)
 {
-	App._meal.total = 0;
-	for (auto& i : App.students)
-	{
-		if (!i._meal.empty()) App._meal.total++;
-	}
 	App._meal.Maxtotal = App.total_students;
 	int cap = 0;
 
 	bool found = false;
 	string block;
 
-	if (App._meal.total >= App.total_students || App._meal.total == App._meal.Maxtotal)
-	{
-		cout << "No more students can register here" << endl;
-		return;
-	}
 	cout << "ID of Student: ";
 	int is;
 	cin >> is;
@@ -245,9 +221,7 @@ inline void register_meal(app& App)
 					else
 					{
 						student._meal = block;
-						App._meal.total_a++;
 						App._meal.list_a.push_back(student);
-						App._meal.total++;
 						cout << "Registered correctly" << endl;
 						break;
 					}
@@ -266,9 +240,7 @@ inline void register_meal(app& App)
 					else
 					{
 						student._meal = block;
-						App._meal.total_b++;
 						App._meal.list_b.push_back(student);
-						App._meal.total++;
 						cout << "Registered correctly" << endl;
 						break;
 					}
@@ -281,22 +253,12 @@ inline void register_meal(app& App)
 
 inline void register_dinner(app& App)
 {
-	App.dinner.total = 0;
-	for (auto& i : App.students)
-	{
-		if (!i._meal.empty()) App.dinner.total++;
-	}
 	App.dinner.Maxtotal = App.total_students;
 	int cap = 0;
 
 	bool found = false;
 	string block;
 
-	if (App.dinner.total >= App.total_students || App.dinner.total == App.dinner.Maxtotal)
-	{
-		cout << "No more students can register here" << endl;
-		return;
-	}
 	cout << "ID of Student: ";
 	int is;
 	cin >> is;
@@ -323,9 +285,7 @@ inline void register_dinner(app& App)
 					else
 					{
 						student.dinner = block;
-						App.dinner.total_a++;
 						App.dinner.list_a.push_back(student);
-						App.dinner.total++;
 						cout << "Registered correctly" << endl;
 						break;
 					}
@@ -344,9 +304,7 @@ inline void register_dinner(app& App)
 					else
 					{
 						student.dinner = block;
-						App.dinner.total_b++;
 						App.dinner.list_b.push_back(student);
-						App.dinner.total++;
 						cout << "Registered correctly" << endl;
 						break;
 					}
@@ -371,7 +329,6 @@ inline void delete_register(app& App)
 		{
 			found = true;
 			cout << "-------- DELETE REGISTER -------- " << endl;
-			App.breakfast.total--;
 			if (student.breakfast == "A")
 			{
 				App.breakfast.total_a--;
@@ -383,7 +340,6 @@ inline void delete_register(app& App)
 				App.breakfast.total_b--;
 				student.breakfast = "";
 			}
-			App._meal.total--;
 			if (student._meal == "A")
 			{
 				App._meal.total_a--;
@@ -394,7 +350,6 @@ inline void delete_register(app& App)
 				App._meal.total_b--;
 				student._meal = "";
 			}
-			App.dinner.total--;
 			if (student.dinner == "A")
 			{
 				App.dinner.total_a--;
@@ -437,6 +392,7 @@ inline void logged_student(app& App)
 			{
 				cout << "Disabling student" << endl;
 				disable_student(App);
+				add_student_2_file(App);
 				break;
 			}
 
@@ -444,6 +400,7 @@ inline void logged_student(app& App)
 			{
 				cout << "Enabling student" << endl;
 				enable_student(App);
+				add_student_2_file(App);
 				break;
 			}
 
@@ -451,6 +408,7 @@ inline void logged_student(app& App)
 			{
 				cout << "Register Breakfast" << endl;
 				register_breakfast(App);
+				add_student_2_file(App);
 				break;
 			}
 
@@ -458,6 +416,7 @@ inline void logged_student(app& App)
 			{
 				cout << "Register Meal" << endl;
 				register_meal(App);
+				add_student_2_file(App);
 				break;
 			}
 
@@ -465,12 +424,14 @@ inline void logged_student(app& App)
 			{
 				cout << "Register Dinner" << endl;
 				register_dinner(App);
+				add_student_2_file(App);
 				break;
 			}
 		case ChangeReg:
 			{
 				cout << "Change register" << endl;
 				delete_register(App);
+				add_student_2_file(App);
 				break;
 			}
 

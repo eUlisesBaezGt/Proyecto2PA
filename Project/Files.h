@@ -334,7 +334,6 @@ inline void read_blocks_breakfast(app& App)
 				if (ss.peek() == ',') ss.ignore();
 				colIdx++;
 			}
-			App.breakfast.total = App.breakfast.total_a + App.breakfast.total_b;
 		}
 		myFileInput.close();
 	}
@@ -396,7 +395,6 @@ inline void read_blocks_meal(app& App)
 				if (ss.peek() == ',') ss.ignore();
 				colIdx++;
 			}
-			App._meal.total = App._meal.total_a + App._meal.total_b;
 		}
 		myFileInput.close();
 	}
@@ -458,7 +456,6 @@ inline void read_blocks_dinner(app& App)
 				if (ss.peek() == ',') ss.ignore();
 				colIdx++;
 			}
-			App.dinner.total = App.dinner.total_a + App.dinner.total_b;
 		}
 		myFileInput.close();
 	}

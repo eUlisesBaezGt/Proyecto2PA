@@ -1,5 +1,4 @@
 id,password,name,middleName,lastName,age,gender,status,breakfast,meal,dinner
-41,s,s,s,s,4,F,TRUE,A,,
-449,t,r,r,r,5,t,TRUE,A,,
-328,l,l,l,l,6,F,TRUE,,,
-449,f,f,f,f,5,F,true,,,
+41,s,s,s,s,3,M,true,A,,
+449,e,e,e,e,3,M,true,A,,
+328,z,z,z,z,5,F,true,,,
