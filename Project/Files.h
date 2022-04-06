@@ -304,7 +304,7 @@ inline void read_blocks_breakfast(app& App)
 			stringstream ss(line);
 
 			int colIdx = 0;
-			int _capacity;
+			int _capacity = 0;
 			string _block;
 
 			while (getline(ss, value, ','))
